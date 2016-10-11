@@ -57,32 +57,10 @@ install(
     include/wpe
 )
 
-include(CMakePackageConfigHelpers)
-write_basic_package_version_file(
-  "${CMAKE_CURRENT_BINARY_DIR}/WPEConfigVersion.cmake"
-  VERSION ${WPE_VERSION}
-  COMPATIBILITY AnyNewerVersion
-)
-
-export(EXPORT WPETargets
-  FILE "${CMAKE_CURRENT_BINARY_DIR}/WPETargets.cmake"
-)
-configure_file(WPEConfig.cmake
-  "${CMAKE_CURRENT_BINARY_DIR}/WPEConfig.cmake"
-  COPYONLY
-)
-
-set(ConfigPackageLocation lib/cmake/WPE)
-install(EXPORT WPETargets
-  FILE
-    WPETargets.cmake
-  DESTINATION
-    ${ConfigPackageLocation}
-)
+configure_file(wpe.pc.cmake wpe.pc @ONLY)
 install(
   FILES
-    WPEConfig.cmake
-    "${CMAKE_CURRENT_BINARY_DIR}/WPEConfigVersion.cmake"
-  DESTINATION
-    ${ConfigPackageLocation}
+    "${CMAKE_CURRENT_BINARY_DIR}/wpe.pc"
+    DESTINATION
+    lib/pkgconfig
 )
