@@ -36,6 +36,9 @@ struct wpe_view_backend*
 wpe_view_backend_create()
 {
     struct wpe_view_backend_interface* backend_interface = wpe_load_object("_wpe_view_backend_interface");
+    if (!backend_interface)
+        return 0;
+
     return wpe_view_backend_create_with_backend_interface(backend_interface, 0);
 }
 
