@@ -24,12 +24,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef wpe_renderer_private_h
-#define wpe_renderer_private_h
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+#ifndef wpe_renderer_backend_egl_private_h
+#define wpe_renderer_backend_egl_private_h
 
 struct wpe_renderer_backend_egl {
     const struct wpe_renderer_backend_egl_interface* interface;
@@ -49,8 +45,4 @@ struct wpe_renderer_backend_egl_offscreen_target {
     void* interface_data;
 };
 
-#ifdef __cplusplus
-}
-#endif
-
-#endif // wpe_renderer_private_h
+#endif // wpe_renderer_backend_egl_private_h

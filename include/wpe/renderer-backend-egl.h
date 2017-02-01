@@ -24,15 +24,15 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef wpe_renderer_h
-#define wpe_renderer_h
+#ifndef wpe_renderer_backend_egl_h
+#define wpe_renderer_backend_egl_h
+
+#include <EGL/eglplatform.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#include <EGL/eglplatform.h>
-#include <stdint.h>
 
 struct wpe_renderer_backend_egl;
 struct wpe_renderer_backend_egl_target;
@@ -118,9 +118,8 @@ struct wpe_renderer_backend_egl_target_client {
 void
 wpe_renderer_backend_egl_target_dispatch_frame_complete(struct wpe_renderer_backend_egl_target*);
 
-
 #ifdef __cplusplus
 }
 #endif
 
-#endif // wpe_renderer_h
+#endif // wpe_renderer_backend_egl_h
