@@ -51,7 +51,7 @@ struct wpe_pasteboard_interface generic_pasteboard_interface = {
         if (!length)
             return;
 
-        out_vector->strings = static_cast<struct wpe_pasteboard_string*>(malloc(sizeof(struct wpe_pasteboard_string) * length));
+        out_vector->strings = static_cast<struct wpe_pasteboard_string*>(calloc(1, sizeof(struct wpe_pasteboard_string) * length));
         out_vector->length = length;
         memset(out_vector->strings, 0, out_vector->length);
 

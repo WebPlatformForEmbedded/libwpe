@@ -37,7 +37,7 @@ wpe_pasteboard_string_initialize(struct wpe_pasteboard_string* string, const cha
     if (string->data)
         return;
 
-    string->data = malloc(sizeof(char*) * in_length);
+    string->data = calloc(1, sizeof(char*) * in_length);
     string->length = in_length;
     memcpy(string->data, in_string, in_length);
 }
@@ -71,7 +71,7 @@ wpe_pasteboard_get_singleton()
 {
     static struct wpe_pasteboard* s_pasteboard = 0;
     if (!s_pasteboard) {
-        s_pasteboard = malloc(sizeof(struct wpe_pasteboard));
+        s_pasteboard = calloc(1, sizeof(struct wpe_pasteboard));
         s_pasteboard->interface = wpe_load_object("_wpe_pasteboard_interface");
         if (!s_pasteboard->interface)
             s_pasteboard->interface = &noop_pasteboard_interface;

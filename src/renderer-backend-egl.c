@@ -34,7 +34,7 @@ __attribute__((visibility("default")))
 struct wpe_renderer_backend_egl*
 wpe_renderer_backend_egl_create(int host_fd)
 {
-    struct wpe_renderer_backend_egl* backend = malloc(sizeof(struct wpe_renderer_backend_egl));
+    struct wpe_renderer_backend_egl* backend = calloc(1, sizeof(struct wpe_renderer_backend_egl));
     if (!backend)
         return 0;
 
@@ -65,7 +65,7 @@ __attribute__((visibility("default")))
 struct wpe_renderer_backend_egl_target*
 wpe_renderer_backend_egl_target_create(int host_fd)
 {
-    struct wpe_renderer_backend_egl_target* target = malloc(sizeof(struct wpe_renderer_backend_egl_target));
+    struct wpe_renderer_backend_egl_target* target = calloc(1, sizeof(struct wpe_renderer_backend_egl_target));
     if (!target)
         return 0;
 
@@ -135,7 +135,7 @@ __attribute__((visibility("default")))
 struct wpe_renderer_backend_egl_offscreen_target*
 wpe_renderer_backend_egl_offscreen_target_create()
 {
-    struct wpe_renderer_backend_egl_offscreen_target* target = malloc(sizeof(struct wpe_renderer_backend_egl_offscreen_target));
+    struct wpe_renderer_backend_egl_offscreen_target* target = calloc(1, sizeof(struct wpe_renderer_backend_egl_offscreen_target));
     if (!target)
         return 0;
 

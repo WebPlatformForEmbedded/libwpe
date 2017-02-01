@@ -36,7 +36,7 @@ wpe_renderer_host_create_client()
 {
     static struct wpe_renderer_host* s_renderer_host = 0;
     if (!s_renderer_host) {
-        s_renderer_host = malloc(sizeof(struct wpe_renderer_host));
+        s_renderer_host = calloc(1, sizeof(struct wpe_renderer_host));
         if (!s_renderer_host)
             return -1;
 

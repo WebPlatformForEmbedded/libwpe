@@ -39,7 +39,7 @@ wpe_input_key_mapper_get_singleton()
 {
     static struct wpe_input_key_mapper* s_key_mapper = 0;
     if (!s_key_mapper) {
-        s_key_mapper = malloc(sizeof(struct wpe_input_key_mapper));
+        s_key_mapper = calloc(1, sizeof(struct wpe_input_key_mapper));
         s_key_mapper->interface = wpe_load_object("_wpe_input_key_mapper_interface");
     }
 
