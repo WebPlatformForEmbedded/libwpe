@@ -30,7 +30,6 @@
 #include "renderer-backend-egl-private.h"
 #include <stdlib.h>
 
-
 __attribute__((visibility("default")))
 struct wpe_renderer_backend_egl*
 wpe_renderer_backend_egl_create(int host_fd)
