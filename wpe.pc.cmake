@@ -7,4 +7,4 @@ Name: wpe
 Description: The wpe library
 Version: @WPE_VERSION@
 Cflags: -I${includedir}
-Libs: -L${libdir} -lWPE
+Libs: -L${libdir} -lWPEBackend

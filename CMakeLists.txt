@@ -36,17 +36,18 @@ set(WPE_PUBLIC_HEADERS
   include/wpe/view-backend.h
 )
 
-add_library(WPE SHARED ${WPE_SOURCES})
-target_include_directories(WPE PRIVATE ${WPE_INCLUDE_DIRECTORIES})
-target_link_libraries(WPE ${WPE_LIBRARIES})
+add_library(WPEBackend SHARED ${WPE_SOURCES})
+target_include_directories(WPEBackend PRIVATE ${WPE_INCLUDE_DIRECTORIES})
+target_link_libraries(WPEBackend ${WPE_LIBRARIES})
 
 set(WPE_VERSION_MAJOR 0)
 set(WPE_VERSION_MINOR 1)
 set(WPE_VERSION ${WPE_VERSION_MAJOR}.${WPE_VERSION_MINOR})
 
-set_target_properties(WPE PROPERTIES VERSION ${WPE_VERSION} SOVERSION ${WPE_VERSION_MAJOR})
+set_target_properties(WPEBackend PROPERTIES VERSION ${WPE_VERSION} SOVERSION ${WPE_VERSION_MAJOR})
 
-install(TARGETS WPE EXPORT WPETargets
+install(TARGETS WPEBackend
+  EXPORT WPETargets
   LIBRARY DESTINATION lib
   INCLUDES DESTINATION include
 )
