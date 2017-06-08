@@ -61,20 +61,13 @@ void
 wpe_view_backend_destroy(struct wpe_view_backend* backend)
 {
     backend->interface->destroy(backend->interface_data);
-    backend->interface_data = 0;
-
-    backend->backend_client = 0;
-    backend->backend_client_data = 0;
-
-    backend->input_client = 0;
-    backend->input_client_data = 0;
-
+    memset(backend, 0, sizeof(*backend));
     free(backend);
 }
 
 __attribute__((visibility("default")))
 void
-wpe_view_backend_set_backend_client(struct wpe_view_backend* backend, struct wpe_view_backend_client* client, void* client_data)
+wpe_view_backend_set_backend_client(struct wpe_view_backend* backend, const struct wpe_view_backend_client* client, void* client_data)
 {
     backend->backend_client = client;
     backend->backend_client_data = client_data;
@@ -82,10 +75,10 @@ wpe_view_backend_set_backend_client(struct wpe_view_backend* backend, struct wpe
 
 __attribute__((visibility("default")))
 void
-wpe_view_backend_set_input_client(struct wpe_view_backend* backend, struct wpe_view_backend_input_client* client, void* client_data)
+wpe_view_backend_set_input_client(struct wpe_view_backend* backend, const struct wpe_input_client* client, void* client_data)
 {
-    backend->input_client = client;
-    backend->input_client_data = client_data;
+    backend->input.client = client;
+    backend->input.client_data = client_data;
 }
 
 __attribute__((visibility("default")))
@@ -100,6 +93,13 @@ int
 wpe_view_backend_get_renderer_host_fd(struct wpe_view_backend* backend)
 {
     return backend->interface->get_renderer_host_fd(backend->interface_data);
+}
+
+__attribute__((visibility("default")))
+struct wpe_input*
+wpe_view_backend_get_input(struct wpe_view_backend* backend)
+{
+    return &backend->input;
 }
 
 __attribute__((visibility("default")))
@@ -120,32 +120,32 @@ wpe_view_backend_dispatch_frame_displayed(struct wpe_view_backend* backend)
 
 __attribute__((visibility("default")))
 void
-wpe_view_backend_dispatch_keyboard_event(struct wpe_view_backend* backend, struct wpe_input_keyboard_event* event)
+wpe_input_dispatch_keyboard_event(struct wpe_input* backend, struct wpe_input_keyboard_event* event)
 {
-    if (backend->input_client)
-        backend->input_client->handle_keyboard_event(backend->input_client_data, event);
+    if (backend->client)
+        backend->client->handle_keyboard_event(backend->client_data, event);
 }
 
 __attribute__((visibility("default")))
 void
-wpe_view_backend_dispatch_pointer_event(struct wpe_view_backend* backend, struct wpe_input_pointer_event* event)
+wpe_input_dispatch_pointer_event(struct wpe_input* backend, struct wpe_input_pointer_event* event)
 {
-    if (backend->input_client)
-        backend->input_client->handle_pointer_event(backend->input_client_data, event);
+    if (backend->client)
+        backend->client->handle_pointer_event(backend->client_data, event);
 }
 
 __attribute__((visibility("default")))
 void
-wpe_view_backend_dispatch_axis_event(struct wpe_view_backend* backend, struct wpe_input_axis_event* event)
+wpe_input_dispatch_axis_event(struct wpe_input* backend, struct wpe_input_axis_event* event)
 {
-    if (backend->input_client)
-        backend->input_client->handle_axis_event(backend->input_client_data, event);
+    if (backend->client)
+        backend->client->handle_axis_event(backend->client_data, event);
 }
 
 __attribute__((visibility("default")))
 void
-wpe_view_backend_dispatch_touch_event(struct wpe_view_backend* backend, struct wpe_input_touch_event* event)
+wpe_input_dispatch_touch_event(struct wpe_input* backend, struct wpe_input_touch_event* event)
 {
-    if (backend->input_client)
-        backend->input_client->handle_touch_event(backend->input_client_data, event);
+    if (backend->client)
+        backend->client->handle_touch_event(backend->client_data, event);
 }
