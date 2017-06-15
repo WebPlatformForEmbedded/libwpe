@@ -56,9 +56,9 @@ wpe_renderer_backend_egl_destroy(struct wpe_renderer_backend_egl* backend)
 
 __attribute__((visibility("default")))
 EGLNativeDisplayType
-wpe_renderer_backend_egl_get_native_display(struct wpe_renderer_backend_egl* backend)
+wpe_renderer_backend_egl_get_native_display(struct wpe_renderer_backend_egl* backend, EGLenum* platform)
 {
-    return backend->interface->get_native_display(backend->interface_data);
+    return backend->interface->get_native_display(backend->interface_data, platform);
 }
 
 __attribute__((visibility("default")))

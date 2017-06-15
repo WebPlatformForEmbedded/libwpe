@@ -30,9 +30,12 @@
 #include <EGL/eglplatform.h>
 #include <stdint.h>
 
+
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+typedef unsigned int EGLenum;
 
 struct wpe_renderer_backend_egl;
 struct wpe_renderer_backend_egl_target;
@@ -44,7 +47,7 @@ struct wpe_renderer_backend_egl_interface {
     void* (*create)(int);
     void (*destroy)(void*);
 
-    EGLNativeDisplayType (*get_native_display)(void*);
+    EGLNativeDisplayType (*get_native_display)(void*, EGLenum*);
 };
 
 struct wpe_renderer_backend_egl_target_interface {
@@ -73,7 +76,7 @@ void
 wpe_renderer_backend_egl_destroy(struct wpe_renderer_backend_egl*);
 
 EGLNativeDisplayType
-wpe_renderer_backend_egl_get_native_display(struct wpe_renderer_backend_egl*);
+wpe_renderer_backend_egl_get_native_display(struct wpe_renderer_backend_egl*, EGLenum*);
 
 struct wpe_renderer_backend_egl_target*
 wpe_renderer_backend_egl_target_create(int);
