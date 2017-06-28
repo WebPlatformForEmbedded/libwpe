@@ -146,6 +146,24 @@ wpe_view_backend_alloc_buffer(struct wpe_view_backend* backend, const struct wpe
 }
 
 __attribute__((visibility("default")))
+struct wl_display*
+wpe_view_backend_get_display(struct wpe_view_backend* backend)
+{
+    if (backend->interface->get_display)
+        return backend->interface->get_display(backend->interface_data);
+    return NULL;
+}
+
+__attribute__((visibility("default")))
+struct wl_surface*
+wpe_view_backend_get_surface(struct wpe_view_backend* backend)
+{
+    if (backend->interface->get_surface)
+        return backend->interface->get_surface(backend->interface_data);
+    return NULL;
+}
+
+__attribute__((visibility("default")))
 struct wpe_input*
 wpe_view_backend_get_input(struct wpe_view_backend* backend)
 {

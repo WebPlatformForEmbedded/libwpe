@@ -58,6 +58,9 @@ struct wpe_input_client;
 struct wpe_popup_client;
 struct wpe_buffer_client;
 
+struct wl_display;
+struct wl_surface;
+
 struct wpe_view_backend_interface {
     void* (*create)(void*, struct wpe_view_backend*);
     void (*destroy)(void*);
@@ -67,6 +70,8 @@ struct wpe_view_backend_interface {
 
     bool (*create_popup)(void*, struct wpe_popup*, int32_t, int32_t);
     bool (*alloc_buffer)(void*, struct wpe_buffer*, uint32_t, uint32_t, uint32_t);
+    struct wl_display* (*get_display)(void*);
+    struct wl_surface* (*get_surface)(void*);
 };
 
 struct wpe_popup_interface {
@@ -114,6 +119,12 @@ wpe_view_backend_create_popup(struct wpe_view_backend*, int32_t, int32_t, const 
 
 struct wpe_buffer*
 wpe_view_backend_alloc_buffer(struct wpe_view_backend*, const struct wpe_buffer_client*, void*, uint32_t, uint32_t, uint32_t);
+
+struct wl_display*
+wpe_view_backend_get_display(struct wpe_view_backend*);
+
+struct wl_surface*
+wpe_view_backend_get_surface(struct wpe_view_backend*);
 
 void
 wpe_view_backend_dispatch_set_size(struct wpe_view_backend*, uint32_t, uint32_t);
