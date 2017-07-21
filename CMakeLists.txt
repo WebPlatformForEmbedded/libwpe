@@ -1,7 +1,12 @@
 cmake_minimum_required(VERSION 2.8)
 
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99 -D_POSIX_SOURCE")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
+find_package(EGL REQUIRED)
+
+add_definitions(${EGL_DEFINITIONS})
 
 if(WPE_BACKEND)
   add_definitions(-DWPE_BACKEND=\"${WPE_BACKEND}\")
@@ -10,6 +15,7 @@ endif()
 set(WPE_INCLUDE_DIRECTORIES
     "include"
     "src"
+    ${EGL_INCLUDE_DIRS}
 )
 
 set(WPE_LIBRARIES
