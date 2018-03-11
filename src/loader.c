@@ -43,9 +43,8 @@ load_impl_library()
         abort();
     }
 #else
-    static const char library_name[] = "libWPEBackend-default.so";
-
-    // Get the impl library from an environment variable.
+#ifndef NDEBUG
+    // Get the impl library from an environment variable, if available.
     char* env_library_name = getenv("WPE_BACKEND_LIBRARY");
     if (env_library_name) {
         s_impl_library = dlopen(env_library_name, RTLD_NOW);
@@ -53,9 +52,11 @@ load_impl_library()
             fprintf(stderr, "wpe: could not load specified WPE_BACKEND_LIBRARY: %s\n", dlerror());
             abort();
         }
-    } else {
+    }
+#endif
+    if (!s_impl_library) {
         // Load libWPEBackend-default.so by ... default.
-        s_impl_library = dlopen(library_name, RTLD_NOW);
+        s_impl_library = dlopen("libWPEBackend-default.so", RTLD_NOW);
         if (!s_impl_library) {
             fprintf(stderr, "wpe: could not load the impl library. Is there any backend installed?: %s\n", dlerror());
             abort();
