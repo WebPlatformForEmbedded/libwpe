@@ -50,7 +50,13 @@ set(WPE_VERSION_MAJOR 0)
 set(WPE_VERSION_MINOR 1)
 set(WPE_VERSION ${WPE_VERSION_MAJOR}.${WPE_VERSION_MINOR})
 
-set_target_properties(WPEBackend PROPERTIES VERSION ${WPE_VERSION} SOVERSION ${WPE_VERSION_MAJOR})
+set(WPE_API_VERSION "0.1")
+
+set_target_properties(WPEBackend PROPERTIES
+  OUTPUT_NAME WPEBackend-${WPE_API_VERSION}
+  VERSION ${WPE_VERSION}
+  SOVERSION ${WPE_VERSION_MAJOR}
+)
 
 install(TARGETS WPEBackend
   EXPORT WPETargets
@@ -61,13 +67,13 @@ install(
   FILES
     ${WPE_PUBLIC_HEADERS}
     DESTINATION
-    include/wpe
+    include/wpe-${WPE_API_VERSION}/wpe
 )
 
-configure_file(wpe.pc.cmake wpe.pc @ONLY)
+configure_file(wpe.pc.cmake wpe-${WPE_API_VERSION}.pc @ONLY)
 install(
   FILES
-    "${CMAKE_CURRENT_BINARY_DIR}/wpe.pc"
+    "${CMAKE_CURRENT_BINARY_DIR}/wpe-${WPE_API_VERSION}.pc"
     DESTINATION
     lib/pkgconfig
 )
