@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 
+include(GNUInstallDirs)
+
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99 -D_POSIX_SOURCE")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
@@ -50,24 +52,28 @@ set(WPE_VERSION_MAJOR 0)
 set(WPE_VERSION_MINOR 1)
 set(WPE_VERSION ${WPE_VERSION_MAJOR}.${WPE_VERSION_MINOR})
 
-set_target_properties(WPEBackend PROPERTIES VERSION ${WPE_VERSION} SOVERSION ${WPE_VERSION_MAJOR})
+set(WPE_API_VERSION "0.1")
+
+set_target_properties(WPEBackend PROPERTIES
+  OUTPUT_NAME WPEBackend-${WPE_API_VERSION}
+  VERSION ${WPE_VERSION}
+  SOVERSION ${WPE_VERSION_MAJOR}
+)
 
 install(TARGETS WPEBackend
-  EXPORT WPETargets
-  LIBRARY DESTINATION lib
-  INCLUDES DESTINATION include
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 install(
   FILES
     ${WPE_PUBLIC_HEADERS}
     DESTINATION
-    include/wpe
+    ${CMAKE_INSTALL_INCLUDEDIR}/wpe-${WPE_API_VERSION}/wpe
 )
 
-configure_file(wpe.pc.cmake wpe.pc @ONLY)
+configure_file(wpe.pc.cmake wpe-${WPE_API_VERSION}.pc @ONLY)
 install(
   FILES
-    "${CMAKE_CURRENT_BINARY_DIR}/wpe.pc"
+    "${CMAKE_CURRENT_BINARY_DIR}/wpe-${WPE_API_VERSION}.pc"
     DESTINATION
-    lib/pkgconfig
+    ${CMAKE_INSTALL_LIBDIR}/pkgconfig
 )
