@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015, 2016 Igalia S.L.
+ * Copyright (C) 2018 Igalia S.L.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,23 +24,22 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#if !defined(__WPE_H_INSIDE__) && !defined(WPE_COMPILATION)
-#error "Only <wpe/wpe.h> can be included directly."
+
+#ifdef __WEBKIT_WEB_EXTENSION_H__
+#error "Headers <wpe/wpe.h> and <wpe/webkit-web-extension.h> cannot be included together."
 #endif
 
-#ifndef wpe_loader_h
-#define wpe_loader_h
+#ifndef __wpe_h__
+#define __wpe_h__
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#define __WPE_H_INSIDE__
 
-struct wpe_loader_interface {
-    void* (*load_object)(const char*);
-};
+#include <wpe/input.h>
+#include <wpe/loader.h>
+#include <wpe/pasteboard.h>
+#include <wpe/renderer-host.h>
+#include <wpe/view-backend.h>
 
-#ifdef __cplusplus
-}
-#endif
+#undef __WPE_H_INSIDE__
 
-#endif // wpe_loader_h
+#endif // __wpe_h__

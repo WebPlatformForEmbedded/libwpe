@@ -24,6 +24,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#if !defined(__WPE_EGL_H_INSIDE__) && !defined(WPE_COMPILATION)
+#error "Only <wpe/wpe-egl.h> can be included directly."
+#endif
+
 #ifndef wpe_renderer_backend_egl_h
 #define wpe_renderer_backend_egl_h
 
