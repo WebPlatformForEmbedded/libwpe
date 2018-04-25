@@ -93,4 +93,4 @@ wpe_pasteboard_write(struct wpe_pasteboard*, struct wpe_pasteboard_string_map*);
 }
 #endif
 
-#endif // wpe_pasteboard_h
+#endif /* wpe_pasteboard_h */

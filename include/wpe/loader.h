@@ -43,4 +43,4 @@ struct wpe_loader_interface {
 }
 #endif
 
-#endif // wpe_loader_h
+#endif /* wpe_loader_h */

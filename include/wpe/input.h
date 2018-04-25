@@ -133,4 +133,4 @@ wpe_input_single_character_for_key_event(struct wpe_input_key_mapper*, struct wp
 }
 #endif
 
-#endif // wpe_input_h
+#endif /* wpe_input_h */

@@ -126,4 +126,4 @@ wpe_renderer_backend_egl_target_dispatch_frame_complete(struct wpe_renderer_back
 }
 #endif
 
-#endif // wpe_renderer_backend_egl_h
+#endif /* wpe_renderer_backend_egl_h */

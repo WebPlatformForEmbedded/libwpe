@@ -113,4 +113,4 @@ wpe_view_backend_dispatch_touch_event(struct wpe_view_backend*, struct wpe_input
 }
 #endif
 
-#endif // wpe_view_backend_h
+#endif /* wpe_view_backend_h */

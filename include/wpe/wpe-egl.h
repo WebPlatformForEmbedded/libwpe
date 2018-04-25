@@ -38,4 +38,4 @@
 
 #undef __WPE_EGL_H_INSIDE__
 
-#endif // __wpe_h__
+#endif /* __wpe_h__ */

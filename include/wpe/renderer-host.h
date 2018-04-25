@@ -49,4 +49,4 @@ wpe_renderer_host_create_client();
 }
 #endif
 
-#endif // wpe_renderer_host_h
+#endif /* wpe_renderer_host_h */
