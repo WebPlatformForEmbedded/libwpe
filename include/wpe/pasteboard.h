@@ -24,6 +24,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#if !defined(__WPE_H_INSIDE__) && !defined(WPE_COMPILATION)
+#error "Only <wpe/wpe.h> can be included directly."
+#endif
+
 #ifndef wpe_pasteboard_h
 #define wpe_pasteboard_h
 
@@ -71,6 +75,11 @@ struct wpe_pasteboard_interface {
     void (*get_types)(void*, struct wpe_pasteboard_string_vector*);
     void (*get_string)(void*, const char*, struct wpe_pasteboard_string*);
     void (*write)(void*, struct wpe_pasteboard_string_map*);
+
+    void (*_wpe_reserved0)(void);
+    void (*_wpe_reserved1)(void);
+    void (*_wpe_reserved2)(void);
+    void (*_wpe_reserved3)(void);
 };
 
 struct wpe_pasteboard*
@@ -89,4 +98,4 @@ wpe_pasteboard_write(struct wpe_pasteboard*, struct wpe_pasteboard_string_map*);
 }
 #endif
 
-#endif // wpe_pasteboard_h
+#endif /* wpe_pasteboard_h */

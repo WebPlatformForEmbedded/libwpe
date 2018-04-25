@@ -9,6 +9,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 find_package(EGL REQUIRED)
 
 add_definitions(${EGL_DEFINITIONS})
+add_definitions(-DWPE_COMPILATION)
 
 if(WPE_BACKEND)
   add_definitions(-DWPE_BACKEND=\"${WPE_BACKEND}\")
@@ -42,6 +43,8 @@ set(WPE_PUBLIC_HEADERS
   include/wpe/renderer-backend-egl.h
   include/wpe/renderer-host.h
   include/wpe/view-backend.h
+  include/wpe/wpe-egl.h
+  include/wpe/wpe.h
 )
 
 add_library(WPEBackend SHARED ${WPE_SOURCES})

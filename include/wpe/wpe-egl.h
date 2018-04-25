@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015, 2016 Igalia S.L.
+ * Copyright (C) 2018 Igalia S.L.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,34 +24,18 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#if !defined(__WPE_H_INSIDE__) && !defined(WPE_COMPILATION)
-#error "Only <wpe/wpe.h> can be included directly."
+
+#ifdef __WEBKIT_WEB_EXTENSION_H__
+#error "Headers <wpe/wpe-egl.h> and <wpe/webkit-web-extension.h> cannot be included together."
 #endif
 
-#ifndef wpe_renderer_host_h
-#define wpe_renderer_host_h
+#ifndef __wpe_egl_h__
+#define __wpe_egl_h__
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#define __WPE_EGL_H_INSIDE__
 
-struct wpe_renderer_host_interface {
-    void* (*create)();
-    void (*destroy)(void*);
+#include <wpe/renderer-backend-egl.h>
 
-    int (*create_client)(void*);
+#undef __WPE_EGL_H_INSIDE__
 
-    void (*_wpe_reserved0)(void);
-    void (*_wpe_reserved1)(void);
-    void (*_wpe_reserved2)(void);
-    void (*_wpe_reserved3)(void);
-};
-
-int
-wpe_renderer_host_create_client();
-
-#ifdef __cplusplus
-}
-#endif
-
-#endif /* wpe_renderer_host_h */
+#endif /* __wpe_h__ */

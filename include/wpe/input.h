@@ -24,6 +24,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#if !defined(__WPE_H_INSIDE__) && !defined(WPE_COMPILATION)
+#error "Only <wpe/wpe.h> can be included directly."
+#endif
+
 #ifndef wpe_input_h
 #define wpe_input_h
 
@@ -111,6 +115,10 @@ struct wpe_input_key_mapper_interface {
     const char* (*identifier_for_key_event)(struct wpe_input_keyboard_event*);
     int (*windows_key_code_for_key_event)(struct wpe_input_keyboard_event*);
     const char* (*single_character_for_key_event)(struct wpe_input_keyboard_event*);
+    void (*_wpe_reserved0)(void);
+    void (*_wpe_reserved1)(void);
+    void (*_wpe_reserved2)(void);
+    void (*_wpe_reserved3)(void);
 };
 
 struct wpe_input_key_mapper*
@@ -129,4 +137,4 @@ wpe_input_single_character_for_key_event(struct wpe_input_key_mapper*, struct wp
 }
 #endif
 
-#endif // wpe_input_h
+#endif /* wpe_input_h */

@@ -24,6 +24,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#if !defined(__WPE_H_INSIDE__) && !defined(WPE_COMPILATION)
+#error "Only <wpe/wpe.h> can be included directly."
+#endif
+
 #ifndef wpe_loader_h
 #define wpe_loader_h
 
@@ -33,10 +37,14 @@ extern "C" {
 
 struct wpe_loader_interface {
     void* (*load_object)(const char*);
+    void (*_wpe_reserved0)(void);
+    void (*_wpe_reserved1)(void);
+    void (*_wpe_reserved2)(void);
+    void (*_wpe_reserved3)(void);
 };
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // wpe_loader_h
+#endif /* wpe_loader_h */
