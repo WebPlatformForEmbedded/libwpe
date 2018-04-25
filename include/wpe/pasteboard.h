@@ -75,6 +75,11 @@ struct wpe_pasteboard_interface {
     void (*get_types)(void*, struct wpe_pasteboard_string_vector*);
     void (*get_string)(void*, const char*, struct wpe_pasteboard_string*);
     void (*write)(void*, struct wpe_pasteboard_string_map*);
+
+    void (*_wpe_reserved0)(void);
+    void (*_wpe_reserved1)(void);
+    void (*_wpe_reserved2)(void);
+    void (*_wpe_reserved3)(void);
 };
 
 struct wpe_pasteboard*

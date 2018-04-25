@@ -53,6 +53,11 @@ struct wpe_view_backend_interface {
 
     void (*initialize)(void*);
     int (*get_renderer_host_fd)(void*);
+
+    void (*_wpe_reserved0)(void);
+    void (*_wpe_reserved1)(void);
+    void (*_wpe_reserved2)(void);
+    void (*_wpe_reserved3)(void);
 };
 
 
@@ -81,6 +86,10 @@ wpe_view_backend_get_renderer_host_fd(struct wpe_view_backend*);
 struct wpe_view_backend_client {
     void (*set_size)(void*, uint32_t, uint32_t);
     void (*frame_displayed)(void*);
+    void (*_wpe_reserved0)(void);
+    void (*_wpe_reserved1)(void);
+    void (*_wpe_reserved2)(void);
+    void (*_wpe_reserved3)(void);
 };
 
 void
@@ -95,6 +104,10 @@ struct wpe_view_backend_input_client {
     void (*handle_pointer_event)(void*, struct wpe_input_pointer_event*);
     void (*handle_axis_event)(void*, struct wpe_input_axis_event*);
     void (*handle_touch_event)(void*, struct wpe_input_touch_event*);
+    void (*_wpe_reserved0)(void);
+    void (*_wpe_reserved1)(void);
+    void (*_wpe_reserved2)(void);
+    void (*_wpe_reserved3)(void);
 };
 
 void

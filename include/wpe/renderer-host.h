@@ -40,6 +40,11 @@ struct wpe_renderer_host_interface {
     void (*destroy)(void*);
 
     int (*create_client)(void*);
+
+    void (*_wpe_reserved0)(void);
+    void (*_wpe_reserved1)(void);
+    void (*_wpe_reserved2)(void);
+    void (*_wpe_reserved3)(void);
 };
 
 int

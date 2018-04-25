@@ -37,6 +37,10 @@ extern "C" {
 
 struct wpe_loader_interface {
     void* (*load_object)(const char*);
+    void (*_wpe_reserved0)(void);
+    void (*_wpe_reserved1)(void);
+    void (*_wpe_reserved2)(void);
+    void (*_wpe_reserved3)(void);
 };
 
 #ifdef __cplusplus

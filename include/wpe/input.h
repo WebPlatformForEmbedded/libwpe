@@ -115,6 +115,10 @@ struct wpe_input_key_mapper_interface {
     const char* (*identifier_for_key_event)(struct wpe_input_keyboard_event*);
     int (*windows_key_code_for_key_event)(struct wpe_input_keyboard_event*);
     const char* (*single_character_for_key_event)(struct wpe_input_keyboard_event*);
+    void (*_wpe_reserved0)(void);
+    void (*_wpe_reserved1)(void);
+    void (*_wpe_reserved2)(void);
+    void (*_wpe_reserved3)(void);
 };
 
 struct wpe_input_key_mapper*

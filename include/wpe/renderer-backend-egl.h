@@ -49,6 +49,11 @@ struct wpe_renderer_backend_egl_interface {
     void (*destroy)(void*);
 
     EGLNativeDisplayType (*get_native_display)(void*);
+
+    void (*_wpe_reserved0)(void);
+    void (*_wpe_reserved1)(void);
+    void (*_wpe_reserved2)(void);
+    void (*_wpe_reserved3)(void);
 };
 
 struct wpe_renderer_backend_egl_target_interface {
@@ -60,6 +65,11 @@ struct wpe_renderer_backend_egl_target_interface {
     void (*resize)(void*, uint32_t, uint32_t);
     void (*frame_will_render)(void*);
     void (*frame_rendered)(void*);
+
+    void (*_wpe_reserved0)(void);
+    void (*_wpe_reserved1)(void);
+    void (*_wpe_reserved2)(void);
+    void (*_wpe_reserved3)(void);
 };
 
 struct wpe_renderer_backend_egl_offscreen_target_interface {
@@ -68,6 +78,11 @@ struct wpe_renderer_backend_egl_offscreen_target_interface {
 
     void (*initialize)(void*, void*);
     EGLNativeWindowType (*get_native_window)(void*);
+
+    void (*_wpe_reserved0)(void);
+    void (*_wpe_reserved1)(void);
+    void (*_wpe_reserved2)(void);
+    void (*_wpe_reserved3)(void);
 };
 
 struct wpe_renderer_backend_egl*
@@ -117,6 +132,10 @@ wpe_renderer_backend_egl_offscreen_target_get_native_window(struct wpe_renderer_
 
 struct wpe_renderer_backend_egl_target_client {
     void (*frame_complete)(void*);
+    void (*_wpe_reserved0)(void);
+    void (*_wpe_reserved1)(void);
+    void (*_wpe_reserved2)(void);
+    void (*_wpe_reserved3)(void);
 };
 
 void
