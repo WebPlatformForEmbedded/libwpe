@@ -1,5 +1,11 @@
 cmake_minimum_required(VERSION 2.8)
 
+set(WPE_VERSION_MAJOR 0)
+set(WPE_VERSION_MINOR 1)
+set(WPE_VERSION ${WPE_VERSION_MAJOR}.${WPE_VERSION_MINOR})
+
+set(WPE_API_VERSION "0.1")
+
 include(GNUInstallDirs)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
@@ -50,12 +56,6 @@ set(WPE_PUBLIC_HEADERS
 add_library(WPEBackend SHARED ${WPE_SOURCES})
 target_include_directories(WPEBackend PRIVATE ${WPE_INCLUDE_DIRECTORIES})
 target_link_libraries(WPEBackend ${WPE_LIBRARIES})
-
-set(WPE_VERSION_MAJOR 0)
-set(WPE_VERSION_MINOR 1)
-set(WPE_VERSION ${WPE_VERSION_MAJOR}.${WPE_VERSION_MINOR})
-
-set(WPE_API_VERSION "0.1")
 
 set_target_properties(WPEBackend PROPERTIES
   OUTPUT_NAME WPEBackend-${WPE_API_VERSION}
