@@ -1,16 +1,16 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.0)
+cmake_policy(VERSION 3.0)
 
-set(WPE_VERSION_MAJOR 0)
-set(WPE_VERSION_MINOR 1)
-set(WPE_VERSION ${WPE_VERSION_MAJOR}.${WPE_VERSION_MINOR})
+project(WPEBackend VERSION 0.1)
 
 set(WPE_API_VERSION "0.1")
-
-include(GNUInstallDirs)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99 -D_POSIX_SOURCE")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
+include(DistTargets)
+include(GNUInstallDirs)
 
 find_package(EGL REQUIRED)
 
@@ -59,8 +59,8 @@ target_link_libraries(WPEBackend ${WPE_LIBRARIES})
 
 set_target_properties(WPEBackend PROPERTIES
   OUTPUT_NAME WPEBackend-${WPE_API_VERSION}
-  VERSION ${WPE_VERSION}
-  SOVERSION ${WPE_VERSION_MAJOR}
+  VERSION ${PROJECT_VERSION}
+  SOVERSION ${PROJECT_VERSION_MAJOR}
 )
 
 install(TARGETS WPEBackend
