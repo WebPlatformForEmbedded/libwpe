@@ -73,8 +73,13 @@ wpe_load_object(const char* object_name)
     if (!s_impl_library)
         load_impl_library();
 
-    if (s_impl_loader)
+    if (s_impl_loader) {
+        if (!s_impl_loader->load_object) {
+            fprintf(stderr, "wpe_load_object: failed to load object with name '%s': backend doesn't implement load_object vfunc\n", object_name);
+            abort();
+        }
         return s_impl_loader->load_object(object_name);
+    }
 
     void* object = dlsym(s_impl_library, object_name);
     if (!object)
