@@ -29,9 +29,29 @@
 #include <dlfcn.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 static void* s_impl_library = 0;
 static struct wpe_loader_interface* s_impl_loader = 0;
+#ifndef WPE_BACKEND
+static char* s_impl_libary_name;
+#endif
+
+static void
+wpe_loader_set_library_name(const char* libary_name)
+{
+    size_t len;
+
+    if (!libary_name)
+        return;
+
+    len = strlen(libary_name) + 1;
+    if (len == 1)
+        return;
+
+    s_impl_libary_name = (char *)malloc(len);
+    memcpy(s_impl_libary_name, libary_name, len);
+}
 
 void
 load_impl_library()
@@ -52,6 +72,7 @@ load_impl_library()
             fprintf(stderr, "wpe: could not load specified WPE_BACKEND_LIBRARY: %s\n", dlerror());
             abort();
         }
+        wpe_loader_set_library_name(env_library_name);
     }
 #endif
     if (!s_impl_library) {
@@ -61,10 +82,51 @@ load_impl_library()
             fprintf(stderr, "wpe: could not load the impl library. Is there any backend installed?: %s\n", dlerror());
             abort();
         }
+        wpe_loader_set_library_name("libWPEBackend-default.so");
     }
 #endif
 
     s_impl_loader = dlsym(s_impl_library, "_wpe_loader_interface");
+}
+
+__attribute__((visibility("default")))
+void
+wpe_loader_init(const char* library_name)
+{
+#ifndef WPE_BACKEND
+    if (!library_name) {
+        fprintf(stderr, "wpe_loader_init: invalid libary name\n");
+        abort();
+    }
+
+    if (s_impl_library) {
+        if (!s_impl_libary_name || strcmp(s_impl_libary_name, library_name) != 0) {
+            fprintf(stderr, "wpe_loader_init: already initialized\n");
+            abort();
+        }
+        return;
+    }
+
+    s_impl_library = dlopen(library_name, RTLD_NOW);
+    if (!s_impl_library) {
+        fprintf(stderr, "wpe_loader_init could not load the library '%s': %s\n", library_name, dlerror());
+        abort();
+    }
+    wpe_loader_set_library_name(library_name);
+
+    s_impl_loader = dlsym(s_impl_library, "_wpe_loader_interface");
+#endif
+}
+
+__attribute__((visibility("default")))
+const char*
+wpe_loader_get_loaded_library_name(void)
+{
+#ifdef WPE_BACKEND
+    return s_impl_library ? WPE_BACKEND : NULL;
+#else
+    return s_impl_libary_name;
+#endif
 }
 
 void*

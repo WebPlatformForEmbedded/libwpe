@@ -43,6 +43,12 @@ struct wpe_loader_interface {
     void (*_wpe_reserved3)(void);
 };
 
+void
+wpe_loader_init(const char* library_name);
+
+const char*
+wpe_loader_get_loaded_library_name(void);
+
 #ifdef __cplusplus
 }
 #endif
