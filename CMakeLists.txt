@@ -1,13 +1,16 @@
 cmake_minimum_required(VERSION 3.0)
 cmake_policy(VERSION 3.0)
 
-project(wpebackend VERSION 0.1)
+project(wpebackend VERSION 0.1.0)
 
 set(WPE_API_VERSION "0.1")
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99 -D_POSIX_SOURCE")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
+set(DERIVED_SOURCES_DIR "${CMAKE_BINARY_DIR}/DerivedSources/wpe")
+configure_file(include/wpe/version.h.cmake ${DERIVED_SOURCES_DIR}/version.h @ONLY)
 
 include(DistTargets)
 include(GNUInstallDirs)
@@ -24,6 +27,7 @@ endif()
 set(WPE_INCLUDE_DIRECTORIES
     "include"
     "src"
+    ${DERIVED_SOURCES_DIR}
     ${EGL_INCLUDE_DIRS}
 )
 
@@ -39,10 +43,12 @@ set(WPE_SOURCES
     src/pasteboard-noop.cpp
     src/renderer-backend-egl.c
     src/renderer-host.c
+    src/version.c
     src/view-backend.c
 )
 
 set(WPE_PUBLIC_HEADERS
+  ${DERIVED_SOURCES_DIR}/version.h
   include/wpe/input.h
   include/wpe/loader.h
   include/wpe/pasteboard.h

@@ -24,23 +24,35 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
-#ifdef __WEBKIT_WEB_EXTENSION_H__
-#error "Headers <wpe/wpe.h> and <wpe/webkit-web-extension.h> cannot be included together."
+#if !defined(__WPE_H_INSIDE__) && !defined(WPE_COMPILATION)
+#error "Only <wpe/wpe.h> can be included directly."
 #endif
 
-#ifndef __wpe_h__
-#define __wpe_h__
+#ifndef wpe_version_h
+#define wpe_version_h
 
-#define __WPE_H_INSIDE__
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-#include <wpe/input.h>
-#include <wpe/loader.h>
-#include <wpe/pasteboard.h>
-#include <wpe/renderer-host.h>
-#include <wpe/version.h>
-#include <wpe/view-backend.h>
+#define WPE_BACKEND_MAJOR_VERSION (@PROJECT_VERSION_MAJOR@)
+#define WPE_BACKEND_MINOR_VERSION (@PROJECT_VERSION_MINOR@)
+#define WPE_BACKEND_MICRO_VERSION (@PROJECT_VERSION_PATCH@)
 
-#undef __WPE_H_INSIDE__
+#define WPE_BACKEND_CHECK_VERSION(major, minor, micro) \
+    (WPE_BACKEND_MAJOR_VERSION > (major) || \
+    (WPE_BACKEND_MAJOR_VERSION == (major) && WPE_BACKEND_MINOR_VERSION > (minor)) || \
+    (WPE_BACKEND_MAJOR_VERSION == (major) && WPE_BACKEND_MINOR_VERSION == (minor) && \
+     WPE_BACKEND_MICRO_VERSION >= (micro)))
 
-#endif /* __wpe_h__ */
+unsigned wpe_backend_get_major_version(void);
+
+unsigned wpe_backend_get_minor_version(void);
+
+unsigned wpe_backend_get_micro_version(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* wpe_version_h */

@@ -24,23 +24,25 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "version.h"
 
-#ifdef __WEBKIT_WEB_EXTENSION_H__
-#error "Headers <wpe/wpe.h> and <wpe/webkit-web-extension.h> cannot be included together."
-#endif
+__attribute__((visibility("default")))
+unsigned
+wpe_backend_get_major_version(void)
+{
+    return WPE_BACKEND_MAJOR_VERSION;
+}
 
-#ifndef __wpe_h__
-#define __wpe_h__
+__attribute__((visibility("default")))
+unsigned
+wpe_backend_get_minor_version(void)
+{
+    return WPE_BACKEND_MINOR_VERSION;
+}
 
-#define __WPE_H_INSIDE__
-
-#include <wpe/input.h>
-#include <wpe/loader.h>
-#include <wpe/pasteboard.h>
-#include <wpe/renderer-host.h>
-#include <wpe/version.h>
-#include <wpe/view-backend.h>
-
-#undef __WPE_H_INSIDE__
-
-#endif /* __wpe_h__ */
+__attribute__((visibility("default")))
+unsigned
+wpe_backend_get_micro_version(void)
+{
+    return WPE_BACKEND_MICRO_VERSION;
+}
