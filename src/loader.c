@@ -29,9 +29,37 @@
 #include <dlfcn.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 static void* s_impl_library = 0;
 static struct wpe_loader_interface* s_impl_loader = 0;
+
+#ifndef WPE_BACKEND
+#define IMPL_LIBRARY_NAME_BUFFER_SIZE 512
+static char* s_impl_library_name;
+static char s_impl_library_name_buffer[IMPL_LIBRARY_NAME_BUFFER_SIZE];
+#endif
+
+#ifndef WPE_BACKEND
+static void
+wpe_loader_set_impl_library_name(const char* impl_library_name)
+{
+    size_t len;
+
+    if (!impl_library_name)
+        return;
+
+    len = strlen(impl_library_name) + 1;
+    if (len == 1)
+        return;
+
+    if (len > IMPL_LIBRARY_NAME_BUFFER_SIZE)
+        s_impl_library_name = (char *)malloc(len);
+    else
+        s_impl_library_name = s_impl_library_name_buffer;
+    memcpy(s_impl_library_name, impl_library_name, len);
+}
+#endif
 
 void
 load_impl_library()
@@ -52,6 +80,7 @@ load_impl_library()
             fprintf(stderr, "wpe: could not load specified WPE_BACKEND_LIBRARY: %s\n", dlerror());
             abort();
         }
+        wpe_loader_set_impl_library_name(env_library_name);
     }
 #endif
     if (!s_impl_library) {
@@ -61,10 +90,54 @@ load_impl_library()
             fprintf(stderr, "wpe: could not load the impl library. Is there any backend installed?: %s\n", dlerror());
             abort();
         }
+        wpe_loader_set_impl_library_name("libWPEBackend-default.so");
     }
 #endif
 
     s_impl_loader = dlsym(s_impl_library, "_wpe_loader_interface");
+}
+
+__attribute__((visibility("default")))
+bool
+wpe_loader_init(const char* impl_library_name)
+{
+#ifndef WPE_BACKEND
+    if (!impl_library_name) {
+        fprintf(stderr, "wpe_loader_init: invalid implementation library name\n");
+        abort();
+    }
+
+    if (s_impl_library) {
+        if (!s_impl_library_name || strcmp(s_impl_library_name, impl_library_name) != 0) {
+            fprintf(stderr, "wpe_loader_init: already initialized\n");
+            return false;
+        }
+        return true;
+    }
+
+    s_impl_library = dlopen(impl_library_name, RTLD_NOW);
+    if (!s_impl_library) {
+        fprintf(stderr, "wpe_loader_init could not load the library '%s': %s\n", impl_library_name, dlerror());
+        return false;
+    }
+    wpe_loader_set_impl_library_name(impl_library_name);
+
+    s_impl_loader = dlsym(s_impl_library, "_wpe_loader_interface");
+    return true;
+#else
+    return false;
+#endif
+}
+
+__attribute__((visibility("default")))
+const char*
+wpe_loader_get_loaded_implementation_library_name(void)
+{
+#ifdef WPE_BACKEND
+    return s_impl_library ? WPE_BACKEND : NULL;
+#else
+    return s_impl_library_name;
+#endif
 }
 
 void*
@@ -73,8 +146,13 @@ wpe_load_object(const char* object_name)
     if (!s_impl_library)
         load_impl_library();
 
-    if (s_impl_loader)
+    if (s_impl_loader) {
+        if (!s_impl_loader->load_object) {
+            fprintf(stderr, "wpe_load_object: failed to load object with name '%s': backend doesn't implement load_object vfunc\n", object_name);
+            abort();
+        }
         return s_impl_loader->load_object(object_name);
+    }
 
     void* object = dlsym(s_impl_library, object_name);
     if (!object)

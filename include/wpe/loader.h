@@ -31,6 +31,8 @@
 #ifndef wpe_loader_h
 #define wpe_loader_h
 
+#include <stdbool.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -42,6 +44,12 @@ struct wpe_loader_interface {
     void (*_wpe_reserved2)(void);
     void (*_wpe_reserved3)(void);
 };
+
+bool
+wpe_loader_init(const char* impl_library_name);
+
+const char*
+wpe_loader_get_loaded_implementation_library_name(void);
 
 #ifdef __cplusplus
 }
