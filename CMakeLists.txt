@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 cmake_policy(VERSION 3.0)
 
-project(wpebackend VERSION 0.1.0)
+project(wpebackend VERSION 0.2.0)
 
 set(WPE_API_VERSION "0.1")
 

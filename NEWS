@@ -1,5 +1,19 @@
+====================
+0.2.0 - July 9, 2018
+====================
+
+This is a backwards-compatible release, which adds the following features:
+
+- New API to set and query the backend implementation library being used.
+- New API to query the version library, both with macros at build time,
+  and functions at runtime.
+- Trying to use a backend implementation library which does not provide
+  a "load_object" callback will produce a meaningful error instead of
+  silently failing.
+
+
+====================
 0.1 - April 26, 2018
 ====================
 
 - Initial release
-
