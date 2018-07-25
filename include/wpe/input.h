@@ -38,11 +38,17 @@
 extern "C" {
 #endif
 
-enum wpe_input_keyboard_modifier {
+enum wpe_input_modifier {
     wpe_input_keyboard_modifier_control = 1 << 0,
     wpe_input_keyboard_modifier_shift   = 1 << 1,
     wpe_input_keyboard_modifier_alt     = 1 << 2,
     wpe_input_keyboard_modifier_meta    = 1 << 3,
+
+    wpe_input_pointer_modifier_button1  = 1 << 20,
+    wpe_input_pointer_modifier_button2  = 1 << 21,
+    wpe_input_pointer_modifier_button3  = 1 << 22,
+    wpe_input_pointer_modifier_button4  = 1 << 23,
+    wpe_input_pointer_modifier_button5  = 1 << 24,
 };
 
 struct wpe_input_keyboard_event {
@@ -50,7 +56,7 @@ struct wpe_input_keyboard_event {
     uint32_t key_code;
     uint32_t hardware_key_code;
     bool pressed;
-    uint8_t modifiers;
+    uint32_t modifiers;
 };
 
 
@@ -67,6 +73,7 @@ struct wpe_input_pointer_event {
     int y;
     uint32_t button;
     uint32_t state;
+    uint32_t modifiers;
 };
 
 
@@ -82,6 +89,7 @@ struct wpe_input_axis_event {
     int y;
     uint32_t axis;
     int32_t value;
+    uint32_t modifiers;
 };
 
 
@@ -106,6 +114,7 @@ struct wpe_input_touch_event {
     enum wpe_input_touch_event_type type;
     int32_t id;
     uint32_t time;
+    uint32_t modifiers;
 };
 
 
