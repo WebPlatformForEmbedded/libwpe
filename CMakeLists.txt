@@ -36,7 +36,7 @@ set(WPE_LIBRARIES
 )
 
 set(WPE_SOURCES
-    src/input.c
+    src/key-unicode.c
     src/loader.c
     src/pasteboard.c
     src/pasteboard-generic.cpp
@@ -50,6 +50,7 @@ set(WPE_SOURCES
 set(WPE_PUBLIC_HEADERS
   ${DERIVED_SOURCES_DIR}/version.h
   include/wpe/input.h
+  include/wpe/keysyms.h
   include/wpe/loader.h
   include/wpe/pasteboard.h
   include/wpe/renderer-backend-egl.h

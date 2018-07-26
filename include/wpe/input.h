@@ -47,8 +47,8 @@ enum wpe_input_keyboard_modifier {
 
 struct wpe_input_keyboard_event {
     uint32_t time;
-    uint32_t keyCode;
-    uint32_t unicode;
+    uint32_t key_code;
+    uint32_t hardware_key_code;
     bool pressed;
     uint8_t modifiers;
 };
@@ -109,29 +109,11 @@ struct wpe_input_touch_event {
 };
 
 
-struct wpe_input_key_mapper;
+uint32_t
+wpe_key_code_to_unicode (uint32_t);
 
-struct wpe_input_key_mapper_interface {
-    const char* (*identifier_for_key_event)(struct wpe_input_keyboard_event*);
-    int (*windows_key_code_for_key_event)(struct wpe_input_keyboard_event*);
-    const char* (*single_character_for_key_event)(struct wpe_input_keyboard_event*);
-    void (*_wpe_reserved0)(void);
-    void (*_wpe_reserved1)(void);
-    void (*_wpe_reserved2)(void);
-    void (*_wpe_reserved3)(void);
-};
-
-struct wpe_input_key_mapper*
-wpe_input_key_mapper_get_singleton();
-
-const char*
-wpe_input_identifier_for_key_event(struct wpe_input_key_mapper*, struct wpe_input_keyboard_event*);
-
-int
-wpe_input_windows_key_code_for_key_event(struct wpe_input_key_mapper*, struct wpe_input_keyboard_event*);
-
-const char*
-wpe_input_single_character_for_key_event(struct wpe_input_key_mapper*, struct wpe_input_keyboard_event*);
+uint32_t
+wpe_unicode_to_key_code (uint32_t);
 
 #ifdef __cplusplus
 }
