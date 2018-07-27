@@ -35,6 +35,7 @@
 #define __WPE_H_INSIDE__
 
 #include <wpe/input.h>
+#include <wpe/keysyms.h>
 #include <wpe/loader.h>
 #include <wpe/pasteboard.h>
 #include <wpe/renderer-host.h>
