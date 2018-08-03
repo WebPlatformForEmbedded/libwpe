@@ -16,6 +16,7 @@ include(DistTargets)
 include(GNUInstallDirs)
 
 find_package(EGL REQUIRED)
+find_package(Libxkbcommon REQUIRED)
 
 add_definitions(${EGL_DEFINITIONS})
 add_definitions(-DWPE_COMPILATION)
@@ -33,9 +34,11 @@ set(WPE_INCLUDE_DIRECTORIES
 
 set(WPE_LIBRARIES
     dl
+    ${LIBXKBCOMMON_LIBRARIES}
 )
 
 set(WPE_SOURCES
+    src/input.c
     src/key-unicode.c
     src/loader.c
     src/pasteboard.c
