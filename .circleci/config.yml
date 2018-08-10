@@ -1,0 +1,19 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: aperezdc/ci-wpebackend:latest
+    steps:
+      - checkout
+      - run:
+          name: Build
+          command: |
+            rm -rf _build
+            mkdir _build
+            cd _build
+            cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=/usr/lib ..
+            ninja
+      - run:
+          name: Install
+          command: |
+            ninja -C _build install
