@@ -1,11 +1,23 @@
 cmake_minimum_required(VERSION 3.0)
 cmake_policy(VERSION 3.0)
 
-project(wpebackend VERSION 0.2.0)
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+include(VersioningUtils)
 
+SET_PROJECT_VERSION(1 0 0)
 set(WPE_API_VERSION "0.1")
 
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+# Before making a release, the LT_VERSION string should be modified.
+# The string is of the form C:R:A.
+# - If interfaces have been changed or added, but binary compatibility has
+#   been preserved, change to C+1:0:A+1
+# - If binary compatibility has been broken (eg removed or changed interfaces)
+#   change to C+1:0:0
+# - If the interface is the same as the previous version, change to C:R+1:A
+CALCULATE_LIBRARY_VERSIONS_FROM_LIBTOOL_TRIPLE(LIBWPEBACKEND 1 0 0)
+
+project(wpebackend VERSION "${PROJECT_VERSION}")
+
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99 -D_POSIX_SOURCE")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
@@ -69,8 +81,8 @@ target_link_libraries(WPEBackend ${WPE_LIBRARIES})
 
 set_target_properties(WPEBackend PROPERTIES
   OUTPUT_NAME WPEBackend-${WPE_API_VERSION}
-  VERSION ${PROJECT_VERSION}
-  SOVERSION ${PROJECT_VERSION_MAJOR}
+  VERSION ${LIBWPEBACKEND_VERSION}
+  SOVERSION ${LIBWPEBACKEND_VERSION_MAJOR}
 )
 
 install(TARGETS WPEBackend
