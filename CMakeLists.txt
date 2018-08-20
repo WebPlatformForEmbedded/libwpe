@@ -14,9 +14,9 @@ set(WPE_API_VERSION "0.1")
 # - If binary compatibility has been broken (eg removed or changed interfaces)
 #   change to C+1:0:0
 # - If the interface is the same as the previous version, change to C:R+1:A
-CALCULATE_LIBRARY_VERSIONS_FROM_LIBTOOL_TRIPLE(LIBWPEBACKEND 1 0 0)
+CALCULATE_LIBRARY_VERSIONS_FROM_LIBTOOL_TRIPLE(LIBWPE 1 0 0)
 
-project(wpebackend VERSION "${PROJECT_VERSION}")
+project(libwpe VERSION "${PROJECT_VERSION}")
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99 -D_POSIX_SOURCE")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
@@ -75,17 +75,17 @@ set(WPE_PUBLIC_HEADERS
   include/wpe/wpe.h
 )
 
-add_library(WPEBackend SHARED ${WPE_SOURCES})
-target_include_directories(WPEBackend PRIVATE ${WPE_INCLUDE_DIRECTORIES})
-target_link_libraries(WPEBackend ${WPE_LIBRARIES})
+add_library(wpe SHARED ${WPE_SOURCES})
+target_include_directories(wpe PRIVATE ${WPE_INCLUDE_DIRECTORIES})
+target_link_libraries(wpe ${WPE_LIBRARIES})
 
-set_target_properties(WPEBackend PROPERTIES
-  OUTPUT_NAME WPEBackend-${WPE_API_VERSION}
-  VERSION ${LIBWPEBACKEND_VERSION}
-  SOVERSION ${LIBWPEBACKEND_VERSION_MAJOR}
+set_target_properties(wpe PROPERTIES
+  OUTPUT_NAME wpe-${WPE_API_VERSION}
+  VERSION ${LIBWPE_VERSION}
+  SOVERSION ${LIBWPE_VERSION_MAJOR}
 )
 
-install(TARGETS WPEBackend
+install(TARGETS wpe
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 install(
