@@ -1,3 +1,22 @@
+=======================
+1.0.0 - August 21, 2018
+=======================
+
+This release changes the API version to 0.2, and introduces the following
+changes and features:
+
+- The library is now called libwpe to avoid confusion. The WPEBackend name
+  used previously seemed to indicate that the library implemented a WPE
+  backend. The new libwpe name better reflects that it contains code needed
+  by the WPE WebKit port.
+- The libwpe library now uses the libtool versioning convention.
+- Handle conversion of keysyms to Unicode inside libwpe. This allowed to
+  remove he "unicode" member from keyboard event structs, and removing
+  wpe_input_key_mapper/wpe_input_key_mapper_interface.
+- New field in event structs to specify keyboard modifiers.
+- New API for keymap and composition handling based on libxkbcommon.
+
+
 ====================
 0.2.0 - July 9, 2018
 ====================
