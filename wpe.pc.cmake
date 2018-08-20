@@ -8,4 +8,4 @@ Description: The wpe library
 Version: @PROJECT_VERSION@
 Requires: xkbcommon
 Cflags: -I${includedir}/wpe-@WPE_API_VERSION@
-Libs: -L${libdir} -lWPEBackend-@WPE_API_VERSION@
+Libs: -L${libdir} -lwpe-@WPE_API_VERSION@
