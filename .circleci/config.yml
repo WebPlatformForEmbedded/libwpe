@@ -7,14 +7,24 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Prepare
+          command: |
+            rm -rf _p
+            mkdir -p _p/src/_build
+            curl -sLo _p/PKGBUILD 'https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=wpebackend-git'
+            ln -sf "$(pwd)" _p/src/wpebackend-git
+            cd _p
+      - run:
           name: Build
           command: |
-            rm -rf _build
-            mkdir _build
-            cd _build
-            cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=/usr/lib ..
-            ninja
+            cd _p
+            makepkg --skipinteg --nosign --noextract --force --nocolor
       - run:
-          name: Install
+          name: Check
           command: |
-            ninja -C _build install
+            cd _p
+            while read -r pkg ; do
+              echo "=== ${pkg} ==="
+              namcap "${pkg}"
+              echo ''
+            done < <(makepkg --packagelist) | tee namcap.log
