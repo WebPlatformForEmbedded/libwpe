@@ -9,17 +9,17 @@ jobs:
       - run:
           name: Build
           command: |
-            rm -rf _p output
-            mkdir -p _p/src/_build output
+            rm -rf _p packages
+            mkdir -p _p/src/_build packages
             curl -sLo _p/PKGBUILD 'https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=libwpe-git'
             ln -sf "$(pwd)" _p/src/libwpe-git
             cd _p
             makepkg --skipinteg --nosign --noextract --force --nocolor
             while read -r pkg ; do
-              printf '\n=== %s ===\n\n' "$(basename "${pkg}")"
+              printf '======= %s ======\n' "$(basename "${pkg}")"
               namcap "${pkg}"
-              ln "${pkg}" ../output/
-            done < <(makepkg --packagelist) | tee ../output/namcap.log
+              ln "${pkg}" ../packages/
+            done < <(makepkg --packagelist) | tee ../packages/namcap.log
       - store_artifacts:
-          path: output/
-          destination: ""
+          path: packages/
+          destination: output
