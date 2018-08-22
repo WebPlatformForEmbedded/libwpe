@@ -9,8 +9,8 @@ jobs:
       - run:
           name: Prepare
           command: |
-            rm -rf _p
-            mkdir -p _p/src/_build
+            rm -rf _p output
+            mkdir -p _p/src/_build output
             curl -sLo _p/PKGBUILD 'https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=libwpe-git'
             ln -sf "$(pwd)" _p/src/libwpe-git
             cd _p
@@ -24,7 +24,9 @@ jobs:
           command: |
             cd _p
             while read -r pkg ; do
-              echo "=== ${pkg} ==="
+              echo "=== $(basename "${pkg}") ==="
               namcap "${pkg}"
-              echo ''
-            done < <(makepkg --packagelist) | tee namcap.log
+              ln "${pkg}" ../output/
+            done < <(makepkg --packagelist) | tee ../output/namcap.log
+      - store_artifacts:
+          path: output/
