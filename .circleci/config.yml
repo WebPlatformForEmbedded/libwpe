@@ -3,6 +3,7 @@ jobs:
   build:
     docker:
       - image: aperezdc/ci-wpebackend:latest
+        user: build
     steps:
       - checkout
       - run:
