@@ -74,7 +74,7 @@ wpe_view_backend_destroy(struct wpe_view_backend* backend)
 
 __attribute__((visibility("default")))
 void
-wpe_view_backend_set_backend_client(struct wpe_view_backend* backend, struct wpe_view_backend_client* client, void* client_data)
+wpe_view_backend_set_backend_client(struct wpe_view_backend* backend, const struct wpe_view_backend_client* client, void* client_data)
 {
     backend->backend_client = client;
     backend->backend_client_data = client_data;
@@ -82,7 +82,7 @@ wpe_view_backend_set_backend_client(struct wpe_view_backend* backend, struct wpe
 
 __attribute__((visibility("default")))
 void
-wpe_view_backend_set_input_client(struct wpe_view_backend* backend, struct wpe_view_backend_input_client* client, void* client_data)
+wpe_view_backend_set_input_client(struct wpe_view_backend* backend, const struct wpe_view_backend_input_client* client, void* client_data)
 {
     backend->input_client = client;
     backend->input_client_data = client_data;

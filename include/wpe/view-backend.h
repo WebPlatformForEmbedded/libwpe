@@ -71,10 +71,10 @@ void
 wpe_view_backend_destroy(struct wpe_view_backend*);
 
 void 
-wpe_view_backend_set_backend_client(struct wpe_view_backend*, struct wpe_view_backend_client*, void*);
+wpe_view_backend_set_backend_client(struct wpe_view_backend*, const struct wpe_view_backend_client*, void*);
 
 void
-wpe_view_backend_set_input_client(struct wpe_view_backend*, struct wpe_view_backend_input_client*, void*);
+wpe_view_backend_set_input_client(struct wpe_view_backend*, const struct wpe_view_backend_input_client*, void*);
 
 void
 wpe_view_backend_initialize(struct wpe_view_backend*);

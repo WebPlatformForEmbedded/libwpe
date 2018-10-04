@@ -101,7 +101,7 @@ void
 wpe_renderer_backend_egl_target_destroy(struct wpe_renderer_backend_egl_target*);
 
 void
-wpe_renderer_backend_egl_target_set_client(struct wpe_renderer_backend_egl_target*, struct wpe_renderer_backend_egl_target_client*, void*);
+wpe_renderer_backend_egl_target_set_client(struct wpe_renderer_backend_egl_target*, const struct wpe_renderer_backend_egl_target_client*, void*);
 
 void
 wpe_renderer_backend_egl_target_initialize(struct wpe_renderer_backend_egl_target*, struct wpe_renderer_backend_egl*, uint32_t, uint32_t);

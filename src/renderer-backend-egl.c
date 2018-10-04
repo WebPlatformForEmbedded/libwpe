@@ -90,7 +90,7 @@ wpe_renderer_backend_egl_target_destroy(struct wpe_renderer_backend_egl_target* 
 
 __attribute__((visibility("default")))
 void
-wpe_renderer_backend_egl_target_set_client(struct wpe_renderer_backend_egl_target* target, struct wpe_renderer_backend_egl_target_client* client, void* client_data)
+wpe_renderer_backend_egl_target_set_client(struct wpe_renderer_backend_egl_target* target, const struct wpe_renderer_backend_egl_target_client* client, void* client_data)
 {
     target->client = client;
     target->client_data = client_data;
