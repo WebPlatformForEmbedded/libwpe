@@ -111,7 +111,7 @@ wpe_renderer_backend_egl_target_destroy(struct wpe_renderer_backend_egl_target*)
 
 WPE_EXPORT
 void
-wpe_renderer_backend_egl_target_set_client(struct wpe_renderer_backend_egl_target*, struct wpe_renderer_backend_egl_target_client*, void*);
+wpe_renderer_backend_egl_target_set_client(struct wpe_renderer_backend_egl_target*, const struct wpe_renderer_backend_egl_target_client*, void*);
 
 WPE_EXPORT
 void

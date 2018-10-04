@@ -36,7 +36,7 @@ struct wpe_renderer_backend_egl_target {
     const struct wpe_renderer_backend_egl_target_interface* interface;
     void* interface_data;
 
-    struct wpe_renderer_backend_egl_target_client* client;
+    const struct wpe_renderer_backend_egl_target_client* client;
     void* client_data;
 };
 
