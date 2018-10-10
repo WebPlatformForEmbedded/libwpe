@@ -39,6 +39,9 @@ wpe_renderer_backend_egl_create(int host_fd)
         return 0;
 
     backend->interface = wpe_load_object("_wpe_renderer_backend_egl_interface");
+    if (!backend->interface)
+        return 0;
+
     backend->interface_data = backend->interface->create(host_fd);
 
     return backend;
@@ -70,6 +73,9 @@ wpe_renderer_backend_egl_target_create(int host_fd)
         return 0;
 
     target->interface = wpe_load_object("_wpe_renderer_backend_egl_target_interface");
+    if (!target->interface)
+        return 0;
+
     target->interface_data = target->interface->create(target, host_fd);
 
     return target;
@@ -140,6 +146,9 @@ wpe_renderer_backend_egl_offscreen_target_create()
         return 0;
 
     target->interface = wpe_load_object("_wpe_renderer_backend_egl_offscreen_target_interface");
+    if (!target->interface)
+        return 0;
+
     target->interface_data = target->interface->create();
 
     return target;
