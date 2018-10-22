@@ -31,6 +31,10 @@
 #ifndef wpe_renderer_host_h
 #define wpe_renderer_host_h
 
+#if defined(WPE_COMPILATION)
+#include <wpe/export.h>
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -47,6 +51,7 @@ struct wpe_renderer_host_interface {
     void (*_wpe_reserved3)(void);
 };
 
+WPE_EXPORT
 int
 wpe_renderer_host_create_client();
 

@@ -31,6 +31,10 @@
 #ifndef wpe_view_backend_h
 #define wpe_view_backend_h
 
+#if defined(WPE_COMPILATION)
+#include <wpe/export.h>
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -61,24 +65,31 @@ struct wpe_view_backend_interface {
 };
 
 
+WPE_EXPORT
 struct wpe_view_backend*
 wpe_view_backend_create();
 
+WPE_EXPORT
 struct wpe_view_backend*
 wpe_view_backend_create_with_backend_interface(struct wpe_view_backend_interface*, void*);
 
+WPE_EXPORT
 void
 wpe_view_backend_destroy(struct wpe_view_backend*);
 
+WPE_EXPORT
 void 
 wpe_view_backend_set_backend_client(struct wpe_view_backend*, struct wpe_view_backend_client*, void*);
 
+WPE_EXPORT
 void
 wpe_view_backend_set_input_client(struct wpe_view_backend*, struct wpe_view_backend_input_client*, void*);
 
+WPE_EXPORT
 void
 wpe_view_backend_initialize(struct wpe_view_backend*);
 
+WPE_EXPORT
 int
 wpe_view_backend_get_renderer_host_fd(struct wpe_view_backend*);
 
@@ -92,9 +103,11 @@ struct wpe_view_backend_client {
     void (*_wpe_reserved3)(void);
 };
 
+WPE_EXPORT
 void
 wpe_view_backend_dispatch_set_size(struct wpe_view_backend*, uint32_t, uint32_t);
 
+WPE_EXPORT
 void
 wpe_view_backend_dispatch_frame_displayed(struct wpe_view_backend*);
 
@@ -110,15 +123,19 @@ struct wpe_view_backend_input_client {
     void (*_wpe_reserved3)(void);
 };
 
+WPE_EXPORT
 void
 wpe_view_backend_dispatch_keyboard_event(struct wpe_view_backend*, struct wpe_input_keyboard_event*);
 
+WPE_EXPORT
 void
 wpe_view_backend_dispatch_pointer_event(struct wpe_view_backend*, struct wpe_input_pointer_event*);
 
+WPE_EXPORT
 void
 wpe_view_backend_dispatch_axis_event(struct wpe_view_backend*, struct wpe_input_axis_event*);
 
+WPE_EXPORT
 void
 wpe_view_backend_dispatch_touch_event(struct wpe_view_backend*, struct wpe_input_touch_event*);
 

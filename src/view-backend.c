@@ -31,7 +31,6 @@
 #include <stdlib.h>
 
 
-__attribute__((visibility("default")))
 struct wpe_view_backend*
 wpe_view_backend_create()
 {
@@ -42,7 +41,6 @@ wpe_view_backend_create()
     return wpe_view_backend_create_with_backend_interface(backend_interface, 0);
 }
 
-__attribute__((visibility("default")))
 struct wpe_view_backend*
 wpe_view_backend_create_with_backend_interface(struct wpe_view_backend_interface* interface, void* interface_user_data)
 {
@@ -56,7 +54,6 @@ wpe_view_backend_create_with_backend_interface(struct wpe_view_backend_interface
     return backend;
 }
 
-__attribute__((visibility("default")))
 void
 wpe_view_backend_destroy(struct wpe_view_backend* backend)
 {
@@ -72,7 +69,6 @@ wpe_view_backend_destroy(struct wpe_view_backend* backend)
     free(backend);
 }
 
-__attribute__((visibility("default")))
 void
 wpe_view_backend_set_backend_client(struct wpe_view_backend* backend, struct wpe_view_backend_client* client, void* client_data)
 {
@@ -80,7 +76,6 @@ wpe_view_backend_set_backend_client(struct wpe_view_backend* backend, struct wpe
     backend->backend_client_data = client_data;
 }
 
-__attribute__((visibility("default")))
 void
 wpe_view_backend_set_input_client(struct wpe_view_backend* backend, struct wpe_view_backend_input_client* client, void* client_data)
 {
@@ -88,21 +83,18 @@ wpe_view_backend_set_input_client(struct wpe_view_backend* backend, struct wpe_v
     backend->input_client_data = client_data;
 }
 
-__attribute__((visibility("default")))
 void
 wpe_view_backend_initialize(struct wpe_view_backend* backend)
 {
     backend->interface->initialize(backend->interface_data);
 }
 
-__attribute__((visibility("default")))
 int
 wpe_view_backend_get_renderer_host_fd(struct wpe_view_backend* backend)
 {
     return backend->interface->get_renderer_host_fd(backend->interface_data);
 }
 
-__attribute__((visibility("default")))
 void
 wpe_view_backend_dispatch_set_size(struct wpe_view_backend* backend, uint32_t width, uint32_t height)
 {
@@ -110,7 +102,6 @@ wpe_view_backend_dispatch_set_size(struct wpe_view_backend* backend, uint32_t wi
         backend->backend_client->set_size(backend->backend_client_data, width, height);
 }
 
-__attribute__((visibility("default")))
 void
 wpe_view_backend_dispatch_frame_displayed(struct wpe_view_backend* backend)
 {
@@ -118,7 +109,6 @@ wpe_view_backend_dispatch_frame_displayed(struct wpe_view_backend* backend)
         backend->backend_client->frame_displayed(backend->backend_client_data);
 }
 
-__attribute__((visibility("default")))
 void
 wpe_view_backend_dispatch_keyboard_event(struct wpe_view_backend* backend, struct wpe_input_keyboard_event* event)
 {
@@ -126,7 +116,6 @@ wpe_view_backend_dispatch_keyboard_event(struct wpe_view_backend* backend, struc
         backend->input_client->handle_keyboard_event(backend->input_client_data, event);
 }
 
-__attribute__((visibility("default")))
 void
 wpe_view_backend_dispatch_pointer_event(struct wpe_view_backend* backend, struct wpe_input_pointer_event* event)
 {
@@ -134,7 +123,6 @@ wpe_view_backend_dispatch_pointer_event(struct wpe_view_backend* backend, struct
         backend->input_client->handle_pointer_event(backend->input_client_data, event);
 }
 
-__attribute__((visibility("default")))
 void
 wpe_view_backend_dispatch_axis_event(struct wpe_view_backend* backend, struct wpe_input_axis_event* event)
 {
@@ -142,7 +130,6 @@ wpe_view_backend_dispatch_axis_event(struct wpe_view_backend* backend, struct wp
         backend->input_client->handle_axis_event(backend->input_client_data, event);
 }
 
-__attribute__((visibility("default")))
 void
 wpe_view_backend_dispatch_touch_event(struct wpe_view_backend* backend, struct wpe_input_touch_event* event)
 {

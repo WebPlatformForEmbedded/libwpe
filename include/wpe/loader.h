@@ -31,6 +31,10 @@
 #ifndef wpe_loader_h
 #define wpe_loader_h
 
+#if defined(WPE_COMPILATION)
+#include <wpe/export.h>
+#endif
+
 #include <stdbool.h>
 
 #ifdef __cplusplus
@@ -45,9 +49,11 @@ struct wpe_loader_interface {
     void (*_wpe_reserved3)(void);
 };
 
+WPE_EXPORT
 bool
 wpe_loader_init(const char* impl_library_name);
 
+WPE_EXPORT
 const char*
 wpe_loader_get_loaded_implementation_library_name(void);
 

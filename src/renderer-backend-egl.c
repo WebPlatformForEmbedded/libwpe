@@ -30,7 +30,6 @@
 #include "renderer-backend-egl-private.h"
 #include <stdlib.h>
 
-__attribute__((visibility("default")))
 struct wpe_renderer_backend_egl*
 wpe_renderer_backend_egl_create(int host_fd)
 {
@@ -47,7 +46,6 @@ wpe_renderer_backend_egl_create(int host_fd)
     return backend;
 }
 
-__attribute__((visibility("default")))
 void
 wpe_renderer_backend_egl_destroy(struct wpe_renderer_backend_egl* backend)
 {
@@ -57,14 +55,12 @@ wpe_renderer_backend_egl_destroy(struct wpe_renderer_backend_egl* backend)
     free(backend);
 }
 
-__attribute__((visibility("default")))
 EGLNativeDisplayType
 wpe_renderer_backend_egl_get_native_display(struct wpe_renderer_backend_egl* backend)
 {
     return backend->interface->get_native_display(backend->interface_data);
 }
 
-__attribute__((visibility("default")))
 struct wpe_renderer_backend_egl_target*
 wpe_renderer_backend_egl_target_create(int host_fd)
 {
@@ -81,7 +77,6 @@ wpe_renderer_backend_egl_target_create(int host_fd)
     return target;
 }
 
-__attribute__((visibility("default")))
 void
 wpe_renderer_backend_egl_target_destroy(struct wpe_renderer_backend_egl_target* target)
 {
@@ -94,7 +89,6 @@ wpe_renderer_backend_egl_target_destroy(struct wpe_renderer_backend_egl_target* 
     free(target);
 }
 
-__attribute__((visibility("default")))
 void
 wpe_renderer_backend_egl_target_set_client(struct wpe_renderer_backend_egl_target* target, struct wpe_renderer_backend_egl_target_client* client, void* client_data)
 {
@@ -102,42 +96,36 @@ wpe_renderer_backend_egl_target_set_client(struct wpe_renderer_backend_egl_targe
     target->client_data = client_data;
 }
 
-__attribute__((visibility("default")))
 void
 wpe_renderer_backend_egl_target_initialize(struct wpe_renderer_backend_egl_target* target, struct wpe_renderer_backend_egl* backend, uint32_t width, uint32_t height)
 {
     target->interface->initialize(target->interface_data, backend->interface_data, width, height);
 }
 
-__attribute__((visibility("default")))
 EGLNativeWindowType
 wpe_renderer_backend_egl_target_get_native_window(struct wpe_renderer_backend_egl_target* target)
 {
     return target->interface->get_native_window(target->interface_data);
 }
 
-__attribute__((visibility("default")))
 void
 wpe_renderer_backend_egl_target_resize(struct wpe_renderer_backend_egl_target* target, uint32_t width, uint32_t height)
 {
     target->interface->resize(target->interface_data, width, height);
 }
 
-__attribute__((visibility("default")))
 void
 wpe_renderer_backend_egl_target_frame_will_render(struct wpe_renderer_backend_egl_target* target)
 {
     target->interface->frame_will_render(target->interface_data);
 }
 
-__attribute__((visibility("default")))
 void
 wpe_renderer_backend_egl_target_frame_rendered(struct wpe_renderer_backend_egl_target* target)
 {
     target->interface->frame_rendered(target->interface_data);
 }
 
-__attribute__((visibility("default")))
 struct wpe_renderer_backend_egl_offscreen_target*
 wpe_renderer_backend_egl_offscreen_target_create()
 {
@@ -154,7 +142,6 @@ wpe_renderer_backend_egl_offscreen_target_create()
     return target;
 }
 
-__attribute__((visibility("default")))
 void
 wpe_renderer_backend_egl_offscreen_target_destroy(struct wpe_renderer_backend_egl_offscreen_target* target)
 {
@@ -164,21 +151,18 @@ wpe_renderer_backend_egl_offscreen_target_destroy(struct wpe_renderer_backend_eg
     free(target);
 }
 
-__attribute__((visibility("default")))
 void
 wpe_renderer_backend_egl_offscreen_target_initialize(struct wpe_renderer_backend_egl_offscreen_target* target, struct wpe_renderer_backend_egl* backend)
 {
     target->interface->initialize(target->interface_data, backend->interface_data);
 }
 
-__attribute__((visibility("default")))
 EGLNativeWindowType
 wpe_renderer_backend_egl_offscreen_target_get_native_window(struct wpe_renderer_backend_egl_offscreen_target* target)
 {
     return target->interface->get_native_window(target->interface_data);
 }
 
-__attribute__((visibility("default")))
 void
 wpe_renderer_backend_egl_target_dispatch_frame_complete(struct wpe_renderer_backend_egl_target* target)
 {
