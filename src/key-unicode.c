@@ -17,7 +17,7 @@
 
 /* This file is based on gdkkeyuni.c adapted to WPE */
 
-#include <stdint.h>
+#include <wpe/input.h>
 #include <wpe/keysyms.h>
 
 /* Thanks to Markus G. Kuhn <mkuhn@acm.org> for the ksysym<->Unicode
@@ -856,7 +856,6 @@ static const struct {
     { 0xFFFF /* Delete */, '\177' }
 };
 
-__attribute__((visibility("default")))
 uint32_t
 wpe_key_code_to_unicode (uint32_t key_code)
 {
@@ -1643,7 +1642,6 @@ static const struct {
     { 0x0ef7, 0x318e }, /*               Hangul_AraeAE ㆎ HANGUL LETTER ARAEAE */
 };
 
-__attribute__((visibility("default")))
 uint32_t
 wpe_unicode_to_key_code (uint32_t wc)
 {

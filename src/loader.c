@@ -97,7 +97,6 @@ load_impl_library()
     s_impl_loader = dlsym(s_impl_library, "_wpe_loader_interface");
 }
 
-__attribute__((visibility("default")))
 bool
 wpe_loader_init(const char* impl_library_name)
 {
@@ -129,7 +128,6 @@ wpe_loader_init(const char* impl_library_name)
 #endif
 }
 
-__attribute__((visibility("default")))
 const char*
 wpe_loader_get_loaded_implementation_library_name(void)
 {

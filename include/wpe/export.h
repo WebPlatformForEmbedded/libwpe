@@ -24,22 +24,34 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "version.h"
+#if !defined(__WPE_H_INSIDE__) && !defined(WPE_COMPILATION)
+#error "Only <wpe/wpe.h> can be included directly."
+#endif
 
-unsigned
-wpe_backend_get_major_version(void)
-{
-    return WPE_BACKEND_MAJOR_VERSION;
-}
+#ifndef wpe_export_h
+#define wpe_export_h
 
-unsigned
-wpe_backend_get_minor_version(void)
-{
-    return WPE_BACKEND_MINOR_VERSION;
-}
+#if (defined(_WIN32) || defined(__WIN32__)) && !defined(WIN32)
+#define WIN32
+#endif
 
-unsigned
-wpe_backend_get_micro_version(void)
-{
-    return WPE_BACKEND_MICRO_VERSION;
-}
+/* Compatibility for non-Clang compilers */
+#ifndef __has_declspec_attribute
+#define __has_declspec_attribute(x) 0
+#endif
+
+#if defined(WIN32) || (__has_declspec_attribute(dllexport) && __has_declspec_attribute(dllimport))
+#ifdef WPE_COMPILATION
+#define WPE_EXPORT __declspec(dllexport)  
+#else
+#define WPE_EXPORT __declspec(dllimport)
+#endif
+#else
+#ifdef WPE_COMPILATION
+#define WPE_EXPORT __attribute__((visibility("default")))
+#else
+#define WPE_EXPORT
+#endif
+#endif
+
+#endif /* wpe_export_h */

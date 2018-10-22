@@ -31,6 +31,10 @@
 #ifndef wpe_renderer_backend_egl_h
 #define wpe_renderer_backend_egl_h
 
+#if defined(WPE_COMPILATION)
+#include <wpe/export.h>
+#endif
+
 #include <EGL/eglplatform.h>
 #include <stdint.h>
 
@@ -85,48 +89,63 @@ struct wpe_renderer_backend_egl_offscreen_target_interface {
     void (*_wpe_reserved3)(void);
 };
 
+WPE_EXPORT
 struct wpe_renderer_backend_egl*
 wpe_renderer_backend_egl_create(int);
 
+WPE_EXPORT
 void
 wpe_renderer_backend_egl_destroy(struct wpe_renderer_backend_egl*);
 
+WPE_EXPORT
 EGLNativeDisplayType
 wpe_renderer_backend_egl_get_native_display(struct wpe_renderer_backend_egl*);
 
+WPE_EXPORT
 struct wpe_renderer_backend_egl_target*
 wpe_renderer_backend_egl_target_create(int);
 
+WPE_EXPORT
 void
 wpe_renderer_backend_egl_target_destroy(struct wpe_renderer_backend_egl_target*);
 
+WPE_EXPORT
 void
 wpe_renderer_backend_egl_target_set_client(struct wpe_renderer_backend_egl_target*, struct wpe_renderer_backend_egl_target_client*, void*);
 
+WPE_EXPORT
 void
 wpe_renderer_backend_egl_target_initialize(struct wpe_renderer_backend_egl_target*, struct wpe_renderer_backend_egl*, uint32_t, uint32_t);
 
+WPE_EXPORT
 EGLNativeWindowType
 wpe_renderer_backend_egl_target_get_native_window(struct wpe_renderer_backend_egl_target*);
 
+WPE_EXPORT
 void
 wpe_renderer_backend_egl_target_resize(struct wpe_renderer_backend_egl_target*, uint32_t, uint32_t);
 
+WPE_EXPORT
 void
 wpe_renderer_backend_egl_target_frame_will_render(struct wpe_renderer_backend_egl_target*);
 
+WPE_EXPORT
 void
 wpe_renderer_backend_egl_target_frame_rendered(struct wpe_renderer_backend_egl_target*);
 
+WPE_EXPORT
 struct wpe_renderer_backend_egl_offscreen_target*
 wpe_renderer_backend_egl_offscreen_target_create();
 
+WPE_EXPORT
 void
 wpe_renderer_backend_egl_offscreen_target_destroy(struct wpe_renderer_backend_egl_offscreen_target*);
 
+WPE_EXPORT
 void
 wpe_renderer_backend_egl_offscreen_target_initialize(struct wpe_renderer_backend_egl_offscreen_target*, struct wpe_renderer_backend_egl*);
 
+WPE_EXPORT
 EGLNativeWindowType
 wpe_renderer_backend_egl_offscreen_target_get_native_window(struct wpe_renderer_backend_egl_offscreen_target*);
 
@@ -138,6 +157,7 @@ struct wpe_renderer_backend_egl_target_client {
     void (*_wpe_reserved3)(void);
 };
 
+WPE_EXPORT
 void
 wpe_renderer_backend_egl_target_dispatch_frame_complete(struct wpe_renderer_backend_egl_target*);
 

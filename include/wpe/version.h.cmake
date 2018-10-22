@@ -31,6 +31,10 @@
 #ifndef wpe_version_h
 #define wpe_version_h
 
+#if defined(WPE_COMPILATION)
+#include <wpe/export.h>
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -45,11 +49,11 @@ extern "C" {
     (WPE_BACKEND_MAJOR_VERSION == (major) && WPE_BACKEND_MINOR_VERSION == (minor) && \
      WPE_BACKEND_MICRO_VERSION >= (micro)))
 
-unsigned wpe_backend_get_major_version(void);
+WPE_EXPORT unsigned wpe_backend_get_major_version(void);
 
-unsigned wpe_backend_get_minor_version(void);
+WPE_EXPORT unsigned wpe_backend_get_minor_version(void);
 
-unsigned wpe_backend_get_micro_version(void);
+WPE_EXPORT unsigned wpe_backend_get_micro_version(void);
 
 #ifdef __cplusplus
 }
