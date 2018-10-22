@@ -30,7 +30,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-__attribute__((visibility("default")))
 void
 wpe_pasteboard_string_initialize(struct wpe_pasteboard_string* string, const char* in_string, uint64_t in_length)
 {
@@ -42,7 +41,6 @@ wpe_pasteboard_string_initialize(struct wpe_pasteboard_string* string, const cha
     memcpy(string->data, in_string, in_length);
 }
 
-__attribute__((visibility("default")))
 void
 wpe_pasteboard_string_free(struct wpe_pasteboard_string* string)
 {
@@ -52,7 +50,6 @@ wpe_pasteboard_string_free(struct wpe_pasteboard_string* string)
     string->length = 0;
 }
 
-__attribute__((visibility("default")))
 void
 wpe_pasteboard_string_vector_free(struct wpe_pasteboard_string_vector* vector)
 {
@@ -65,7 +62,6 @@ wpe_pasteboard_string_vector_free(struct wpe_pasteboard_string_vector* vector)
     vector->length = 0;
 }
 
-__attribute__((visibility("default")))
 struct wpe_pasteboard*
 wpe_pasteboard_get_singleton()
 {
@@ -81,21 +77,18 @@ wpe_pasteboard_get_singleton()
     return s_pasteboard;
 }
 
-__attribute__((visibility("default")))
 void
 wpe_pasteboard_get_types(struct wpe_pasteboard* pasteboard, struct wpe_pasteboard_string_vector* out_types)
 {
     pasteboard->interface->get_types(pasteboard->interface_data, out_types);
 }
 
-__attribute__((visibility("default")))
 void
 wpe_pasteboard_get_string(struct wpe_pasteboard* pasteboard, const char* type, struct wpe_pasteboard_string* out_string)
 {
     pasteboard->interface->get_string(pasteboard->interface_data, type, out_string);
 }
 
-__attribute__((visibility("default")))
 void
 wpe_pasteboard_write(struct wpe_pasteboard* pasteboard, struct wpe_pasteboard_string_map* map)
 {

@@ -37,7 +37,6 @@ struct wpe_input_xkb_context {
     struct xkb_compose_state* compose_state;
 };
 
-__attribute__((visibility("default")))
 struct wpe_input_xkb_context*
 wpe_input_xkb_context_get_default()
 {
@@ -50,7 +49,6 @@ wpe_input_xkb_context_get_default()
     return s_xkb_context;
 }
 
-__attribute__((visibility("default")))
 struct xkb_context*
 wpe_input_xkb_context_get_context(struct wpe_input_xkb_context* xkb_context)
 {
@@ -71,7 +69,6 @@ wpe_input_xkb_context_try_ensure_keymap(struct wpe_input_xkb_context* xkb_contex
     }
 }
 
-__attribute__((visibility("default")))
 struct xkb_keymap*
 wpe_input_xkb_context_get_keymap(struct wpe_input_xkb_context* xkb_context)
 {
@@ -80,7 +77,6 @@ wpe_input_xkb_context_get_keymap(struct wpe_input_xkb_context* xkb_context)
     return state ? xkb_state_get_keymap(state) : NULL;
 }
 
-__attribute__((visibility("default")))
 void
 wpe_input_xkb_context_set_keymap(struct wpe_input_xkb_context* xkb_context, struct xkb_keymap* keymap)
 {
@@ -92,7 +88,6 @@ wpe_input_xkb_context_set_keymap(struct wpe_input_xkb_context* xkb_context, stru
     xkb_context->state = xkb_state_new(keymap);
 }
 
-__attribute__((visibility("default")))
 struct xkb_state*
 wpe_input_xkb_context_get_state(struct wpe_input_xkb_context* xkb_context)
 {
@@ -114,7 +109,6 @@ wpe_input_xkb_context_try_ensure_compose_table(struct wpe_input_xkb_context* xkb
     }
 }
 
-__attribute__((visibility("default")))
 struct xkb_compose_table*
 wpe_input_xkb_context_get_compose_table(struct wpe_input_xkb_context* xkb_context)
 {
@@ -123,7 +117,6 @@ wpe_input_xkb_context_get_compose_table(struct wpe_input_xkb_context* xkb_contex
     return state ? xkb_compose_state_get_compose_table(state) : NULL;
 }
 
-__attribute__((visibility("default")))
 void
 wpe_input_xkb_context_set_compose_table(struct wpe_input_xkb_context* xkb_context, struct xkb_compose_table* compose_table)
 {
@@ -135,7 +128,6 @@ wpe_input_xkb_context_set_compose_table(struct wpe_input_xkb_context* xkb_contex
     xkb_context->compose_state = xkb_compose_state_new(compose_table, XKB_COMPOSE_STATE_NO_FLAGS);
 }
 
-__attribute__((visibility("default")))
 struct xkb_compose_state*
 wpe_input_xkb_context_get_compose_state(struct wpe_input_xkb_context* xkb_context)
 {
@@ -144,7 +136,6 @@ wpe_input_xkb_context_get_compose_state(struct wpe_input_xkb_context* xkb_contex
     return xkb_context->compose_state;
 }
 
-__attribute__((visibility("default")))
 uint32_t
 wpe_input_xkb_context_get_modifiers(struct wpe_input_xkb_context* xkb_context, uint32_t depressed, uint32_t latched, uint32_t locked, uint32_t group)
 {
@@ -168,7 +159,6 @@ wpe_input_xkb_context_get_modifiers(struct wpe_input_xkb_context* xkb_context, u
     return retval;
 }
 
-__attribute__((visibility("default")))
 uint32_t
 wpe_input_xkb_context_get_key_code(struct wpe_input_xkb_context* xkb_context, uint32_t hardware_key_code, bool pressed)
 {
@@ -201,7 +191,6 @@ wpe_input_xkb_context_get_key_code(struct wpe_input_xkb_context* xkb_context, ui
     return sym;
 }
 
-__attribute__((visibility("default")))
 void
 wpe_input_xkb_context_get_entries_for_key_code(struct wpe_input_xkb_context* xkb_context, uint32_t key, struct wpe_input_xkb_keymap_entry** entries, uint32_t* n_entries)
 {

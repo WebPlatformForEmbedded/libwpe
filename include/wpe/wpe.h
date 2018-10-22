@@ -34,6 +34,7 @@
 
 #define __WPE_H_INSIDE__
 
+#include <wpe/export.h>
 #include <wpe/input.h>
 #include <wpe/keysyms.h>
 #include <wpe/loader.h>

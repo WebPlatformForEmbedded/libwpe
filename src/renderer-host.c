@@ -30,7 +30,6 @@
 #include "renderer-host-private.h"
 #include <stdlib.h>
 
-__attribute__((visibility("default")))
 int
 wpe_renderer_host_create_client()
 {

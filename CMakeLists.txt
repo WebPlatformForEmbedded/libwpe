@@ -64,6 +64,7 @@ set(WPE_SOURCES
 
 set(WPE_PUBLIC_HEADERS
   ${DERIVED_SOURCES_DIR}/version.h
+  include/wpe/export.h
   include/wpe/input.h
   include/wpe/keysyms.h
   include/wpe/loader.h

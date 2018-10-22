@@ -31,6 +31,10 @@
 #ifndef wpe_pasteboard_h
 #define wpe_pasteboard_h
 
+#if defined(WPE_COMPILATION)
+#include <wpe/export.h>
+#endif
+
 #include <stdint.h>
 
 #ifdef __cplusplus
@@ -57,12 +61,15 @@ struct wpe_pasteboard_string_map {
     uint64_t length;
 };
 
+WPE_EXPORT
 void
 wpe_pasteboard_string_initialize(struct wpe_pasteboard_string*, const char*, uint64_t);
 
+WPE_EXPORT
 void
 wpe_pasteboard_string_free(struct wpe_pasteboard_string*);
 
+WPE_EXPORT
 void
 wpe_pasteboard_string_vector_free(struct wpe_pasteboard_string_vector*);
 
@@ -82,15 +89,19 @@ struct wpe_pasteboard_interface {
     void (*_wpe_reserved3)(void);
 };
 
+WPE_EXPORT
 struct wpe_pasteboard*
 wpe_pasteboard_get_singleton();
 
+WPE_EXPORT
 void
 wpe_pasteboard_get_types(struct wpe_pasteboard*, struct wpe_pasteboard_string_vector*);
 
+WPE_EXPORT
 void
 wpe_pasteboard_get_string(struct wpe_pasteboard*, const char*, struct wpe_pasteboard_string*);
 
+WPE_EXPORT
 void
 wpe_pasteboard_write(struct wpe_pasteboard*, struct wpe_pasteboard_string_map*);
 
