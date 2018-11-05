@@ -79,11 +79,11 @@ wpe_view_backend_destroy(struct wpe_view_backend*);
 
 WPE_EXPORT
 void 
-wpe_view_backend_set_backend_client(struct wpe_view_backend*, struct wpe_view_backend_client*, void*);
+wpe_view_backend_set_backend_client(struct wpe_view_backend*, const struct wpe_view_backend_client*, void*);
 
 WPE_EXPORT
 void
-wpe_view_backend_set_input_client(struct wpe_view_backend*, struct wpe_view_backend_input_client*, void*);
+wpe_view_backend_set_input_client(struct wpe_view_backend*, const struct wpe_view_backend_input_client*, void*);
 
 WPE_EXPORT
 void
