@@ -42,6 +42,8 @@ struct wpe_view_backend {
 
     const struct wpe_view_backend_input_client* input_client;
     void* input_client_data;
+
+    uint32_t activity_state;
 };
 
 #ifdef __cplusplus

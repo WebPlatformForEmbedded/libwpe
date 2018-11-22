@@ -93,14 +93,19 @@ WPE_EXPORT
 int
 wpe_view_backend_get_renderer_host_fd(struct wpe_view_backend*);
 
+enum wpe_view_activity_state {
+    wpe_view_activity_state_visible   = 1 << 0,
+    wpe_view_activity_state_focused   = 1 << 1,
+    wpe_view_activity_state_in_window = 1 << 2
+};
 
 struct wpe_view_backend_client {
     void (*set_size)(void*, uint32_t, uint32_t);
     void (*frame_displayed)(void*);
+    void (*activity_state_changed)(void*, uint32_t);
     void (*_wpe_reserved0)(void);
     void (*_wpe_reserved1)(void);
     void (*_wpe_reserved2)(void);
-    void (*_wpe_reserved3)(void);
 };
 
 WPE_EXPORT
@@ -111,6 +116,17 @@ WPE_EXPORT
 void
 wpe_view_backend_dispatch_frame_displayed(struct wpe_view_backend*);
 
+WPE_EXPORT
+void
+wpe_view_backend_add_activity_state(struct wpe_view_backend*, uint32_t);
+
+WPE_EXPORT
+void
+wpe_view_backend_remove_activity_state(struct wpe_view_backend*, uint32_t);
+
+WPE_EXPORT
+uint32_t
+wpe_view_backend_get_activity_state(struct wpe_view_backend*);
 
 struct wpe_view_backend_input_client {
     void (*handle_keyboard_event)(void*, struct wpe_input_keyboard_event*);

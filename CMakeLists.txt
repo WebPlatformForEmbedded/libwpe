@@ -4,7 +4,7 @@ cmake_policy(VERSION 3.0)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(VersioningUtils)
 
-SET_PROJECT_VERSION(1 0 0)
+SET_PROJECT_VERSION(1 1 0)
 set(WPE_API_VERSION "0.2")
 
 # Before making a release, the LT_VERSION string should be modified.
