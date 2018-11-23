@@ -66,7 +66,16 @@ wpe_view_backend_destroy(struct wpe_view_backend* backend)
     backend->input_client = 0;
     backend->input_client_data = 0;
 
+    backend->activity_state = 0;
+
     free(backend);
+}
+
+static void
+wpe_view_backend_notify_activity_state_changed(struct wpe_view_backend* backend)
+{
+    if (backend->backend_client && backend->backend_client->activity_state_changed)
+        backend->backend_client->activity_state_changed(backend->backend_client_data, backend->activity_state);
 }
 
 void
@@ -74,6 +83,8 @@ wpe_view_backend_set_backend_client(struct wpe_view_backend* backend, const stru
 {
     backend->backend_client = client;
     backend->backend_client_data = client_data;
+    if (backend->activity_state)
+        wpe_view_backend_notify_activity_state_changed(backend);
 }
 
 void
@@ -107,6 +118,32 @@ wpe_view_backend_dispatch_frame_displayed(struct wpe_view_backend* backend)
 {
     if (backend->backend_client)
         backend->backend_client->frame_displayed(backend->backend_client_data);
+}
+
+void
+wpe_view_backend_add_activity_state(struct wpe_view_backend* backend, uint32_t state)
+{
+    const uint32_t new_state = backend->activity_state | state;
+    if (backend->activity_state != new_state) {
+        backend->activity_state = new_state;
+        wpe_view_backend_notify_activity_state_changed(backend);
+    }
+}
+
+void
+wpe_view_backend_remove_activity_state(struct wpe_view_backend* backend, uint32_t state)
+{
+    const uint32_t new_state = backend->activity_state & ~state;
+    if (backend->activity_state != new_state) {
+        backend->activity_state = new_state;
+        wpe_view_backend_notify_activity_state_changed(backend);
+    }
+}
+
+uint32_t
+wpe_view_backend_get_activity_state(struct wpe_view_backend* backend)
+{
+    return backend->activity_state;
 }
 
 void
