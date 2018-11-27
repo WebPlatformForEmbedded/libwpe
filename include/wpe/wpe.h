@@ -41,6 +41,7 @@
 #include <wpe/pasteboard.h>
 #include <wpe/renderer-host.h>
 #include <wpe/version.h>
+#include <wpe/version-deprecated.h>
 #include <wpe/view-backend.h>
 
 #undef __WPE_H_INSIDE__
