@@ -39,21 +39,21 @@
 extern "C" {
 #endif
 
-#define WPE_BACKEND_MAJOR_VERSION (@PROJECT_VERSION_MAJOR@)
-#define WPE_BACKEND_MINOR_VERSION (@PROJECT_VERSION_MINOR@)
-#define WPE_BACKEND_MICRO_VERSION (@PROJECT_VERSION_PATCH@)
+#define WPE_MAJOR_VERSION (@PROJECT_VERSION_MAJOR@)
+#define WPE_MINOR_VERSION (@PROJECT_VERSION_MINOR@)
+#define WPE_MICRO_VERSION (@PROJECT_VERSION_PATCH@)
 
-#define WPE_BACKEND_CHECK_VERSION(major, minor, micro) \
-    (WPE_BACKEND_MAJOR_VERSION > (major) || \
-    (WPE_BACKEND_MAJOR_VERSION == (major) && WPE_BACKEND_MINOR_VERSION > (minor)) || \
-    (WPE_BACKEND_MAJOR_VERSION == (major) && WPE_BACKEND_MINOR_VERSION == (minor) && \
-     WPE_BACKEND_MICRO_VERSION >= (micro)))
+#define WPE_CHECK_VERSION(major, minor, micro) \
+    (WPE_MAJOR_VERSION > (major) || \
+    (WPE_MAJOR_VERSION == (major) && WPE_MINOR_VERSION > (minor)) || \
+    (WPE_MAJOR_VERSION == (major) && WPE_MINOR_VERSION == (minor) && \
+     WPE_MICRO_VERSION >= (micro)))
 
-WPE_EXPORT unsigned wpe_backend_get_major_version(void);
+WPE_EXPORT unsigned wpe_get_major_version(void);
 
-WPE_EXPORT unsigned wpe_backend_get_minor_version(void);
+WPE_EXPORT unsigned wpe_get_minor_version(void);
 
-WPE_EXPORT unsigned wpe_backend_get_micro_version(void);
+WPE_EXPORT unsigned wpe_get_micro_version(void);
 
 #ifdef __cplusplus
 }

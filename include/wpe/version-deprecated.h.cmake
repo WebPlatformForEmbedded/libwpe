@@ -24,41 +24,39 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "version.h"
-#include "version-deprecated.h"
+#if !defined(__WPE_H_INSIDE__) && !defined(WPE_COMPILATION)
+#error "Only <wpe/wpe.h> can be included directly."
+#endif
 
-unsigned
-wpe_get_major_version(void)
-{
-    return WPE_BACKEND_MAJOR_VERSION;
-}
+#ifndef wpe_version_deprecated_h
+#define wpe_version_deprecated_h
 
-unsigned
-wpe_get_minor_version(void)
-{
-    return WPE_BACKEND_MINOR_VERSION;
-}
+#if defined(WPE_COMPILATION)
+#include <wpe/export.h>
+#endif
 
-unsigned
-wpe_get_micro_version(void)
-{
-    return WPE_BACKEND_MICRO_VERSION;
-}
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-unsigned
-wpe_backend_get_major_version(void)
-{
-    return wpe_get_major_version();
-}
+#define WPE_BACKEND_MAJOR_VERSION (@PROJECT_VERSION_MAJOR@)
+#define WPE_BACKEND_MINOR_VERSION (@PROJECT_VERSION_MINOR@)
+#define WPE_BACKEND_MICRO_VERSION (@PROJECT_VERSION_PATCH@)
 
-unsigned
-wpe_backend_get_minor_version(void)
-{
-    return wpe_get_minor_version();
-}
+#define WPE_BACKEND_CHECK_VERSION(major, minor, micro) \
+    (WPE_BACKEND_MAJOR_VERSION > (major) || \
+    (WPE_BACKEND_MAJOR_VERSION == (major) && WPE_BACKEND_MINOR_VERSION > (minor)) || \
+    (WPE_BACKEND_MAJOR_VERSION == (major) && WPE_BACKEND_MINOR_VERSION == (minor) && \
+     WPE_BACKEND_MICRO_VERSION >= (micro)))
 
-unsigned
-wpe_backend_get_micro_version(void)
-{
-    return wpe_get_micro_version();
+WPE_EXPORT unsigned wpe_backend_get_major_version(void);
+
+WPE_EXPORT unsigned wpe_backend_get_minor_version(void);
+
+WPE_EXPORT unsigned wpe_backend_get_micro_version(void);
+
+#ifdef __cplusplus
 }
+#endif
+
+#endif /* wpe_version_deprecated_h */
