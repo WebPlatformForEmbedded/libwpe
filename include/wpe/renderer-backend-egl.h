@@ -53,8 +53,8 @@ struct wpe_renderer_backend_egl_interface {
     void (*destroy)(void*);
 
     EGLNativeDisplayType (*get_native_display)(void*);
+    uint32_t (*get_platform)(void*);
 
-    void (*_wpe_reserved0)(void);
     void (*_wpe_reserved1)(void);
     void (*_wpe_reserved2)(void);
     void (*_wpe_reserved3)(void);
@@ -100,6 +100,10 @@ wpe_renderer_backend_egl_destroy(struct wpe_renderer_backend_egl*);
 WPE_EXPORT
 EGLNativeDisplayType
 wpe_renderer_backend_egl_get_native_display(struct wpe_renderer_backend_egl*);
+
+WPE_EXPORT
+uint32_t
+wpe_renderer_backend_egl_get_platform(struct wpe_renderer_backend_egl*);
 
 WPE_EXPORT
 struct wpe_renderer_backend_egl_target*

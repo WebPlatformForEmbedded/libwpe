@@ -61,6 +61,14 @@ wpe_renderer_backend_egl_get_native_display(struct wpe_renderer_backend_egl* bac
     return backend->interface->get_native_display(backend->interface_data);
 }
 
+uint32_t
+wpe_renderer_backend_egl_get_platform(struct wpe_renderer_backend_egl* backend)
+{
+    if (backend->interface->get_platform)
+        return backend->interface->get_platform(backend->interface_data);
+    return 0;
+}
+
 struct wpe_renderer_backend_egl_target*
 wpe_renderer_backend_egl_target_create(int host_fd)
 {
