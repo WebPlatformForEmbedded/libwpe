@@ -23,6 +23,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(DERIVED_SOURCES_DIR "${CMAKE_BINARY_DIR}/DerivedSources/wpe")
 configure_file(include/wpe/version.h.cmake ${DERIVED_SOURCES_DIR}/version.h @ONLY)
+configure_file(include/wpe/version-deprecated.h.cmake ${DERIVED_SOURCES_DIR}/version-deprecated.h @ONLY)
 
 include(DistTargets)
 include(GNUInstallDirs)
@@ -64,6 +65,7 @@ set(WPE_SOURCES
 
 set(WPE_PUBLIC_HEADERS
   ${DERIVED_SOURCES_DIR}/version.h
+  ${DERIVED_SOURCES_DIR}/version-deprecated.h
   include/wpe/export.h
   include/wpe/input.h
   include/wpe/keysyms.h
