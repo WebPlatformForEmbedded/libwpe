@@ -1,3 +1,23 @@
+=========================
+1.1.0 - December 13, 2018
+=========================
+
+- Support building libwpe on Windows.
+- New API for observing and setting the view backend state.
+- Added a new wpe_renderer_backend_egl_get_platform() function which can
+  be used to obtain a value which can be passed to eglGetPlatformDisplay()
+  and eglGetPlatformDisplayEXT().
+- Marked old function names containing the "backend" word as deprecated.
+  The symbols are still available, but it is encouraged to use the new
+  versions, e.g. prefer wpe_get_major_version() instead of
+  wpe_backend_get_major_version().
+- Marked function table struct parameters passed to some API functions
+  as "const".
+- Fixed headers so including <wpe-egl.h> results in <wpe.h> being included
+  automatically in the correct order.
+- Make instantiation of backends more robust by checking the validity of
+  interface pointers obtained from the backend.
+
 =======================
 1.0.0 - August 21, 2018
 =======================
