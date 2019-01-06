@@ -107,3 +107,31 @@ install(
     DESTINATION
     ${CMAKE_INSTALL_LIBDIR}/pkgconfig
 )
+
+option(BUILD_DOCS "Build the documentation" OFF)
+IF(BUILD_DOCS)
+  find_program(HOTDOC hotdoc)
+  IF(NOT HOTDOC)
+    message(FATAL_ERROR "hotdoc not found!")
+  ENDIF()
+
+  execute_process(
+    COMMAND ${HOTDOC} --has-extension c-extension
+    RESULT_VARIABLE HAS_HOTDOC_C_EXTENSION
+  )
+  IF("${HAS_HOTDOC_C_EXTENSION}" EQUAL 0)
+    add_custom_target(Documentation ALL
+      ${HOTDOC} run
+      --project-name=WPE
+      --project-version=1.0
+      --sitemap=${CMAKE_SOURCE_DIR}/docs/sitemap.txt
+      --output=${CMAKE_CURRENT_BINARY_DIR}/Documentation/
+      --c-sources="${CMAKE_SOURCE_DIR}/include/wpe/*.[ch]"
+      --extra-c-flags=-DWPE_COMPILATION=true
+      --c-include-directories ${CMAKE_SOURCE_DIR}/include ${DERIVED_SOURCES_DIR}/..
+      --c-smart-index
+    )
+  ELSE()
+      MESSAGE(FATAL_ERROR "Hotdoc C extension not found... can't build the documentation.")
+  ENDIF()
+ENDIF()
