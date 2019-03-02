@@ -36,7 +36,7 @@ wpe_pasteboard_string_initialize(struct wpe_pasteboard_string* string, const cha
     if (string->data)
         return;
 
-    string->data = calloc(1, sizeof(char*) * in_length);
+    string->data = calloc(in_length, sizeof(char));
     string->length = in_length;
     memcpy(string->data, in_string, in_length);
 }
