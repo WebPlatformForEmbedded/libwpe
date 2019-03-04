@@ -1,3 +1,9 @@
+======================
+1.1.90 - March 4, 2019
+======================
+
+- Fix small memory leaks when the EGL renderer backend initialization fails.
+
 =========================
 1.1.0 - December 13, 2018
 =========================
