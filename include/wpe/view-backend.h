@@ -104,8 +104,8 @@ struct wpe_view_backend_client {
     void (*frame_displayed)(void*);
     void (*activity_state_changed)(void*, uint32_t);
     void* (*get_accessible)(void*);
+    void (*set_device_scale_factor)(void*, float);
     void (*_wpe_reserved0)(void);
-    void (*_wpe_reserved1)(void);
 };
 
 WPE_EXPORT
@@ -131,6 +131,10 @@ wpe_view_backend_get_activity_state(struct wpe_view_backend*);
 WPE_EXPORT
 void*
 wpe_view_backend_dispatch_get_accessible(struct wpe_view_backend* backend);
+
+WPE_EXPORT
+void
+wpe_view_backend_dispatch_set_device_scale_factor(struct wpe_view_backend*, float);
 
 struct wpe_view_backend_input_client {
     void (*handle_keyboard_event)(void*, struct wpe_input_keyboard_event*);
