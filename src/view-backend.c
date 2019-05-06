@@ -146,6 +146,14 @@ wpe_view_backend_get_activity_state(struct wpe_view_backend* backend)
     return backend->activity_state;
 }
 
+void*
+wpe_view_backend_dispatch_get_accessible(struct wpe_view_backend* backend)
+{
+    if (backend->backend_client && backend->backend_client->get_accessible)
+        return backend->backend_client->get_accessible(backend->backend_client_data);
+    return NULL;
+}
+
 void
 wpe_view_backend_dispatch_keyboard_event(struct wpe_view_backend* backend, struct wpe_input_keyboard_event* event)
 {
