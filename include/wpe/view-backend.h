@@ -78,7 +78,7 @@ void
 wpe_view_backend_destroy(struct wpe_view_backend*);
 
 WPE_EXPORT
-void 
+void
 wpe_view_backend_set_backend_client(struct wpe_view_backend*, const struct wpe_view_backend_client*, void*);
 
 WPE_EXPORT
@@ -103,7 +103,7 @@ struct wpe_view_backend_client {
     void (*set_size)(void*, uint32_t, uint32_t);
     void (*frame_displayed)(void*);
     void (*activity_state_changed)(void*, uint32_t);
-    void (*_wpe_reserved0)(void);
+    void (*set_device_scale_factor)(void*, float);
     void (*_wpe_reserved1)(void);
     void (*_wpe_reserved2)(void);
 };
@@ -127,6 +127,10 @@ wpe_view_backend_remove_activity_state(struct wpe_view_backend*, uint32_t);
 WPE_EXPORT
 uint32_t
 wpe_view_backend_get_activity_state(struct wpe_view_backend*);
+
+WPE_EXPORT
+void
+wpe_view_backend_dispatch_set_device_scale_factor(struct wpe_view_backend*, float);
 
 struct wpe_view_backend_input_client {
     void (*handle_keyboard_event)(void*, struct wpe_input_keyboard_event*);

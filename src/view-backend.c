@@ -147,6 +147,13 @@ wpe_view_backend_get_activity_state(struct wpe_view_backend* backend)
 }
 
 void
+wpe_view_backend_dispatch_set_device_scale_factor(struct wpe_view_backend* backend, float scale)
+{
+    if (backend->backend_client && backend->backend_client->set_device_scale_factor)
+        backend->backend_client->set_device_scale_factor(backend->backend_client_data, scale);
+}
+
+void
 wpe_view_backend_dispatch_keyboard_event(struct wpe_view_backend* backend, struct wpe_input_keyboard_event* event)
 {
     if (backend->input_client)
