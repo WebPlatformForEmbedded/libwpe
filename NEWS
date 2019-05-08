@@ -1,3 +1,12 @@
+===================
+1.3.0 - May 8, 2019
+===================
+
+- New API to set the device scaling factor. Backends and WebKit embedders
+  can use this to e.g. support HiDPI displays.
+- New API to to obtain the root accessibility object for a view backend.
+- Fixed memory overallocation when setting pasteboard contents.
+
 =========================
 1.1.0 - December 13, 2018
 =========================
