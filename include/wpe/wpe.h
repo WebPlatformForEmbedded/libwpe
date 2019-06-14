@@ -34,15 +34,15 @@
 
 #define __WPE_H_INSIDE__
 
-#include <wpe/export.h>
-#include <wpe/input.h>
-#include <wpe/keysyms.h>
-#include <wpe/loader.h>
-#include <wpe/pasteboard.h>
-#include <wpe/renderer-host.h>
-#include <wpe/version.h>
-#include <wpe/version-deprecated.h>
-#include <wpe/view-backend.h>
+#include "export.h"
+#include "input.h"
+#include "keysyms.h"
+#include "loader.h"
+#include "pasteboard.h"
+#include "renderer-host.h"
+#include "version.h"
+#include "version-deprecated.h"
+#include "view-backend.h"
 
 #undef __WPE_H_INSIDE__
 
