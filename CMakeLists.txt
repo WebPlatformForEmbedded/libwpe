@@ -128,7 +128,7 @@ IF(BUILD_DOCS)
       --output=${CMAKE_CURRENT_BINARY_DIR}/Documentation/
       --c-sources="${CMAKE_SOURCE_DIR}/include/wpe/*.[ch]"
       --extra-c-flags=-DWPE_COMPILATION=true
-      --c-include-directories ${CMAKE_SOURCE_DIR}/include ${DERIVED_SOURCES_DIR}/..
+      --c-include-directories ${CMAKE_SOURCE_DIR}/include ${DERIVED_SOURCES_DIR}
       --c-smart-index
     )
   ELSE()
