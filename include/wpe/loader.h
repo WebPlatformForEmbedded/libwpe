@@ -31,6 +31,12 @@
 #ifndef wpe_loader_h
 #define wpe_loader_h
 
+/**
+ * SECTION:loader
+ * @short_description: Loader and Initialization
+ * @title: Loader
+ */
+
 #if defined(WPE_COMPILATION)
 #include <wpe/export.h>
 #endif
@@ -41,18 +47,46 @@
 extern "C" {
 #endif
 
+/**
+ * wpe_loader_interface:
+ * @load_object: Callback invoked by `libwpe` to instantiate objects.
+ *
+ * An implementation of a WPE backend *must* define a `_wpe_loader_interface`
+ * symbol of this type.
+ */
 struct wpe_loader_interface {
     void* (*load_object)(const char*);
+
+    /*< private >*/
     void (*_wpe_reserved0)(void);
     void (*_wpe_reserved1)(void);
     void (*_wpe_reserved2)(void);
     void (*_wpe_reserved3)(void);
 };
 
+/**
+ * wpe_loader_init:
+ * @impl_library_name: (transfer none): Name of the shared library object
+ *     to load as WPE backend implementation.
+ *
+ * Initializes the `libwpe` object loader
+ *
+ * Returns: Whether initialization succeeded.
+ */
 WPE_EXPORT
 bool
 wpe_loader_init(const char* impl_library_name);
 
+/**
+ * wpe_loader_get_loaded_implementation_library_name:
+ *
+ * Obtain the name of the shared library object loaded as WPE backend
+ * implementation. Note that in general this will return the value passed
+ * to wpe_loader_init(), but that is not guaranteed.
+ *
+ * Returns: (transfer none): Name of the shared library object for the
+ *     backend implementation.
+ */
 WPE_EXPORT
 const char*
 wpe_loader_get_loaded_implementation_library_name(void);

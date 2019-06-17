@@ -31,6 +31,12 @@
 #ifndef wpe_view_backend_h
 #define wpe_view_backend_h
 
+/**
+ * SECTION:view-backend
+ * @short_description: View Backend
+ * @title: View Backend
+ */
+
 #if defined(WPE_COMPILATION)
 #include <wpe/export.h>
 #endif
@@ -58,6 +64,7 @@ struct wpe_view_backend_interface {
     void (*initialize)(void*);
     int (*get_renderer_host_fd)(void*);
 
+    /*< private >*/
     void (*_wpe_reserved0)(void);
     void (*_wpe_reserved1)(void);
     void (*_wpe_reserved2)(void);
@@ -105,6 +112,8 @@ struct wpe_view_backend_client {
     void (*activity_state_changed)(void*, uint32_t);
     void* (*get_accessible)(void*);
     void (*set_device_scale_factor)(void*, float);
+
+    /*< private >*/
     void (*_wpe_reserved0)(void);
 };
 
@@ -141,6 +150,8 @@ struct wpe_view_backend_input_client {
     void (*handle_pointer_event)(void*, struct wpe_input_pointer_event*);
     void (*handle_axis_event)(void*, struct wpe_input_axis_event*);
     void (*handle_touch_event)(void*, struct wpe_input_touch_event*);
+
+    /*< private >*/
     void (*_wpe_reserved0)(void);
     void (*_wpe_reserved1)(void);
     void (*_wpe_reserved2)(void);

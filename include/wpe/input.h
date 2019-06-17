@@ -31,6 +31,12 @@
 #ifndef wpe_input_h
 #define wpe_input_h
 
+/**
+ * SECTION:input
+ * @short_description: Input Handling
+ * @title: Input
+ */
+
 #if defined(WPE_COMPILATION)
 #include <wpe/export.h>
 #endif

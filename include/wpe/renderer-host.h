@@ -31,6 +31,12 @@
 #ifndef wpe_renderer_host_h
 #define wpe_renderer_host_h
 
+/**
+ * SECTION:renderer
+ * @short_description: Renderer Host
+ * @title: Renderer
+ */
+
 #if defined(WPE_COMPILATION)
 #include <wpe/export.h>
 #endif
@@ -45,6 +51,7 @@ struct wpe_renderer_host_interface {
 
     int (*create_client)(void*);
 
+    /*< private >*/
     void (*_wpe_reserved0)(void);
     void (*_wpe_reserved1)(void);
     void (*_wpe_reserved2)(void);

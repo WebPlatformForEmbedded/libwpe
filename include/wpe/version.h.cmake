@@ -31,6 +31,16 @@
 #ifndef wpe_version_h
 #define wpe_version_h
 
+/**
+ * SECTION:version
+ * @short_description: Library Version
+ * @title: Version
+ * @symbols:
+ *   - wpe_backend_get_major_version
+ *   - wpe_backend_get_minor_version
+ *   - wpe_backend_get_micro_version
+ */
+
 #if defined(WPE_COMPILATION)
 #include <wpe/export.h>
 #endif
@@ -49,10 +59,25 @@ extern "C" {
     (WPE_MAJOR_VERSION == (major) && WPE_MINOR_VERSION == (minor) && \
      WPE_MICRO_VERSION >= (micro)))
 
+/**
+ * wpe_get_major_version:
+ *
+ * Returns: Major version of the `libwpe` library.
+ */
 WPE_EXPORT unsigned wpe_get_major_version(void);
 
+/**
+ * wpe_get_minor_version:
+ *
+ * Returns: Minor version of the `libwpe` library.
+ */
 WPE_EXPORT unsigned wpe_get_minor_version(void);
 
+/**
+ * wpe_get_micro_version:
+ *
+ * Returns: Micro version of the `libwpe` library.
+ */
 WPE_EXPORT unsigned wpe_get_micro_version(void);
 
 #ifdef __cplusplus

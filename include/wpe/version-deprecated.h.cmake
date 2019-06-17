@@ -49,10 +49,34 @@ extern "C" {
     (WPE_BACKEND_MAJOR_VERSION == (major) && WPE_BACKEND_MINOR_VERSION == (minor) && \
      WPE_BACKEND_MICRO_VERSION >= (micro)))
 
+/**
+ * wpe_backend_get_major_version:
+ *
+ * Returns: Major version of the `libwpe` library.
+ *
+ * Deprecated: Since `libwpe` version 1.0.0, use wpe_get_major_version()
+ *     instead.
+ */
 WPE_EXPORT unsigned wpe_backend_get_major_version(void);
 
+/**
+ * wpe_backend_get_minor_version:
+ *
+ * Returns: Minor version of the `libwpe` library.
+ *
+ * Deprecated: Since `libwpe` version 1.0.0, use wpe_get_minor_version()
+ *     instead.
+ */
 WPE_EXPORT unsigned wpe_backend_get_minor_version(void);
 
+/**
+ * wpe_backend_get_micro_version:
+ *
+ * Returns: Micro version of the `libwpe` library.
+ *
+ * Deprecated: Since `libwpe` version 1.0.0, use wpe_get_micro_version()
+ *     instead.
+ */
 WPE_EXPORT unsigned wpe_backend_get_micro_version(void);
 
 #ifdef __cplusplus
