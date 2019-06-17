@@ -31,6 +31,12 @@
 #ifndef wpe_pasteboard_h
 #define wpe_pasteboard_h
 
+/**
+ * SECTION:pasteboard
+ * @short_description: Pasteboard (a.k.a. clipboard) Management
+ * @title: Pasteboard
+ */
+
 #if defined(WPE_COMPILATION)
 #include <wpe/export.h>
 #endif
@@ -61,13 +67,31 @@ struct wpe_pasteboard_string_map {
     uint64_t length;
 };
 
+/**
+ * wpe_pasteboard_string_initialize:
+ * @pbstring: (transfer none): A pasteboard string.
+ * @contents: (transfer none): Contents to copy into the pasteboard string.
+ * @length: Length of the contents, in bytes.
+ *
+ * Initializes a pasteboard string.
+ *
+ * When the string is not needed anymore, use wpe_pasteboard_string_free()
+ * to free resources.
+ */
 WPE_EXPORT
 void
-wpe_pasteboard_string_initialize(struct wpe_pasteboard_string*, const char*, uint64_t);
+wpe_pasteboard_string_initialize(struct wpe_pasteboard_string* pbstring, const char* contents, uint64_t length);
 
+/**
+ * wpe_pasteboard_string_free:
+ * @pbstring: (transfer none): A pasteboard string.
+ *
+ * Frees any resources associated with @pbstring which may have been
+ * previously allocated by wpe_pasteboard_string_initialize().
+ */
 WPE_EXPORT
 void
-wpe_pasteboard_string_free(struct wpe_pasteboard_string*);
+wpe_pasteboard_string_free(struct wpe_pasteboard_string* pbstring);
 
 WPE_EXPORT
 void
@@ -83,15 +107,23 @@ struct wpe_pasteboard_interface {
     void (*get_string)(void*, const char*, struct wpe_pasteboard_string*);
     void (*write)(void*, struct wpe_pasteboard_string_map*);
 
+    /*< private >*/
     void (*_wpe_reserved0)(void);
     void (*_wpe_reserved1)(void);
     void (*_wpe_reserved2)(void);
     void (*_wpe_reserved3)(void);
 };
 
+/**
+ * wpe_pasteboard_get_singleton:
+ *
+ * Obtains the pasteboard object, creating it if neccessary.
+ *
+ * Returns: The pasteboard object.
+ */
 WPE_EXPORT
 struct wpe_pasteboard*
-wpe_pasteboard_get_singleton();
+wpe_pasteboard_get_singleton(void);
 
 WPE_EXPORT
 void

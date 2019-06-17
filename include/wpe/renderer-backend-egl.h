@@ -31,6 +31,12 @@
 #ifndef wpe_renderer_backend_egl_h
 #define wpe_renderer_backend_egl_h
 
+/**
+ * SECTION:egl-renderer
+ * @short_description: EGL Renderer Backend
+ * @title: EGL Renderer
+ */
+
 #if defined(WPE_COMPILATION)
 #include <wpe/export.h>
 #endif
@@ -55,6 +61,7 @@ struct wpe_renderer_backend_egl_interface {
     EGLNativeDisplayType (*get_native_display)(void*);
     uint32_t (*get_platform)(void*);
 
+    /*< private >*/
     void (*_wpe_reserved1)(void);
     void (*_wpe_reserved2)(void);
     void (*_wpe_reserved3)(void);
@@ -70,6 +77,7 @@ struct wpe_renderer_backend_egl_target_interface {
     void (*frame_will_render)(void*);
     void (*frame_rendered)(void*);
 
+    /*< private >*/
     void (*_wpe_reserved0)(void);
     void (*_wpe_reserved1)(void);
     void (*_wpe_reserved2)(void);
@@ -83,6 +91,7 @@ struct wpe_renderer_backend_egl_offscreen_target_interface {
     void (*initialize)(void*, void*);
     EGLNativeWindowType (*get_native_window)(void*);
 
+    /*< private >*/
     void (*_wpe_reserved0)(void);
     void (*_wpe_reserved1)(void);
     void (*_wpe_reserved2)(void);
@@ -155,6 +164,8 @@ wpe_renderer_backend_egl_offscreen_target_get_native_window(struct wpe_renderer_
 
 struct wpe_renderer_backend_egl_target_client {
     void (*frame_complete)(void*);
+
+    /*< private >*/
     void (*_wpe_reserved0)(void);
     void (*_wpe_reserved1)(void);
     void (*_wpe_reserved2)(void);

@@ -118,16 +118,20 @@ IF(BUILD_DOCS)
   execute_process(
     COMMAND ${HOTDOC} --has-extension c-extension
     RESULT_VARIABLE HAS_HOTDOC_C_EXTENSION
+    ERROR_QUIET
   )
   IF("${HAS_HOTDOC_C_EXTENSION}" EQUAL 0)
     add_custom_target(Documentation ALL
       ${HOTDOC} run
-      --project-name=WPE
+      --project-name=libwpe
       --project-version=1.0
+      --include-paths="${CMAKE_SOURCE_DIR}/docs"
       --sitemap=${CMAKE_SOURCE_DIR}/docs/sitemap.txt
       --output=${CMAKE_CURRENT_BINARY_DIR}/Documentation/
-      --c-sources="${CMAKE_SOURCE_DIR}/include/wpe/*.[ch]"
-      --extra-c-flags=-DWPE_COMPILATION=true
+      --c-sources "${CMAKE_SOURCE_DIR}/include/wpe/*.h"
+                  "${DERIVED_SOURCES_DIR}/version.h"
+                  "${DERIVED_SOURCES_DIR}/version-deprecated.h"
+      --extra-c-flags=-DWPE_COMPILATION=1
       --c-include-directories ${CMAKE_SOURCE_DIR}/include ${DERIVED_SOURCES_DIR}
       --c-smart-index
     )
