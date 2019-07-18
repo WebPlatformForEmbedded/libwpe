@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015, 2016 Igalia S.L.
+ * Copyright (C) 2019 Igalia S.L.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,35 +24,36 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef wpe_view_backend_private_h
-#define wpe_view_backend_private_h
+#if !defined(__WPE_H_INSIDE__) && !defined(WPE_COMPILATION)
+#error "Only <wpe/wpe.h> can be included directly."
+#endif
 
-#include <wpe/view-backend.h>
+#ifndef wpe_view_ui_h
+#define wpe_view_ui_h
+
+/**
+ * SECTION:view-ui
+ * @short_description: View UI Handling
+ * @title: View UI
+ */
+
+#if defined(WPE_COMPILATION)
+#include <wpe/export.h>
+#endif
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-struct wpe_view_backend {
-    const struct wpe_view_backend_interface* interface;
-    void* interface_data;
+struct wpe_input_method;
+struct wpe_view_ui;
 
-    struct wpe_view_ui* view_ui;
-
-    const struct wpe_view_backend_client* backend_client;
-    void* backend_client_data;
-
-    const struct wpe_view_backend_input_client* input_client;
-    void* input_client_data;
-
-    const struct wpe_view_backend_input_method_client* input_method_client;
-    void* input_method_client_data;
-
-    uint32_t activity_state;
-};
+WPE_EXPORT
+struct wpe_input_method*
+wpe_view_ui_get_input_method(struct wpe_view_ui*);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // wpe_view_backend_private_h
+#endif /* wpe_view_ui_h */

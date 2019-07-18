@@ -48,6 +48,7 @@ extern "C" {
 #include <stdint.h>
 
 struct wpe_view_backend;
+struct wpe_view_ui;
 
 struct wpe_input_axis_event;
 struct wpe_input_keyboard_event;
@@ -56,6 +57,7 @@ struct wpe_input_touch_event;
 
 struct wpe_view_backend_client;
 struct wpe_view_backend_input_client;
+struct wpe_view_backend_input_method_client;
 
 struct wpe_view_backend_interface {
     void* (*create)(void*, struct wpe_view_backend*);
@@ -85,12 +87,20 @@ void
 wpe_view_backend_destroy(struct wpe_view_backend*);
 
 WPE_EXPORT
+struct wpe_view_ui*
+wpe_view_backend_get_view_ui(struct wpe_view_backend*);
+
+WPE_EXPORT
 void 
 wpe_view_backend_set_backend_client(struct wpe_view_backend*, const struct wpe_view_backend_client*, void*);
 
 WPE_EXPORT
 void
 wpe_view_backend_set_input_client(struct wpe_view_backend*, const struct wpe_view_backend_input_client*, void*);
+
+WPE_EXPORT
+void
+wpe_view_backend_set_input_method_client(struct wpe_view_backend*, const struct wpe_view_backend_input_method_client*, void*);
 
 WPE_EXPORT
 void

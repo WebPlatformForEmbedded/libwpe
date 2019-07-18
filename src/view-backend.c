@@ -28,6 +28,7 @@
 
 #include "loader-private.h"
 #include "view-backend-private.h"
+#include "view-ui-private.h"
 #include <stdlib.h>
 
 
@@ -51,12 +52,17 @@ wpe_view_backend_create_with_backend_interface(struct wpe_view_backend_interface
     backend->interface = interface;
     backend->interface_data = backend->interface->create(interface_user_data, backend);
 
+    backend->view_ui = wpe_view_ui_create();
+
     return backend;
 }
 
 void
 wpe_view_backend_destroy(struct wpe_view_backend* backend)
 {
+    wpe_view_ui_destroy(backend->view_ui);
+    backend->view_ui = 0;
+
     backend->interface->destroy(backend->interface_data);
     backend->interface_data = 0;
 
@@ -69,6 +75,12 @@ wpe_view_backend_destroy(struct wpe_view_backend* backend)
     backend->activity_state = 0;
 
     free(backend);
+}
+
+struct wpe_view_ui*
+wpe_view_backend_get_view_ui(struct wpe_view_backend* backend)
+{
+    return backend->view_ui;
 }
 
 static void
@@ -92,6 +104,13 @@ wpe_view_backend_set_input_client(struct wpe_view_backend* backend, const struct
 {
     backend->input_client = client;
     backend->input_client_data = client_data;
+}
+
+void
+wpe_view_backend_set_input_method_client(struct wpe_view_backend* backend, const struct wpe_view_backend_input_method_client* client, void* client_data)
+{
+    backend->input_method_client = client;
+    backend->input_method_client_data = client_data;
 }
 
 void

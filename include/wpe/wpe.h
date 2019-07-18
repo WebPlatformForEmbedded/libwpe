@@ -36,6 +36,7 @@
 
 #include "export.h"
 #include "input.h"
+#include "input-method.h"
 #include "keysyms.h"
 #include "loader.h"
 #include "pasteboard.h"
@@ -43,6 +44,7 @@
 #include "version.h"
 #include "version-deprecated.h"
 #include "view-backend.h"
+#include "view-ui.h"
 
 #undef __WPE_H_INSIDE__
 

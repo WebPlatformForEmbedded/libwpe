@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015, 2016 Igalia S.L.
+ * Copyright (C) 2019 Igalia S.L.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,35 +24,60 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef wpe_view_backend_private_h
-#define wpe_view_backend_private_h
+#if !defined(__WPE_H_INSIDE__) && !defined(WPE_COMPILATION)
+#error "Only <wpe/wpe.h> can be included directly."
+#endif
 
-#include <wpe/view-backend.h>
+#ifndef wpe_input_method_h
+#define wpe_input_method_h
+
+/**
+ * SECTION:input-method
+ * @short_description: Input Method Handling
+ * @title: Input Method
+ */
+
+#if defined(WPE_COMPILATION)
+#include <wpe/export.h>
+#endif
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-struct wpe_view_backend {
-    const struct wpe_view_backend_interface* interface;
-    void* interface_data;
+struct wpe_input_method;
 
-    struct wpe_view_ui* view_ui;
+struct wpe_input_method_controller {
+    void (*enable)(void* data);
+    void (*disable)(void* data);
 
-    const struct wpe_view_backend_client* backend_client;
-    void* backend_client_data;
-
-    const struct wpe_view_backend_input_client* input_client;
-    void* input_client_data;
-
-    const struct wpe_view_backend_input_method_client* input_method_client;
-    void* input_method_client_data;
-
-    uint32_t activity_state;
+    void (*_wpe_reserved0)(void);
+    void (*_wpe_reserved1)(void);
+    void (*_wpe_reserved2)(void);
+    void (*_wpe_reserved3)(void);
 };
+
+struct wpe_input_method_client {
+    void (*_wpe_reserved0)(void);
+    void (*_wpe_reserved1)(void);
+    void (*_wpe_reserved2)(void);
+    void (*_wpe_reserved3)(void);
+};
+
+WPE_EXPORT
+void
+wpe_input_method_set_controller(struct wpe_input_method*, struct wpe_input_method_controller*, void*);
+
+WPE_EXPORT
+void
+wpe_input_method_enable(struct wpe_input_method*);
+
+WPE_EXPORT
+void
+wpe_input_method_disable(struct wpe_input_method*);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // wpe_view_backend_private_h
+#endif /* wpe_input_method_h */

@@ -52,6 +52,7 @@ set(WPE_LIBRARIES
 
 set(WPE_SOURCES
     src/input.c
+    src/input-method.c
     src/key-unicode.c
     src/loader.c
     src/pasteboard.c
@@ -61,6 +62,7 @@ set(WPE_SOURCES
     src/renderer-host.c
     src/version.c
     src/view-backend.c
+    src/view-ui.c
 )
 
 set(WPE_PUBLIC_HEADERS
@@ -68,12 +70,14 @@ set(WPE_PUBLIC_HEADERS
   ${DERIVED_SOURCES_DIR}/version-deprecated.h
   include/wpe/export.h
   include/wpe/input.h
+  include/wpe/input-method.h
   include/wpe/keysyms.h
   include/wpe/loader.h
   include/wpe/pasteboard.h
   include/wpe/renderer-backend-egl.h
   include/wpe/renderer-host.h
   include/wpe/view-backend.h
+  include/wpe/view-ui.h
   include/wpe/wpe-egl.h
   include/wpe/wpe.h
 )

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015, 2016 Igalia S.L.
+ * Copyright (C) 2019 Igalia S.L.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,35 +24,15 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef wpe_view_backend_private_h
-#define wpe_view_backend_private_h
+#include <wpe/input-method.h>
 
-#include <wpe/view-backend.h>
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-struct wpe_view_backend {
-    const struct wpe_view_backend_interface* interface;
-    void* interface_data;
-
-    struct wpe_view_ui* view_ui;
-
-    const struct wpe_view_backend_client* backend_client;
-    void* backend_client_data;
-
-    const struct wpe_view_backend_input_client* input_client;
-    void* input_client_data;
-
-    const struct wpe_view_backend_input_method_client* input_method_client;
-    void* input_method_client_data;
-
-    uint32_t activity_state;
+struct wpe_input_method {
+    const struct wpe_input_method_controller* controller;
+    void* controller_data;
 };
 
-#ifdef __cplusplus
-}
-#endif
+struct wpe_input_method*
+wpe_input_method_create();
 
-#endif // wpe_view_backend_private_h
+void
+wpe_input_method_destroy(struct wpe_input_method*);
