@@ -29,6 +29,7 @@
 #include "loader-private.h"
 #include "view-backend-private.h"
 #include <stdlib.h>
+#include <string.h>
 
 
 struct wpe_view_backend*
@@ -58,16 +59,7 @@ void
 wpe_view_backend_destroy(struct wpe_view_backend* backend)
 {
     backend->interface->destroy(backend->interface_data);
-    backend->interface_data = 0;
-
-    backend->backend_client = 0;
-    backend->backend_client_data = 0;
-
-    backend->input_client = 0;
-    backend->input_client_data = 0;
-
-    backend->activity_state = 0;
-
+    memset(backend, 0, sizeof(*backend));
     free(backend);
 }
 
@@ -88,10 +80,16 @@ wpe_view_backend_set_backend_client(struct wpe_view_backend* backend, const stru
 }
 
 void
-wpe_view_backend_set_input_client(struct wpe_view_backend* backend, const struct wpe_view_backend_input_client* client, void* client_data)
+wpe_view_backend_set_input_client(struct wpe_view_backend* backend, const struct wpe_input_client* client, void* client_data)
 {
-    backend->input_client = client;
-    backend->input_client_data = client_data;
+    backend->input.client = client;
+    backend->input.client_data = client_data;
+}
+
+struct wpe_input*
+wpe_view_backend_get_input(struct wpe_view_backend* backend)
+{
+    return &backend->input;
 }
 
 void
@@ -164,27 +162,51 @@ wpe_view_backend_dispatch_set_device_scale_factor(struct wpe_view_backend* backe
 void
 wpe_view_backend_dispatch_keyboard_event(struct wpe_view_backend* backend, struct wpe_input_keyboard_event* event)
 {
-    if (backend->input_client)
-        backend->input_client->handle_keyboard_event(backend->input_client_data, event);
+    wpe_input_dispatch_keyboard_event(&backend->input, event);
 }
 
 void
 wpe_view_backend_dispatch_pointer_event(struct wpe_view_backend* backend, struct wpe_input_pointer_event* event)
 {
-    if (backend->input_client)
-        backend->input_client->handle_pointer_event(backend->input_client_data, event);
+    wpe_input_dispatch_pointer_event(&backend->input, event);
 }
 
 void
 wpe_view_backend_dispatch_axis_event(struct wpe_view_backend* backend, struct wpe_input_axis_event* event)
 {
-    if (backend->input_client)
-        backend->input_client->handle_axis_event(backend->input_client_data, event);
+    wpe_input_dispatch_axis_event(&backend->input, event);
 }
 
 void
 wpe_view_backend_dispatch_touch_event(struct wpe_view_backend* backend, struct wpe_input_touch_event* event)
 {
-    if (backend->input_client)
-        backend->input_client->handle_touch_event(backend->input_client_data, event);
+    wpe_input_dispatch_touch_event(&backend->input, event);
+}
+
+void
+wpe_input_dispatch_keyboard_event(struct wpe_input* backend, struct wpe_input_keyboard_event* event)
+{
+    if (backend->client)
+        backend->client->handle_keyboard_event(backend->client_data, event);
+}
+
+void
+wpe_input_dispatch_pointer_event(struct wpe_input* backend, struct wpe_input_pointer_event* event)
+{
+    if (backend->client)
+        backend->client->handle_pointer_event(backend->client_data, event);
+}
+
+void
+wpe_input_dispatch_axis_event(struct wpe_input* backend, struct wpe_input_axis_event* event)
+{
+    if (backend->client)
+        backend->client->handle_axis_event(backend->client_data, event);
+}
+
+void
+wpe_input_dispatch_touch_event(struct wpe_input* backend, struct wpe_input_touch_event* event)
+{
+    if (backend->client)
+        backend->client->handle_touch_event(backend->client_data, event);
 }

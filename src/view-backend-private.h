@@ -33,15 +33,19 @@
 extern "C" {
 #endif
 
+struct wpe_input {
+    const struct wpe_input_client* client;
+    void* client_data;
+};
+
 struct wpe_view_backend {
+    struct wpe_input input;
+
     const struct wpe_view_backend_interface* interface;
     void* interface_data;
 
     const struct wpe_view_backend_client* backend_client;
     void* backend_client_data;
-
-    const struct wpe_view_backend_input_client* input_client;
-    void* input_client_data;
 
     uint32_t activity_state;
 };

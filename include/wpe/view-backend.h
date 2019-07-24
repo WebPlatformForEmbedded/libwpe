@@ -49,13 +49,15 @@ extern "C" {
 
 struct wpe_view_backend;
 
+struct wpe_input;
+
 struct wpe_input_axis_event;
 struct wpe_input_keyboard_event;
 struct wpe_input_pointer_event;
 struct wpe_input_touch_event;
 
 struct wpe_view_backend_client;
-struct wpe_view_backend_input_client;
+struct wpe_input_client;
 
 struct wpe_view_backend_interface {
     void* (*create)(void*, struct wpe_view_backend*);
@@ -85,12 +87,12 @@ void
 wpe_view_backend_destroy(struct wpe_view_backend*);
 
 WPE_EXPORT
-void 
+void
 wpe_view_backend_set_backend_client(struct wpe_view_backend*, const struct wpe_view_backend_client*, void*);
 
 WPE_EXPORT
 void
-wpe_view_backend_set_input_client(struct wpe_view_backend*, const struct wpe_view_backend_input_client*, void*);
+wpe_view_backend_set_input_client(struct wpe_view_backend*, const struct wpe_input_client*, void*);
 
 WPE_EXPORT
 void
@@ -99,6 +101,10 @@ wpe_view_backend_initialize(struct wpe_view_backend*);
 WPE_EXPORT
 int
 wpe_view_backend_get_renderer_host_fd(struct wpe_view_backend*);
+
+WPE_EXPORT
+struct wpe_input*
+wpe_view_backend_get_input(struct wpe_view_backend*);
 
 enum wpe_view_activity_state {
     wpe_view_activity_state_visible   = 1 << 0,
@@ -145,7 +151,7 @@ WPE_EXPORT
 void
 wpe_view_backend_dispatch_set_device_scale_factor(struct wpe_view_backend*, float);
 
-struct wpe_view_backend_input_client {
+struct wpe_input_client {
     void (*handle_keyboard_event)(void*, struct wpe_input_keyboard_event*);
     void (*handle_pointer_event)(void*, struct wpe_input_pointer_event*);
     void (*handle_axis_event)(void*, struct wpe_input_axis_event*);
@@ -173,6 +179,22 @@ wpe_view_backend_dispatch_axis_event(struct wpe_view_backend*, struct wpe_input_
 WPE_EXPORT
 void
 wpe_view_backend_dispatch_touch_event(struct wpe_view_backend*, struct wpe_input_touch_event*);
+
+WPE_EXPORT
+void
+wpe_input_dispatch_keyboard_event(struct wpe_input*, struct wpe_input_keyboard_event*);
+
+WPE_EXPORT
+void
+wpe_input_dispatch_pointer_event(struct wpe_input*, struct wpe_input_pointer_event*);
+
+WPE_EXPORT
+void
+wpe_input_dispatch_axis_event(struct wpe_input*, struct wpe_input_axis_event*);
+
+WPE_EXPORT
+void
+wpe_input_dispatch_touch_event(struct wpe_input*, struct wpe_input_touch_event*);
 
 #ifdef __cplusplus
 }
