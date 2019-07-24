@@ -56,8 +56,13 @@ struct wpe_input_keyboard_event;
 struct wpe_input_pointer_event;
 struct wpe_input_touch_event;
 
+struct wpe_popup;
+struct wpe_buffer;
+
 struct wpe_view_backend_client;
 struct wpe_input_client;
+struct wpe_popup_client;
+struct wpe_buffer_client;
 
 struct wpe_view_backend_interface {
     void* (*create)(void*, struct wpe_view_backend*);
@@ -122,6 +127,15 @@ struct wpe_view_backend_client {
     /*< private >*/
     void (*_wpe_reserved0)(void);
 };
+
+WPE_EXPORT
+struct wpe_popup*
+wpe_view_backend_create_popup(struct wpe_view_backend*, int32_t, int32_t, int32_t, int32_t, int32_t, int32_t, const struct wpe_popup_client* popup_client,
+                              const struct wpe_input_client* input_client, void* client_data);
+
+WPE_EXPORT
+struct wpe_buffer*
+wpe_view_backend_alloc_buffer(struct wpe_view_backend*, const struct wpe_buffer_client*, void*, uint32_t, uint32_t, uint32_t);
 
 WPE_EXPORT
 void
@@ -195,6 +209,52 @@ wpe_input_dispatch_axis_event(struct wpe_input*, struct wpe_input_axis_event*);
 WPE_EXPORT
 void
 wpe_input_dispatch_touch_event(struct wpe_input*, struct wpe_input_touch_event*);
+
+struct wpe_popup_info {
+    uint32_t width;
+    uint32_t height;
+};
+
+struct wpe_popup_client {
+    void (*dismissed)(void*);
+    void (*frame_displayed)(void*);
+};
+
+WPE_EXPORT
+void
+wpe_popup_destroy(struct wpe_popup*);
+
+WPE_EXPORT
+void
+wpe_popup_attach_buffer(struct wpe_popup*, struct wpe_buffer*);
+
+WPE_EXPORT
+void
+wpe_popup_get_info(struct wpe_popup*, struct wpe_popup_info*);
+
+WPE_EXPORT
+struct wpe_input*
+wpe_popup_get_input(struct wpe_popup*);
+
+struct wpe_buffer_info {
+    uint32_t format;
+    uint32_t width;
+    uint32_t height;
+    uint32_t stride;
+    void* data;
+};
+
+struct wpe_buffer_client {
+    void (*release)(void*);
+};
+
+WPE_EXPORT
+void
+wpe_buffer_destroy(struct wpe_buffer*);
+
+WPE_EXPORT
+void
+wpe_buffer_get_info(struct wpe_buffer*, struct wpe_buffer_info*);
 
 #ifdef __cplusplus
 }

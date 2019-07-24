@@ -28,6 +28,7 @@
 
 #include "loader-private.h"
 #include "view-backend-private.h"
+#include <assert.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -90,6 +91,59 @@ struct wpe_input*
 wpe_view_backend_get_input(struct wpe_view_backend* backend)
 {
     return &backend->input;
+}
+
+struct wpe_popup*
+wpe_view_backend_create_popup(struct wpe_view_backend* backend, int32_t anchor_x, int32_t anchor_y, int32_t anchor_width, int32_t anchor_height,
+                              int32_t width, int32_t height, const struct wpe_popup_client* popup_client, const struct wpe_input_client* input_client,
+                              void* client_data)
+{
+    struct wpe_popup* popup;
+
+    if (!backend->platform_interface || !backend->platform_interface->create_popup)
+        return NULL;
+
+    popup = calloc(1, sizeof(*popup));
+
+    if (!popup)
+        return NULL;
+
+    popup->popup_client = popup_client;
+    popup->popup_client_data = client_data;
+    popup->input.client = input_client;
+    popup->input.client_data = client_data;
+
+    if (!backend->platform_interface->create_popup(backend->platform_interface_data, popup, anchor_x, anchor_y, anchor_width, anchor_height, width, height)) {
+        free(popup);
+        return NULL;
+    }
+
+    assert(popup->interface);
+    return popup;
+}
+
+struct wpe_buffer*
+wpe_view_backend_alloc_buffer(struct wpe_view_backend* backend, const struct wpe_buffer_client* buffer_client, void* client_data, uint32_t format, uint32_t width, uint32_t height)
+{
+    struct wpe_buffer* buffer;
+
+    if (!backend->platform_interface || !backend->platform_interface->alloc_buffer)
+        return NULL;
+
+    buffer = calloc(1, sizeof(*buffer));
+    if (!buffer)
+        return NULL;
+
+    buffer->buffer_client = buffer_client;
+    buffer->client_data = client_data;
+
+    if (!backend->platform_interface->alloc_buffer(backend->platform_interface_data, buffer, format, width, height)) {
+        free(buffer);
+        return NULL;
+    }
+
+    assert(buffer->interface);
+    return buffer;
 }
 
 void
@@ -210,3 +264,44 @@ wpe_input_dispatch_touch_event(struct wpe_input* backend, struct wpe_input_touch
     if (backend->client)
         backend->client->handle_touch_event(backend->client_data, event);
 }
+
+void
+wpe_popup_destroy(struct wpe_popup* popup)
+{
+    popup->interface->destroy(popup->interface_data);
+    memset(popup, 0, sizeof(*popup));
+    free(popup);
+}
+
+void
+wpe_popup_attach_buffer(struct wpe_popup* popup, struct wpe_buffer* buffer)
+{
+    popup->interface->attach_buffer(popup->interface_data, buffer ? buffer->interface_data : NULL);
+}
+
+struct wpe_input*
+wpe_popup_get_input(struct wpe_popup* popup)
+{
+    return &popup->input;
+}
+
+void
+wpe_popup_get_info(struct wpe_popup* popup, struct wpe_popup_info* info)
+{
+    popup->interface->get_info(popup->interface_data, info);
+}
+
+void
+wpe_buffer_destroy(struct wpe_buffer* buffer)
+{
+    buffer->interface->destroy(buffer->interface_data);
+    memset(buffer, 0, sizeof(*buffer));
+    free(buffer);
+}
+
+void
+wpe_buffer_get_info(struct wpe_buffer* buffer, struct wpe_buffer_info* info)
+{
+    buffer->interface->get_info(buffer->interface_data, info);
+}
+

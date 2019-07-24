@@ -35,3 +35,39 @@ wpe_view_backend_set_platform_interface(struct wpe_view_backend* backend, const 
     backend->platform_interface_data = data;
 }
 
+void
+wpe_popup_set_interface(struct wpe_popup* popup, const struct wpe_popup_interface* interface, void* interface_data)
+{
+    popup->interface = interface;
+    popup->interface_data = interface_data;
+}
+
+void
+wpe_popup_dispatch_dismissed(struct wpe_popup* popup)
+{
+    if (popup->popup_client)
+        popup->popup_client->dismissed(popup->popup_client_data);
+}
+
+void
+wpe_popup_dispatch_frame_displayed(struct wpe_popup* popup)
+{
+    if (popup->popup_client)
+        popup->popup_client->frame_displayed(popup->popup_client_data);
+}
+
+void
+wpe_buffer_set_interface(struct wpe_buffer* buffer, const struct wpe_buffer_interface* interface, void* interface_data)
+{
+    buffer->interface = interface;
+    buffer->interface_data = interface_data;
+}
+
+void
+wpe_buffer_dispatch_release(struct wpe_buffer* buffer)
+{
+    if (buffer->buffer_client)
+        buffer->buffer_client->release(buffer->client_data);
+}
+
+

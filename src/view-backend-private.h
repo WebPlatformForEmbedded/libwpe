@@ -54,6 +54,24 @@ struct wpe_view_backend {
     uint32_t activity_state;
 };
 
+struct wpe_popup {
+    const struct wpe_popup_interface* interface;
+    void* interface_data;
+
+    const struct wpe_popup_client* popup_client;
+    void* popup_client_data;
+
+    struct wpe_input input;
+};
+
+struct wpe_buffer {
+    const struct wpe_buffer_interface* interface;
+    void* interface_data;
+
+    const struct wpe_buffer_client* buffer_client;
+    void* client_data;
+};
+
 #ifdef __cplusplus
 }
 #endif
