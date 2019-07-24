@@ -57,6 +57,7 @@ set(WPE_SOURCES
     src/pasteboard.c
     src/pasteboard-generic.cpp
     src/pasteboard-noop.cpp
+    src/platform-backend.c
     src/renderer-backend-egl.c
     src/renderer-host.c
     src/version.c
@@ -71,6 +72,7 @@ set(WPE_PUBLIC_HEADERS
   include/wpe/keysyms.h
   include/wpe/loader.h
   include/wpe/pasteboard.h
+  include/wpe/platform-backend.h
   include/wpe/renderer-backend-egl.h
   include/wpe/renderer-host.h
   include/wpe/view-backend.h

@@ -39,6 +39,7 @@
 #include "keysyms.h"
 #include "loader.h"
 #include "pasteboard.h"
+#include "platform-backend.h"
 #include "renderer-host.h"
 #include "version.h"
 #include "version-deprecated.h"

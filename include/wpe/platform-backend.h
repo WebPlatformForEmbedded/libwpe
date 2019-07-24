@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015, 2016 Igalia S.L.
+ * Copyright (C) 2019 Garmin Ltd. or its subsidiaries
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,38 +24,34 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef wpe_view_backend_private_h
-#define wpe_view_backend_private_h
+#pragma once
 
-#include <wpe/view-backend.h>
-#include <wpe/platform-backend.h>
+#if !defined(__WPE_H_INSIDE__) && !defined(WPE_COMPILATION)
+#error "Only <wpe/wpe.h> can be included directly."
+#endif
+
+#if defined(WPE_COMPILATION)
+#include <wpe/export.h>
+#endif
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-struct wpe_input {
-    const struct wpe_input_client* client;
-    void* client_data;
+struct wpe_view_backend;
+
+struct wpe_view_platform_interface {
+    void (*_wpe_reserved0)(void);
+    void (*_wpe_reserved1)(void);
+    void (*_wpe_reserved2)(void);
+    void (*_wpe_reserved3)(void);
 };
 
-struct wpe_view_backend {
-    struct wpe_input input;
-
-    const struct wpe_view_backend_interface* interface;
-    void* interface_data;
-
-    const struct wpe_view_backend_client* backend_client;
-    void* backend_client_data;
-
-    const struct wpe_view_platform_interface* platform_interface;
-    void* platform_interface_data;
-
-    uint32_t activity_state;
-};
+WPE_EXPORT
+void
+wpe_view_backend_set_platform_interface(struct wpe_view_backend*, const struct wpe_view_platform_interface*, void*);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // wpe_view_backend_private_h
