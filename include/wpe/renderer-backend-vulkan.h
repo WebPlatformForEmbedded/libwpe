@@ -1,0 +1,162 @@
+/*
+ * Copyright (C) 2019 Igalia S.L.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+ * PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+#if !defined(__WPE_VULKAN_H_INSIDE__) && !defined(WPE_COMPILATION)
+#error "Only <wpe/wpe-vulkan.h> can be included directly."
+#endif
+
+#ifndef wpe_renderer_backend_vulkan_h
+#define wpe_renderer_backend_vulkan_h
+
+#if defined(WPE_COMPILATION)
+#include <wpe/export.h>
+#endif
+
+#include <stdbool.h>
+#include <stdint.h>
+#include <vulkan/vulkan.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+struct wpe_renderer_backend_vulkan;
+struct wpe_renderer_backend_vulkan_target;
+
+struct wpe_renderer_backend_vulkan_target_client;
+
+struct wpe_renderer_backend_vulkan_initialization_parameters {
+    uint32_t enabled_layer_count;
+    const char* const* enabled_layer_names;
+    uint32_t enabled_extension_count;
+    const char* const* enabled_extension_names;
+};
+
+struct wpe_renderer_backend_vulkan_interface {
+    void* (*create)(int);
+    void (*destroy)(void*);
+
+    void (*initialize)(void*, const VkApplicationInfo*, const VkAllocationCallbacks*, const struct wpe_renderer_backend_vulkan_initialization_parameters*);
+    VkInstance (*get_instance)(void*);
+
+    bool (*supports_physical_device)(void*, VkPhysicalDevice, uint32_t queue_family_index);
+
+    /*< private >*/
+    void (*_wpe_reserved0)(void);
+    void (*_wpe_reserved1)(void);
+    void (*_wpe_reserved2)(void);
+    void (*_wpe_reserved3)(void);
+};
+
+struct wpe_renderer_backend_vulkan_target_interface {
+    void* (*create)(struct wpe_renderer_backend_vulkan_target*, int);
+    void (*destroy)(void*);
+
+    void (*initialize)(void*, void*, uint32_t, uint32_t);
+    VkSurfaceKHR (*get_surface)(void*);
+
+    void (*resize)(void*, uint32_t, uint32_t);
+    void (*frame_will_render)(void*);
+    void (*frame_rendered)(void*);
+
+    /*< private >*/
+    void (*_wpe_reserved0)(void);
+    void (*_wpe_reserved1)(void);
+    void (*_wpe_reserved2)(void);
+    void (*_wpe_reserved3)(void);
+};
+
+WPE_EXPORT
+struct wpe_renderer_backend_vulkan*
+wpe_renderer_backend_vulkan_create(int);
+
+WPE_EXPORT
+void
+wpe_renderer_backend_vulkan_destroy(struct wpe_renderer_backend_vulkan*);
+
+WPE_EXPORT
+void
+wpe_renderer_backend_vulkan_initialize(struct wpe_renderer_backend_vulkan*, const VkApplicationInfo*, const VkAllocationCallbacks*, const struct wpe_renderer_backend_vulkan_initialization_parameters*);
+
+WPE_EXPORT
+VkInstance
+wpe_renderer_backend_vulkan_get_instance(struct wpe_renderer_backend_vulkan*);
+
+WPE_EXPORT
+bool
+wpe_renderer_backend_vulkan_supports_physical_device(struct wpe_renderer_backend_vulkan*, VkPhysicalDevice, uint32_t queue_family_index);
+
+WPE_EXPORT
+struct wpe_renderer_backend_vulkan_target*
+wpe_renderer_backend_vulkan_target_create(int);
+
+WPE_EXPORT
+void
+wpe_renderer_backend_vulkan_target_destroy(struct wpe_renderer_backend_vulkan_target*);
+
+WPE_EXPORT
+void
+wpe_renderer_backend_vulkan_target_set_client(struct wpe_renderer_backend_vulkan_target*, const struct wpe_renderer_backend_vulkan_target_client*, void*);
+
+WPE_EXPORT
+void
+wpe_renderer_backend_vulkan_target_initialize(struct wpe_renderer_backend_vulkan_target*, struct wpe_renderer_backend_vulkan*, uint32_t, uint32_t);
+
+WPE_EXPORT
+VkSurfaceKHR
+wpe_renderer_backend_vulkan_target_get_surface(struct wpe_renderer_backend_vulkan_target*);
+
+WPE_EXPORT
+void
+wpe_renderer_backend_vulkan_target_resize(struct wpe_renderer_backend_vulkan_target*, uint32_t, uint32_t);
+
+WPE_EXPORT
+void
+wpe_renderer_backend_vulkan_target_frame_will_render(struct wpe_renderer_backend_vulkan_target*);
+
+WPE_EXPORT
+void
+wpe_renderer_backend_vulkan_target_frame_rendered(struct wpe_renderer_backend_vulkan_target*);
+
+struct wpe_renderer_backend_vulkan_target_client {
+    void (*frame_complete)(void*);
+
+    /*< private >*/
+    void (*_wpe_reserved0)(void);
+    void (*_wpe_reserved1)(void);
+    void (*_wpe_reserved2)(void);
+    void (*_wpe_reserved3)(void);
+};
+
+WPE_EXPORT
+void
+wpe_renderer_backend_vulkan_target_dispatch_frame_complete(struct wpe_renderer_backend_vulkan_target*);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* wpe_renderer_backend_vulkan_h */
