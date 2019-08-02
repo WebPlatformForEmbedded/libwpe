@@ -890,6 +890,14 @@ static const struct {
     uint16_t keysym;
     uint16_t ucs;
 } unicode_to_keysym_table[] = {
+    /* A few ASCII control characters */
+    { 0xff08, '\b'   }, /* Backspace  */
+    { 0xff09, '\t'   }, /* Tab        */
+    { 0xff0a, '\n'   }, /* Linefeed   */
+    { 0xff0b, '\v'   }, /* Vert. Tab  */
+    { 0xff0d, '\r'   }, /* Return     */
+    { 0xff1b, '\033' }, /* Escape     */
+
     { 0x0abd, 0x002e }, /*                decimalpoint . FULL STOP */
     { 0x0ba3, 0x003c }, /*                   leftcaret < LESS-THAN SIGN */
     { 0x0ba6, 0x003e }, /*                  rightcaret > GREATER-THAN SIGN */
