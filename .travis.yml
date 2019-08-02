@@ -1,0 +1,41 @@
+language: python
+dist: xenial
+sudo: false
+
+git:
+  depth: false
+  quiet: true
+
+addons:
+  apt:
+    packages:
+      - cmake
+      - libegl1-mesa-dev
+      - libjson-glib-dev
+      - libxkbcommon-dev
+      - ninja-build
+
+python:
+  - "3.7"
+
+env:
+  matrix:
+    - BUILD_TYPE=Debug   BUILD_DOCS=OFF
+    - BUILD_TYPE=Release BUILD_DOCS=ON
+
+cache:
+  - ccache
+  - pip
+
+install: |-
+  : 'Install HotDoc if needed'
+  if [[ ${BUILD_DOCS} = ON ]] ; then
+    pip install HotDoc
+  fi
+
+script: |-
+  : 'Build'
+  set -e
+  mkdir _build && cd $_
+  cmake .. -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DBUILD_DOCS=${BUILD_DOCS}
+  TERM=dumb cmake --build . --parallel $(nproc)
