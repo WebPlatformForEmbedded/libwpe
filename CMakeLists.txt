@@ -18,8 +18,25 @@ CALCULATE_LIBRARY_VERSIONS_FROM_LIBTOOL_TRIPLE(LIBWPE 3 1 2)
 
 project(libwpe VERSION "${PROJECT_VERSION}")
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99 -D_POSIX_SOURCE")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+include(CheckCCompilerFlag)
+include(CheckCXXCompilerFlag)
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_C_STANDARD 99)
+
+foreach (cxxflag -fno-exceptions -fno-rtti -Wall)
+    check_cxx_compiler_flag("${cxxflag}" CXX_HAS_FLAG_${cxxflag})
+    if (CXX_HAS_FLAG_${cxxflag})
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${cxxflag}")
+    endif ()
+endforeach ()
+
+foreach (cflag -Wall)
+    check_c_compiler_flag("${cflag}" CC_HAS_FLAG_${cflag})
+    if (CC_HAS_FLAG_${cflag})
+        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${cflag}")
+    endif ()
+endforeach ()
 
 set(DERIVED_SOURCES_DIR "${CMAKE_BINARY_DIR}/DerivedSources/wpe")
 configure_file(include/wpe/version.h.cmake ${DERIVED_SOURCES_DIR}/version.h @ONLY)
