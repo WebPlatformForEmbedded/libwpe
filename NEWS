@@ -1,3 +1,12 @@
+=======================
+1.2.1 - August 12, 2019
+=======================
+
+- Added missing control characters to the Unicode-to-KeySym table.
+- Fixed build failure on systems where the libxkbcommon headers are installed
+  in a non-standard location.
+- Fixed memory overallocation for pasteboard strings.
+
 ======================
 1.2.0 - March 26, 2019
 ======================
