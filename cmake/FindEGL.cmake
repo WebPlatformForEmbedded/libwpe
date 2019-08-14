@@ -1,13 +1,12 @@
 # - Try to Find EGL
 # Once done, this will define
 #
-#  EGL_FOUND - system has EGL installed.
-#  EGL_INCLUDE_DIRS - directories which contain the EGL headers.
-#  EGL_LIBRARIES - libraries required to link against EGL.
-#  EGL_DEFINITIONS - Compiler switches required for using EGL.
+#  GL::egl - an imported library target.
+#  EGL_FOUND - a boolean variable.
+#  EGL_INCLUDE_DIR - directory containing the EGL/egl.h header.
+#  EGL_LIBRARY - path to the EGL library.
 #
-# Copyright (C) 2012 Intel Corporation. All rights reserved.
-# Copyright (C) 2017 Igalia S.L.
+# Copyright (C) 2019 Igalia S.L.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions
@@ -32,20 +31,33 @@
 
 
 find_package(PkgConfig)
+pkg_check_modules(EGL IMPORTED_TARGET egl)
 
-pkg_check_modules(PC_EGL egl)
+find_path(EGL_INCLUDE_DIR
+    NAMES EGL/egl.h
+    HINTS ${EGL_INCLUDEDIR} ${EGL_INCLUDE_DIRS}
+)
+find_library(EGL_LIBRARY
+    NAMES egl EGL
+    HINTS ${EGL_LIBDIR} ${EGL_LIBRARY_DIRS}
+)
+mark_as_advanced(EGL_INCLUDE_DIR EGL_LIBRARY)
 
-if (PC_EGL_FOUND)
-    set(EGL_DEFINITIONS ${PC_EGL_CFLAGS_OTHER})
+# If pkg-config has not found the module but find_path+find_library have
+# figured out where the header and library are, create the PkgConfig::EGL
+# imported target anyway with the found paths.
+#
+if (EGL_LIBRARIES AND NOT TARGET GL::egl)
+    add_library(GL::egl INTERFACE IMPORTED)
+    if (TARGET PkgConfig::EGL)
+        target_link_libraries(GL::egl INTERFACE PkgConfig::EGL)
+    else ()
+        set_property(TARGET GL::egl PROPERTY
+            INTERFACE_LINK_LIBRARIES ${EGL_LIBRARY})
+        set_property(TARGET GL::egl PROPERTY
+            INTERFACE_INCLUDE_DIRECTORIES ${EGL_INCLUDE_DIR})
+    endif ()
 endif ()
 
-find_path(EGL_INCLUDE_DIRS NAMES EGL/eglplatform.h
-    HINTS ${PC_EGL_INCLUDEDIR} ${PC_EGL_INCLUDE_DIRS}
-)
-
-set(EGL_INCLUDE_DIRS ${PC_EGL_INCLUDE_DIRS} CACHE FILEPATH "FIXME")
-
 include(FindPackageHandleStandardArgs)
-FIND_PACKAGE_HANDLE_STANDARD_ARGS(EGL DEFAULT_MSG EGL_INCLUDE_DIRS)
-
-mark_as_advanced(EGL_INCLUDE_DIRS)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(EGL REQUIRED_VARS EGL_LIBRARY EGL_INCLUDE_DIR)
