@@ -48,7 +48,6 @@ include(GNUInstallDirs)
 find_package(EGL REQUIRED)
 find_package(Libxkbcommon REQUIRED)
 
-add_definitions(${EGL_DEFINITIONS})
 add_definitions(-DWPE_COMPILATION)
 
 if(WPE_BACKEND)
@@ -59,7 +58,6 @@ set(WPE_INCLUDE_DIRECTORIES
     "include"
     "src"
     ${DERIVED_SOURCES_DIR}
-    ${EGL_INCLUDE_DIRS}
     ${LIBXKBCOMMON_INCLUDE_DIRS}
 )
 
@@ -97,8 +95,17 @@ set(WPE_PUBLIC_HEADERS
 )
 
 add_library(wpe SHARED ${WPE_SOURCES})
-target_include_directories(wpe PRIVATE ${WPE_INCLUDE_DIRECTORIES})
-target_link_libraries(wpe ${WPE_LIBRARIES})
+target_include_directories(wpe PRIVATE
+    ${WPE_INCLUDE_DIRECTORIES}
+    $<TARGET_PROPERTY:GL::egl,INTERFACE_INCLUDE_DIRECTORIES>
+)
+target_compile_definitions(wpe PRIVATE
+    $<TARGET_PROPERTY:GL::egl,INTERFACE_COMPILE_DEFINITIONS>
+)
+target_compile_options(wpe PRIVATE
+    $<TARGET_PROPERTY:GL::egl,INTERFACE_COMPILE_OPTIONS>
+)
+target_link_libraries(wpe PUBLIC ${WPE_LIBRARIES})
 
 set_target_properties(wpe PROPERTIES
   OUTPUT_NAME wpe-${WPE_API_VERSION}
