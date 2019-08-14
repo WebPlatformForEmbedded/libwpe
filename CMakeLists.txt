@@ -51,8 +51,6 @@ include(GNUInstallDirs)
 find_package(EGL REQUIRED)
 find_package(Libxkbcommon REQUIRED)
 
-add_definitions(-DWPE_COMPILATION)
-
 set(WPE_INCLUDE_DIRECTORIES
     "include"
     "src"
@@ -99,6 +97,7 @@ target_include_directories(wpe PRIVATE
     $<TARGET_PROPERTY:GL::egl,INTERFACE_INCLUDE_DIRECTORIES>
 )
 target_compile_definitions(wpe PRIVATE
+    WPE_COMPILATION
     $<TARGET_PROPERTY:GL::egl,INTERFACE_COMPILE_DEFINITIONS>
 )
 if (WPE_BACKEND)
