@@ -18,6 +18,9 @@ CALCULATE_LIBRARY_VERSIONS_FROM_LIBTOOL_TRIPLE(LIBWPE 3 1 2)
 
 project(libwpe VERSION "${PROJECT_VERSION}")
 
+set(WPE_BACKEND "" CACHE STRING
+    "Name of the backend library to load, instead of libWPEBackend-default.so")
+
 include(CheckCCompilerFlag)
 include(CheckCXXCompilerFlag)
 
@@ -49,10 +52,6 @@ find_package(EGL REQUIRED)
 find_package(Libxkbcommon REQUIRED)
 
 add_definitions(-DWPE_COMPILATION)
-
-if(WPE_BACKEND)
-  add_definitions(-DWPE_BACKEND=\"${WPE_BACKEND}\")
-endif()
 
 set(WPE_INCLUDE_DIRECTORIES
     "include"
@@ -102,6 +101,9 @@ target_include_directories(wpe PRIVATE
 target_compile_definitions(wpe PRIVATE
     $<TARGET_PROPERTY:GL::egl,INTERFACE_COMPILE_DEFINITIONS>
 )
+if (WPE_BACKEND)
+    target_compile_definitions(wpe PRIVATE WPE_BACKEND=\"${WPE_BACKEND}\")
+endif()
 target_compile_options(wpe PRIVATE
     $<TARGET_PROPERTY:GL::egl,INTERFACE_COMPILE_OPTIONS>
 )
