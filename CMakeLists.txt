@@ -105,7 +105,7 @@ endif()
 target_compile_options(wpe PRIVATE
     $<TARGET_PROPERTY:GL::egl,INTERFACE_COMPILE_OPTIONS>
 )
-target_link_libraries(wpe PUBLIC ${WPE_LIBRARIES})
+target_link_libraries(wpe PRIVATE ${WPE_LIBRARIES})
 
 set_target_properties(wpe PROPERTIES
   OUTPUT_NAME wpe-${WPE_API_VERSION}
