@@ -1,0 +1,10 @@
+option('default-backend',
+	type: 'string',
+	value: '',
+	description: 'Name of the backend library to load, instead of libWPEBackend-default.so'
+)
+option('build-docs',
+	type: 'boolean',
+	value: false,
+	description: 'Build reference documentation (needs HotDoc)'
+)
