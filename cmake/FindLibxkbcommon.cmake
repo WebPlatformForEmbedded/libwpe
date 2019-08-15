@@ -1,11 +1,12 @@
 # - Try to find libxkbcommon.
 # Once done, this will define
 #
+#  XkbCommon::libxkbcommon
 #  LIBXKBCOMMON_FOUND - system has libxkbcommon.
-#  LIBXKBCOMMON_INCLUDE_DIRS - the libxkbcommon include directories
-#  LIBXKBCOMMON_LIBRARIES - link these to use libxkbcommon.
+#  LIBXKBCOMMON_INCLUDE_DIR - directory containing the xkbcommon include directories
+#  LIBXKBCOMMON_LIBRARY - link these to use libxkbcommon.
 #
-# Copyright (C) 2014 Igalia S.L.
+# Copyright (C) 2014, 2019 Igalia S.L.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions
@@ -29,8 +30,34 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 find_package(PkgConfig)
-pkg_check_modules(LIBXKBCOMMON xkbcommon)
+pkg_check_modules(LIBXKBCOMMON IMPORTED_TARGET xkbcommon)
+
+find_path(LIBXKBCOMMON_INCLUDE_DIR
+    NAMES xkbcommon/xkbcommon.h
+    HINTS ${LIBXKBCOMMON_INCLUDEDIR} ${LIBXKBCOMMON_INCLUDE_DIRS}
+)
+find_library(LIBXKBCOMMON_LIBRARY
+    NAMES xkbcommon
+    HINTS ${LIBXKBCOMMON_LIBDIR} ${LIBXKBCOMMON_LIBRARY_DIRS}
+)
+
+# If pkg-config has not found the module but find_path+find_library have
+# figured out where the header and library are, create the
+# XkbCommon::Libxkbcommon imported target anyway with the found paths.
+#
+if (LIBXKBCOMMON_LIBRARY AND NOT TARGET XkbCommon::libxkbcommon)
+    add_library(XkbCommon::libxkbcommon INTERFACE IMPORTED)
+    if (TARGET PkgConfig::LIBXKBCOMMON)
+        target_link_libraries(XkbCommon::libxkbcommon INTERFACE PkgConfig::LIBXKBCOMMON)
+    else ()
+        set_property(TARGET XkbCommon::libxkbcommon PROPERTY
+            INTERFACE_LINK_LIBRARIES ${LIBXKBCOMMON_LIBRARY})
+        set_property(TARGET XkbCommon::libxkbcommon PROPERTY
+            INTERFACE_INCLUDE_DIRECTORIES ${LIBXKBCOMMON_INCLUDE_DIR})
+    endif ()
+endif ()
+
 
 include(FindPackageHandleStandardArgs)
-find_package_handle_standard_args(Libxkbcommon REQUIRED_VARS LIBXKBCOMMON_FOUND
-                                  FOUND_VAR LIBXKBCOMMON_FOUND)
+find_package_handle_standard_args(LIBXKBCOMMON REQUIRED_VARS
+    LIBXKBCOMMON_LIBRARY LIBXKBCOMMON_INCLUDE_DIR)
