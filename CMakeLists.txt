@@ -4,7 +4,7 @@ cmake_policy(VERSION 3.0)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(VersioningUtils)
 
-SET_PROJECT_VERSION(1 3 1)
+SET_PROJECT_VERSION(1 3 91)
 set(WPE_API_VERSION "1.0")
 
 # Before making a release, the LT_VERSION string should be modified.
@@ -14,7 +14,7 @@ set(WPE_API_VERSION "1.0")
 # - If binary compatibility has been broken (eg removed or changed interfaces)
 #   change to C+1:0:0
 # - If the interface is the same as the previous version, change to C:R+1:A
-CALCULATE_LIBRARY_VERSIONS_FROM_LIBTOOL_TRIPLE(LIBWPE 3 1 2)
+CALCULATE_LIBRARY_VERSIONS_FROM_LIBTOOL_TRIPLE(LIBWPE 3 2 2)
 
 project(libwpe VERSION "${PROJECT_VERSION}")
 

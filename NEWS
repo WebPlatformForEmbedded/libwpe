@@ -1,3 +1,12 @@
+==========================
+1.3.91 - September 9, 2019
+==========================
+
+- Enabled compiler warnings.
+- Fix build failure on systems where libxkbcommon has its headers installed
+  in a non-standard location.
+- Fix documentation build.
+
 =====================
 1.3.1 - June 17, 2019
 =====================
