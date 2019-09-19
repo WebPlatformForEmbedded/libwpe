@@ -58,7 +58,7 @@ set(WPE_INCLUDE_DIRECTORIES
 )
 
 set(WPE_LIBRARIES
-    dl
+    ${CMAKE_DL_LIBS}
     XkbCommon::libxkbcommon
 )
 
