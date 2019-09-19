@@ -51,30 +51,6 @@ include(GNUInstallDirs)
 find_package(EGL REQUIRED)
 find_package(Libxkbcommon REQUIRED)
 
-set(WPE_INCLUDE_DIRECTORIES
-    "include"
-    "src"
-    ${DERIVED_SOURCES_DIR}
-)
-
-set(WPE_LIBRARIES
-    ${CMAKE_DL_LIBS}
-    XkbCommon::libxkbcommon
-)
-
-set(WPE_SOURCES
-    src/input.c
-    src/key-unicode.c
-    src/loader.c
-    src/pasteboard.c
-    src/pasteboard-generic.cpp
-    src/pasteboard-noop.cpp
-    src/renderer-backend-egl.c
-    src/renderer-host.c
-    src/version.c
-    src/view-backend.c
-)
-
 set(WPE_PUBLIC_HEADERS
   ${DERIVED_SOURCES_DIR}/version.h
   ${DERIVED_SOURCES_DIR}/version-deprecated.h
@@ -90,9 +66,22 @@ set(WPE_PUBLIC_HEADERS
   include/wpe/wpe.h
 )
 
-add_library(wpe SHARED ${WPE_SOURCES})
+add_library(wpe SHARED
+    src/input.c
+    src/key-unicode.c
+    src/loader.c
+    src/pasteboard.c
+    src/pasteboard-generic.cpp
+    src/pasteboard-noop.cpp
+    src/renderer-backend-egl.c
+    src/renderer-host.c
+    src/version.c
+    src/view-backend.c
+)
 target_include_directories(wpe PRIVATE
-    ${WPE_INCLUDE_DIRECTORIES}
+    "include"
+    "src"
+    ${DERIVED_SOURCES_DIR}
     $<TARGET_PROPERTY:GL::egl,INTERFACE_INCLUDE_DIRECTORIES>
 )
 target_compile_definitions(wpe PRIVATE
@@ -105,7 +94,7 @@ endif()
 target_compile_options(wpe PRIVATE
     $<TARGET_PROPERTY:GL::egl,INTERFACE_COMPILE_OPTIONS>
 )
-target_link_libraries(wpe PRIVATE ${WPE_LIBRARIES})
+target_link_libraries(wpe PRIVATE XkbCommon::libxkbcommon ${CMAKE_DL_LIBS})
 
 set_target_properties(wpe PROPERTIES
   OUTPUT_NAME wpe-${WPE_API_VERSION}
