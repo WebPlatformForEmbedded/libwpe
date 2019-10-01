@@ -1,3 +1,10 @@
+=========================
+1.4.0.1 - October 1, 2019
+=========================
+
+- Fix the version numbers to ensure 1.4.0 is used when building from
+  tarballs.
+
 ==========================
 1.4.0 - September 18, 2019
 ==========================
