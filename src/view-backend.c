@@ -24,10 +24,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <wpe/view-backend.h>
+#include "view-backend-private.h"
 
 #include "loader-private.h"
-#include "view-backend-private.h"
 #include <stdlib.h>
 
 
@@ -48,8 +47,8 @@ wpe_view_backend_create_with_backend_interface(struct wpe_view_backend_interface
     if (!backend)
         return 0;
 
-    backend->interface = interface;
-    backend->interface_data = backend->interface->create(interface_user_data, backend);
+    backend->base.interface = interface;
+    backend->base.interface_data = backend->base.interface->create(interface_user_data, backend);
 
     return backend;
 }
@@ -57,8 +56,8 @@ wpe_view_backend_create_with_backend_interface(struct wpe_view_backend_interface
 void
 wpe_view_backend_destroy(struct wpe_view_backend* backend)
 {
-    backend->interface->destroy(backend->interface_data);
-    backend->interface_data = 0;
+    backend->base.interface->destroy(backend->base.interface_data);
+    backend->base.interface_data = 0;
 
     backend->backend_client = 0;
     backend->backend_client_data = 0;
@@ -97,13 +96,13 @@ wpe_view_backend_set_input_client(struct wpe_view_backend* backend, const struct
 void
 wpe_view_backend_initialize(struct wpe_view_backend* backend)
 {
-    backend->interface->initialize(backend->interface_data);
+    backend->base.interface->initialize(backend->base.interface_data);
 }
 
 int
 wpe_view_backend_get_renderer_host_fd(struct wpe_view_backend* backend)
 {
-    return backend->interface->get_renderer_host_fd(backend->interface_data);
+    return backend->base.interface->get_renderer_host_fd(backend->base.interface_data);
 }
 
 void

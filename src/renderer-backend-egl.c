@@ -37,13 +37,13 @@ wpe_renderer_backend_egl_create(int host_fd)
     if (!backend)
         return 0;
 
-    backend->interface = wpe_load_object("_wpe_renderer_backend_egl_interface");
-    if (!backend->interface) {
+    backend->base.interface = wpe_load_object("_wpe_renderer_backend_egl_interface");
+    if (!backend->base.interface) {
         free(backend);
         return 0;
     }
 
-    backend->interface_data = backend->interface->create(host_fd);
+    backend->base.interface_data = backend->base.interface->create(host_fd);
 
     return backend;
 }
@@ -51,8 +51,8 @@ wpe_renderer_backend_egl_create(int host_fd)
 void
 wpe_renderer_backend_egl_destroy(struct wpe_renderer_backend_egl* backend)
 {
-    backend->interface->destroy(backend->interface_data);
-    backend->interface_data = 0;
+    backend->base.interface->destroy(backend->base.interface_data);
+    backend->base.interface_data = 0;
 
     free(backend);
 }
@@ -60,14 +60,14 @@ wpe_renderer_backend_egl_destroy(struct wpe_renderer_backend_egl* backend)
 EGLNativeDisplayType
 wpe_renderer_backend_egl_get_native_display(struct wpe_renderer_backend_egl* backend)
 {
-    return backend->interface->get_native_display(backend->interface_data);
+    return backend->base.interface->get_native_display(backend->base.interface_data);
 }
 
 uint32_t
 wpe_renderer_backend_egl_get_platform(struct wpe_renderer_backend_egl* backend)
 {
-    if (backend->interface->get_platform)
-        return backend->interface->get_platform(backend->interface_data);
+    if (backend->base.interface->get_platform)
+        return backend->base.interface->get_platform(backend->base.interface_data);
     return 0;
 }
 
@@ -78,13 +78,13 @@ wpe_renderer_backend_egl_target_create(int host_fd)
     if (!target)
         return 0;
 
-    target->interface = wpe_load_object("_wpe_renderer_backend_egl_target_interface");
-    if (!target->interface) {
+    target->base.interface = wpe_load_object("_wpe_renderer_backend_egl_target_interface");
+    if (!target->base.interface) {
         free(target);
         return 0;
     }
 
-    target->interface_data = target->interface->create(target, host_fd);
+    target->base.interface_data = target->base.interface->create(target, host_fd);
 
     return target;
 }
@@ -92,8 +92,8 @@ wpe_renderer_backend_egl_target_create(int host_fd)
 void
 wpe_renderer_backend_egl_target_destroy(struct wpe_renderer_backend_egl_target* target)
 {
-    target->interface->destroy(target->interface_data);
-    target->interface_data = 0;
+    target->base.interface->destroy(target->base.interface_data);
+    target->base.interface_data = 0;
 
     target->client = 0;
     target->client_data = 0;
@@ -111,31 +111,31 @@ wpe_renderer_backend_egl_target_set_client(struct wpe_renderer_backend_egl_targe
 void
 wpe_renderer_backend_egl_target_initialize(struct wpe_renderer_backend_egl_target* target, struct wpe_renderer_backend_egl* backend, uint32_t width, uint32_t height)
 {
-    target->interface->initialize(target->interface_data, backend->interface_data, width, height);
+    target->base.interface->initialize(target->base.interface_data, backend->base.interface_data, width, height);
 }
 
 EGLNativeWindowType
 wpe_renderer_backend_egl_target_get_native_window(struct wpe_renderer_backend_egl_target* target)
 {
-    return target->interface->get_native_window(target->interface_data);
+    return target->base.interface->get_native_window(target->base.interface_data);
 }
 
 void
 wpe_renderer_backend_egl_target_resize(struct wpe_renderer_backend_egl_target* target, uint32_t width, uint32_t height)
 {
-    target->interface->resize(target->interface_data, width, height);
+    target->base.interface->resize(target->base.interface_data, width, height);
 }
 
 void
 wpe_renderer_backend_egl_target_frame_will_render(struct wpe_renderer_backend_egl_target* target)
 {
-    target->interface->frame_will_render(target->interface_data);
+    target->base.interface->frame_will_render(target->base.interface_data);
 }
 
 void
 wpe_renderer_backend_egl_target_frame_rendered(struct wpe_renderer_backend_egl_target* target)
 {
-    target->interface->frame_rendered(target->interface_data);
+    target->base.interface->frame_rendered(target->base.interface_data);
 }
 
 struct wpe_renderer_backend_egl_offscreen_target*
@@ -145,13 +145,13 @@ wpe_renderer_backend_egl_offscreen_target_create()
     if (!target)
         return 0;
 
-    target->interface = wpe_load_object("_wpe_renderer_backend_egl_offscreen_target_interface");
-    if (!target->interface) {
+    target->base.interface = wpe_load_object("_wpe_renderer_backend_egl_offscreen_target_interface");
+    if (!target->base.interface) {
         free(target);
         return 0;
     }
 
-    target->interface_data = target->interface->create();
+    target->base.interface_data = target->base.interface->create();
 
     return target;
 }
@@ -159,8 +159,8 @@ wpe_renderer_backend_egl_offscreen_target_create()
 void
 wpe_renderer_backend_egl_offscreen_target_destroy(struct wpe_renderer_backend_egl_offscreen_target* target)
 {
-    target->interface->destroy(target->interface_data);
-    target->interface_data = 0;
+    target->base.interface->destroy(target->base.interface_data);
+    target->base.interface_data = 0;
 
     free(target);
 }
@@ -168,13 +168,13 @@ wpe_renderer_backend_egl_offscreen_target_destroy(struct wpe_renderer_backend_eg
 void
 wpe_renderer_backend_egl_offscreen_target_initialize(struct wpe_renderer_backend_egl_offscreen_target* target, struct wpe_renderer_backend_egl* backend)
 {
-    target->interface->initialize(target->interface_data, backend->interface_data);
+    target->base.interface->initialize(target->base.interface_data, backend->base.interface_data);
 }
 
 EGLNativeWindowType
 wpe_renderer_backend_egl_offscreen_target_get_native_window(struct wpe_renderer_backend_egl_offscreen_target* target)
 {
-    return target->interface->get_native_window(target->interface_data);
+    return target->base.interface->get_native_window(target->base.interface_data);
 }
 
 void

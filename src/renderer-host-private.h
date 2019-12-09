@@ -27,13 +27,14 @@
 #ifndef wpe_renderer_host_private_h
 #define wpe_renderer_host_private_h
 
+#include <wpe/renderer-host.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 struct wpe_renderer_host {
-    const struct wpe_renderer_host_interface* interface;
-    void* interface_data;
+    struct wpe_renderer_host_base base;
 };
 
 #ifdef __cplusplus
