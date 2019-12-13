@@ -28,21 +28,18 @@
 #define wpe_renderer_backend_egl_private_h
 
 struct wpe_renderer_backend_egl {
-    const struct wpe_renderer_backend_egl_interface* interface;
-    void* interface_data;
+    struct wpe_renderer_backend_egl_base base;
 };
 
 struct wpe_renderer_backend_egl_target {
-    const struct wpe_renderer_backend_egl_target_interface* interface;
-    void* interface_data;
+    struct wpe_renderer_backend_egl_target_base base;
 
     const struct wpe_renderer_backend_egl_target_client* client;
     void* client_data;
 };
 
 struct wpe_renderer_backend_egl_offscreen_target {
-    const struct wpe_renderer_backend_egl_offscreen_target_interface* interface;
-    void* interface_data;
+    struct wpe_renderer_backend_egl_offscreen_target_base base;
 };
 
 #endif // wpe_renderer_backend_egl_private_h

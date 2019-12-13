@@ -71,6 +71,11 @@ struct wpe_view_backend_interface {
     void (*_wpe_reserved3)(void);
 };
 
+struct wpe_view_backend_base {
+    const struct wpe_view_backend_interface* interface;
+    void* interface_data;
+};
+
 
 WPE_EXPORT
 struct wpe_view_backend*

@@ -67,6 +67,11 @@ struct wpe_renderer_backend_egl_interface {
     void (*_wpe_reserved3)(void);
 };
 
+struct wpe_renderer_backend_egl_base {
+    const struct wpe_renderer_backend_egl_interface* interface;
+    void* interface_data;
+};
+
 struct wpe_renderer_backend_egl_target_interface {
     void* (*create)(struct wpe_renderer_backend_egl_target*, int);
     void (*destroy)(void*);
@@ -84,6 +89,11 @@ struct wpe_renderer_backend_egl_target_interface {
     void (*_wpe_reserved3)(void);
 };
 
+struct wpe_renderer_backend_egl_target_base {
+    const struct wpe_renderer_backend_egl_target_interface* interface;
+    void* interface_data;
+};
+
 struct wpe_renderer_backend_egl_offscreen_target_interface {
     void* (*create)();
     void (*destroy)(void*);
@@ -97,6 +107,12 @@ struct wpe_renderer_backend_egl_offscreen_target_interface {
     void (*_wpe_reserved2)(void);
     void (*_wpe_reserved3)(void);
 };
+
+struct wpe_renderer_backend_egl_offscreen_target_base {
+    const struct wpe_renderer_backend_egl_offscreen_target_interface* interface;
+    void* interface_data;
+};
+
 
 WPE_EXPORT
 struct wpe_renderer_backend_egl*

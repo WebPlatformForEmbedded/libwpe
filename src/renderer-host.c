@@ -24,10 +24,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <wpe/renderer-host.h>
+#include "renderer-host-private.h"
 
 #include "loader-private.h"
-#include "renderer-host-private.h"
 #include <stdlib.h>
 
 int
@@ -39,11 +38,11 @@ wpe_renderer_host_create_client()
         if (!s_renderer_host)
             return -1;
 
-        s_renderer_host->interface = wpe_load_object("_wpe_renderer_host_interface");
-        s_renderer_host->interface_data = s_renderer_host->interface->create();
+        s_renderer_host->base.interface = wpe_load_object("_wpe_renderer_host_interface");
+        s_renderer_host->base.interface_data = s_renderer_host->base.interface->create();
 
         // FIXME: atexit() should clean up the object.
     }
 
-    return s_renderer_host->interface->create_client(s_renderer_host->interface_data);
+    return s_renderer_host->base.interface->create_client(s_renderer_host->base.interface_data);
 }

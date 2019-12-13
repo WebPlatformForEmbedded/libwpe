@@ -58,6 +58,11 @@ struct wpe_renderer_host_interface {
     void (*_wpe_reserved3)(void);
 };
 
+struct wpe_renderer_host_base {
+    const struct wpe_renderer_host_interface* interface;
+    void* interface_data;
+};
+
 WPE_EXPORT
 int
 wpe_renderer_host_create_client();
