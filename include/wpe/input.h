@@ -92,6 +92,7 @@ struct wpe_input_pointer_event {
 enum wpe_input_axis_event_type {
     wpe_input_axis_event_type_null,
     wpe_input_axis_event_type_motion,
+    wpe_input_axis_event_type_motion_smooth,
 };
 
 struct wpe_input_axis_event {
