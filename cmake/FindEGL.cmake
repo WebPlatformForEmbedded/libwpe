@@ -50,7 +50,8 @@ mark_as_advanced(EGL_INCLUDE_DIR EGL_LIBRARY)
 if (EGL_LIBRARIES AND NOT TARGET GL::egl)
     add_library(GL::egl INTERFACE IMPORTED)
     if (TARGET PkgConfig::EGL)
-        target_link_libraries(GL::egl INTERFACE PkgConfig::EGL)
+        set_property(TARGET GL::egl PROPERTY
+            INTERFACE_LINK_LIBRARIES PkgConfig::EGL)
     else ()
         set_property(TARGET GL::egl PROPERTY
             INTERFACE_LINK_LIBRARIES ${EGL_LIBRARY})

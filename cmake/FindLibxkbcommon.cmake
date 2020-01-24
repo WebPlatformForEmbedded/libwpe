@@ -48,7 +48,8 @@ find_library(LIBXKBCOMMON_LIBRARY
 if (LIBXKBCOMMON_LIBRARY AND NOT TARGET XkbCommon::libxkbcommon)
     add_library(XkbCommon::libxkbcommon INTERFACE IMPORTED)
     if (TARGET PkgConfig::LIBXKBCOMMON)
-        target_link_libraries(XkbCommon::libxkbcommon INTERFACE PkgConfig::LIBXKBCOMMON)
+        set_property(TARGET XkbCommon::libxkbcommon PROPERTY
+            INTERFACE_LINK_LIBRARIES PkgConfig::LIBXKBCOMMON)
     else ()
         set_property(TARGET XkbCommon::libxkbcommon PROPERTY
             INTERFACE_LINK_LIBRARIES ${LIBXKBCOMMON_LIBRARY})
