@@ -94,7 +94,7 @@ enum wpe_input_axis_event_type {
     wpe_input_axis_event_type_motion,
     wpe_input_axis_event_type_motion_smooth,
 
-    wpe_input_axis_event_type_2d = 1 << 16,
+    wpe_input_axis_event_type_mask_2d = 1 << 16,
 };
 
 struct wpe_input_axis_event {
