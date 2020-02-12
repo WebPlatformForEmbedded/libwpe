@@ -92,6 +92,9 @@ struct wpe_input_pointer_event {
 enum wpe_input_axis_event_type {
     wpe_input_axis_event_type_null,
     wpe_input_axis_event_type_motion,
+    wpe_input_axis_event_type_motion_smooth,
+
+    wpe_input_axis_event_type_mask_2d = 1 << 16,
 };
 
 struct wpe_input_axis_event {
@@ -102,6 +105,13 @@ struct wpe_input_axis_event {
     uint32_t axis;
     int32_t value;
     uint32_t modifiers;
+};
+
+struct wpe_input_axis_2d_event {
+    struct wpe_input_axis_event base;
+
+    double x_axis;
+    double y_axis;
 };
 
 
