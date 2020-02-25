@@ -19,7 +19,7 @@ CALCULATE_LIBRARY_VERSIONS_FROM_LIBTOOL_TRIPLE(LIBWPE 5 0 4)
 project(libwpe VERSION "${PROJECT_VERSION}")
 
 set(WPE_BACKEND "" CACHE STRING
-    "Name of the backend library to load, instead of libWPEBackend-default.so")
+    "Path of a fixed backend library to load, instead of libWPEBackend-default.so")
 
 include(CheckCCompilerFlag)
 include(CheckCXXCompilerFlag)
@@ -86,6 +86,7 @@ target_include_directories(wpe PRIVATE
 )
 target_compile_definitions(wpe PRIVATE
     WPE_COMPILATION
+    WPE_BACKENDS_DIR=\"${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/wpe-${WPE_API_VERSION}\"
     $<TARGET_PROPERTY:GL::egl,INTERFACE_COMPILE_DEFINITIONS>
 )
 if (WPE_BACKEND)

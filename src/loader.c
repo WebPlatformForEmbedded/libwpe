@@ -31,38 +31,37 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define LENGTHOF(array) (sizeof(array) / sizeof(array[0]))
+
 static void* s_impl_library = 0;
 static struct wpe_loader_interface* s_impl_loader = 0;
 
 #ifndef WPE_BACKEND
-#define IMPL_LIBRARY_NAME_BUFFER_SIZE 512
-static char* s_impl_library_name;
-static char s_impl_library_name_buffer[IMPL_LIBRARY_NAME_BUFFER_SIZE];
+static char* s_impl_library_path = NULL;
+static char s_impl_library_path_buffer[512];
 #endif
 
 #ifndef WPE_BACKEND
 static void
-wpe_loader_set_impl_library_name(const char* impl_library_name)
+wpe_loader_set_impl_library_path(const char* impl_library_path)
 {
-    size_t len;
-
-    if (!impl_library_name)
+    if (!impl_library_path)
         return;
 
-    len = strlen(impl_library_name) + 1;
+    size_t len = strlen(impl_library_path) + 1;
     if (len == 1)
         return;
 
-    if (len > IMPL_LIBRARY_NAME_BUFFER_SIZE)
-        s_impl_library_name = (char *)malloc(len);
+    if (len > LENGTHOF(s_impl_library_path_buffer))
+        s_impl_library_path = malloc(len);
     else
-        s_impl_library_name = s_impl_library_name_buffer;
-    memcpy(s_impl_library_name, impl_library_name, len);
+        s_impl_library_path = s_impl_library_path_buffer;
+    memcpy(s_impl_library_path, impl_library_path, len);
 }
-#endif
+#endif /* !WPE_BACKEND */
 
 void
-load_impl_library()
+load_impl_library(void)
 {
 #ifdef WPE_BACKEND
     s_impl_library = dlopen(WPE_BACKEND, RTLD_NOW);
@@ -70,29 +69,29 @@ load_impl_library()
         fprintf(stderr, "wpe: could not load compile-time defined WPE_BACKEND: %s\n", dlerror());
         abort();
     }
-#else
+#else /* !WPE_BACKEND */
 #ifndef NDEBUG
     // Get the impl library from an environment variable, if available.
-    char* env_library_name = getenv("WPE_BACKEND_LIBRARY");
-    if (env_library_name) {
-        s_impl_library = dlopen(env_library_name, RTLD_NOW);
+    const char* env_library_path = getenv("WPE_BACKEND_LIBRARY");
+    if (env_library_path) {
+        s_impl_library = dlopen(env_library_path, RTLD_NOW);
         if (!s_impl_library) {
             fprintf(stderr, "wpe: could not load specified WPE_BACKEND_LIBRARY: %s\n", dlerror());
             abort();
         }
-        wpe_loader_set_impl_library_name(env_library_name);
+        wpe_loader_set_impl_library_path(env_library_path);
     }
-#endif
+#endif /* !NDEBUG */
     if (!s_impl_library) {
         // Load libWPEBackend-default.so by ... default.
-        s_impl_library = dlopen("libWPEBackend-default.so", RTLD_NOW);
+        s_impl_library = dlopen(WPE_BACKENDS_DIR "/libWPEBackend-default.so", RTLD_NOW);
         if (!s_impl_library) {
             fprintf(stderr, "wpe: could not load the impl library. Is there any backend installed?: %s\n", dlerror());
             abort();
         }
-        wpe_loader_set_impl_library_name("libWPEBackend-default.so");
+        wpe_loader_set_impl_library_path(WPE_BACKENDS_DIR "/libWPEBackend-default.so");
     }
-#endif
+#endif /* WPE_BACKEND */
 
     s_impl_loader = dlsym(s_impl_library, "_wpe_loader_interface");
 }
@@ -101,31 +100,41 @@ bool
 wpe_loader_init(const char* impl_library_name)
 {
 #ifndef WPE_BACKEND
-    if (!impl_library_name) {
+    if (!(impl_library_name && impl_library_name[0] != '\0')) {
         fprintf(stderr, "wpe_loader_init: invalid implementation library name\n");
         abort();
     }
 
+    const bool relative_path = (impl_library_name[0] != '/');
+
+    size_t len = strlen(impl_library_name) + 1 + (relative_path ? LENGTHOF(WPE_BACKENDS_DIR) : 0);
+    char impl_library_path[len];
+
+    if (relative_path)
+        snprintf(impl_library_path, len, WPE_BACKENDS_DIR "/%s", impl_library_name);
+    else
+        strncpy(impl_library_path, impl_library_name, len);
+
     if (s_impl_library) {
-        if (!s_impl_library_name || strcmp(s_impl_library_name, impl_library_name) != 0) {
+        if (!s_impl_library_path || strcmp(s_impl_library_path, impl_library_path) != 0) {
             fprintf(stderr, "wpe_loader_init: already initialized\n");
             return false;
         }
         return true;
     }
 
-    s_impl_library = dlopen(impl_library_name, RTLD_NOW);
+    s_impl_library = dlopen(impl_library_path, RTLD_NOW);
     if (!s_impl_library) {
-        fprintf(stderr, "wpe_loader_init could not load the library '%s': %s\n", impl_library_name, dlerror());
+        fprintf(stderr, "wpe_loader_init could not load the library '%s': %s\n", impl_library_path, dlerror());
         return false;
     }
-    wpe_loader_set_impl_library_name(impl_library_name);
+    wpe_loader_set_impl_library_path(impl_library_path);
 
     s_impl_loader = dlsym(s_impl_library, "_wpe_loader_interface");
     return true;
-#else
+#else /* WPE_BACKEND */
     return false;
-#endif
+#endif /* !WPE_BACKEND */
 }
 
 const char*
@@ -133,9 +142,9 @@ wpe_loader_get_loaded_implementation_library_name(void)
 {
 #ifdef WPE_BACKEND
     return s_impl_library ? WPE_BACKEND : NULL;
-#else
-    return s_impl_library_name;
-#endif
+#else /* !WPE_BACKEND */
+    return s_impl_library_path;
+#endif /* WPE_BACKEND */
 }
 
 void*
