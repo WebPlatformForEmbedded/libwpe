@@ -97,6 +97,8 @@ target_compile_options(wpe PRIVATE
 target_link_libraries(wpe PRIVATE XkbCommon::libxkbcommon ${CMAKE_DL_LIBS})
 
 set_target_properties(wpe PROPERTIES
+  C_VISIBILITY_PRESET hidden
+  CXX_VISIBILITY_PRESET hidden
   OUTPUT_NAME wpe-${WPE_API_VERSION}
   VERSION ${LIBWPE_VERSION}
   SOVERSION ${LIBWPE_VERSION_MAJOR}
