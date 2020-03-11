@@ -1,4 +1,10 @@
 ======================
+1.6.0 - March 11, 2020
+======================
+
+- Ensure that only symbols marked with WPE_EXPORT are public.
+
+======================
 1.5.90 - March 2, 2020
 ======================
 
