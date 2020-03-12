@@ -81,6 +81,7 @@ libwpe = library('wpe-' + api_version,
 	version: soversion,
 	soversion: soversion_major,
 	include_directories: 'include',
+	gnu_symbol_visibility: 'hidden',
 )
 
 api_headers = [
