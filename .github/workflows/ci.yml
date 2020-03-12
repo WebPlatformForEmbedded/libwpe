@@ -40,7 +40,9 @@ jobs:
       - name: Meson - Install
         run: |
           DESTDIR="$(pwd)/_work/meson/prefix" ninja -C _work/meson/build install
-          nm -D _work/meson/build/libwpe-1.0.so | sort -u > _work/meson/symbols
+          nm -D -P _work/meson/build/libwpe-1.0.so \
+            | awk '$2 == "T" || $2 == "U" {print $2 " " $1}' \
+            > _work/meson/symbols
           (cd _work/meson/prefix && find lib -type f | sort) > _work/meson/files
       - name: Meson - Archive Artifacts
         uses: actions/upload-artifact@v1
@@ -57,7 +59,9 @@ jobs:
       - name: CMake - Install
         run: |
           DESTDIR="$(pwd)/_work/cmake/prefix" make -C _work/cmake/build install
-          nm -D _work/cmake/build/libwpe-1.0.so | sort -u > _work/cmake/symbols
+          nm -D -P _work/cmake/build/libwpe-1.0.so \
+            | awk '$2 == "T" || $2 == "U" {print $2 " " $1}' \
+            > _work/cmake/symbols
           (cd _work/cmake/prefix && find lib -type f | sort) > _work/cmake/files
       - name: CMake - Archive Artifacts
         uses: actions/upload-artifact@v1
