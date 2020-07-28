@@ -1,4 +1,13 @@
 =====================
+1.7.1 - July 29, 2020
+=====================
+
+- New build configuration system based on Meson. The existing CMake-based
+  system is still maintained, and both produce the same outputs.
+- Hidden visibility is now used by default for symbols, and only those
+  belonging to the public API are exported.
+
+=====================
 1.3.1 - June 17, 2019
 =====================
 
