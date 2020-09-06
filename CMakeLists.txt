@@ -64,6 +64,7 @@ set(WPE_PUBLIC_HEADERS
   include/wpe/view-backend.h
   include/wpe/wpe-egl.h
   include/wpe/wpe.h
+  include/wpe/gamepad.h
 )
 
 add_library(wpe SHARED
@@ -77,6 +78,7 @@ add_library(wpe SHARED
     src/renderer-host.c
     src/version.c
     src/view-backend.c
+    src/gamepad.c
 )
 target_include_directories(wpe PRIVATE
     "include"

@@ -43,6 +43,7 @@
 #include "version.h"
 #include "version-deprecated.h"
 #include "view-backend.h"
+#include "gamepad.h"
 
 #undef __WPE_H_INSIDE__
 
