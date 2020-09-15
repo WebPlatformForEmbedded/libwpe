@@ -57,8 +57,16 @@ dependencies = [
 ]
 
 cc = meson.get_compiler('c')
-if not cc.has_header('EGL/eglplatform.h')
-	dependencies += dependency('egl')
+egl_dep = dependency('egl', required: false)
+if egl_dep.found()
+	dependencies += egl_dep.partial_dependency(
+		compile_args: true,
+		includes: true,
+	)
+else
+	assert(cc.has_header('EGL/eglplatform.h'),
+		'Required header <EGL/eglplatform.h> not found'
+	)
 endif
 
 if not cc.has_function('dlopen')
