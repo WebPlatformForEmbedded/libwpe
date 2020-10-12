@@ -152,3 +152,8 @@ if get_option('build-docs')
 		extra_c_flags: [' -DWPE_COMPILATION=1'],
 	)
 endif
+
+libwpe_dep = declare_dependency(link_with : libwpe,
+  include_directories : include_directories('include'),
+  dependencies : dependencies,
+)
