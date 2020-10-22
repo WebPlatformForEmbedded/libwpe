@@ -90,36 +90,10 @@ libwpe = library('wpe-' + api_version,
 	soversion: soversion_major,
 	include_directories: 'include',
 	gnu_symbol_visibility: 'hidden',
+	include_directories : [include_directories('include')],
 )
 
-api_headers = [
-	'include/wpe/export.h',
-	'include/wpe/input.h',
-	'include/wpe/keysyms.h',
-	'include/wpe/loader.h',
-	'include/wpe/pasteboard.h',
-	'include/wpe/renderer-backend-egl.h',
-	'include/wpe/renderer-host.h',
-	'include/wpe/view-backend.h',
-	'include/wpe/wpe-egl.h',
-	'include/wpe/wpe.h',
-
-	# Generated API headers.
-	configure_file(
-		input: 'include/wpe/version.h.cmake',
-		output: 'version.h',
-		configuration: version_info,
-	),
-	configure_file(
-		input: 'include/wpe/version-deprecated.h.cmake',
-		output: 'version-deprecated.h',
-		configuration: version_info,
-	),
-]
-install_headers(api_headers,
-	subdir: join_paths('wpe-' + api_version, 'wpe'),
-)
-
+subdir('include')
 import('pkgconfig').generate(
 	description: 'The wpe library',
 	name: 'wpe-' + api_version,

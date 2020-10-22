@@ -24,8 +24,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "version.h"
-#include "version-deprecated.h"
+#include "wpe/version.h"
+#include "wpe/version-deprecated.h"
 
 unsigned
 wpe_get_major_version(void)
