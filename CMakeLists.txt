@@ -81,7 +81,7 @@ add_library(wpe SHARED
 target_include_directories(wpe PRIVATE
     "include"
     "src"
-    ${DERIVED_SOURCES_DIR}
+    ${DERIVED_SOURCES_DIR}/..
     $<TARGET_PROPERTY:GL::egl,INTERFACE_INCLUDE_DIRECTORIES>
 )
 target_compile_definitions(wpe PRIVATE
