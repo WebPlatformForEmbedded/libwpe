@@ -27,7 +27,7 @@
 #ifndef wpe_renderer_host_private_h
 #define wpe_renderer_host_private_h
 
-#include <wpe/renderer-host.h>
+#include "../include/wpe/renderer-host.h"
 
 #ifdef __cplusplus
 extern "C" {

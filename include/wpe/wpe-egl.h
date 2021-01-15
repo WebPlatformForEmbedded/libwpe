@@ -34,8 +34,8 @@
 
 #define __WPE_EGL_H_INSIDE__
 
-#include <wpe/wpe.h>
-#include <wpe/renderer-backend-egl.h>
+#include "wpe.h"
+#include "renderer-backend-egl.h"
 
 #undef __WPE_EGL_H_INSIDE__
 

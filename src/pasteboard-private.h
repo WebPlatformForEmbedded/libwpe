@@ -31,7 +31,7 @@
 extern "C" {
 #endif
 
-#include <wpe/pasteboard.h>
+#include "../include/wpe/pasteboard.h"
 
 struct wpe_pasteboard {
     struct wpe_pasteboard_interface* interface;

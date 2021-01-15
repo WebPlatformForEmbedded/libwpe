@@ -24,7 +24,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <wpe/input.h>
+#include "../include/wpe/input.h"
 
 #include <locale.h>
 #include <stdlib.h>

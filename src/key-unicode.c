@@ -17,8 +17,8 @@
 
 /* This file is based on gdkkeyuni.c adapted to WPE */
 
-#include <wpe/input.h>
-#include <wpe/keysyms.h>
+#include "../include/wpe/input.h"
+#include "../include/wpe/keysyms.h"
 
 /* Thanks to Markus G. Kuhn <mkuhn@acm.org> for the ksysym<->Unicode
  * mapping functions, from the xterm sources.

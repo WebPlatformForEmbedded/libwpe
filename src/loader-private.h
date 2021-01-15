@@ -27,7 +27,7 @@
 #ifndef wpe_loader_private_h
 #define wpe_loader_private_h
 
-#include <wpe/loader.h>
+#include "../include/wpe/loader.h"
 
 void*
 wpe_load_object(const char*);

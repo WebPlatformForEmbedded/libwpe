@@ -32,7 +32,7 @@
 #define wpe_version_deprecated_h
 
 #if defined(WPE_COMPILATION)
-#include <wpe/export.h>
+#include "wpe/export.h"
 #endif
 
 #ifdef __cplusplus
