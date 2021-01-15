@@ -42,7 +42,7 @@
  */
 
 #if defined(WPE_COMPILATION)
-#include <wpe/export.h>
+#include "wpe/export.h"
 #endif
 
 #ifdef __cplusplus

@@ -88,9 +88,8 @@ libwpe = library('wpe-' + api_version,
 	dependencies: dependencies,
 	version: soversion,
 	soversion: soversion_major,
-	include_directories: 'include',
 	gnu_symbol_visibility: 'hidden',
-	include_directories : [include_directories('include')],
+	include_directories: include_directories('include'),
 )
 
 subdir('include')

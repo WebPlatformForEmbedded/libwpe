@@ -24,7 +24,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <wpe/renderer-backend-egl.h>
+#include "../include/wpe/renderer-backend-egl.h"
 
 #include "loader-private.h"
 #include "renderer-backend-egl-private.h"

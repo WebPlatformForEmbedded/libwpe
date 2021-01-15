@@ -38,7 +38,7 @@
  */
 
 #if defined(WPE_COMPILATION)
-#include <wpe/export.h>
+#include "export.h"
 #endif
 
 #include <EGL/eglplatform.h>
