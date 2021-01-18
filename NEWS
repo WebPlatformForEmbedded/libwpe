@@ -1,3 +1,9 @@
+========================
+1.9.1 - January 18, 2021
+========================
+
+- Improve the Meson build system to allow using libwpe as a subproject.
+
 =====================
 1.7.1 - July 29, 2020
 =====================
