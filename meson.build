@@ -7,7 +7,7 @@ project('libwpe', 'cpp', 'c',
 		'cpp_std=c++11',
 	],
 	license: 'BSD-2-Clause',
-	version: '1.9.1',
+	version: run_command(join_paths('scripts', 'version.py')).stdout().strip(),
 )
 
 # This refers to the API level provided. This is modified only with major,

@@ -4,7 +4,8 @@ cmake_policy(VERSION 3.0)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(VersioningUtils)
 
-SET_PROJECT_VERSION(1 9 1)
+READ_VERSION_HEADER("" "WPE_[A-Z]+_VERSION" "${CMAKE_SOURCE_DIR}/include/wpe/libwpe-version.h")
+SET_PROJECT_VERSION(${WPE_MAJOR_VERSION} ${WPE_MINOR_VERSION} ${WPE_MICRO_VERSION})
 set(WPE_API_VERSION "1.0")
 
 # Before making a release, the LT_VERSION string should be modified.
@@ -41,10 +42,6 @@ foreach (cflag -Wall)
     endif ()
 endforeach ()
 
-set(DERIVED_SOURCES_DIR "${CMAKE_BINARY_DIR}/DerivedSources/wpe")
-configure_file(include/wpe/version.h.cmake ${DERIVED_SOURCES_DIR}/version.h @ONLY)
-configure_file(include/wpe/version-deprecated.h.cmake ${DERIVED_SOURCES_DIR}/version-deprecated.h @ONLY)
-
 include(DistTargets)
 include(GNUInstallDirs)
 
@@ -52,8 +49,9 @@ find_package(EGL REQUIRED)
 find_package(Libxkbcommon REQUIRED)
 
 set(WPE_PUBLIC_HEADERS
-  ${DERIVED_SOURCES_DIR}/version.h
-  ${DERIVED_SOURCES_DIR}/version-deprecated.h
+  include/wpe/libwpe-version.h
+  include/wpe/version.h
+  include/wpe/version-deprecated.h
   include/wpe/export.h
   include/wpe/input.h
   include/wpe/keysyms.h
@@ -81,7 +79,6 @@ add_library(wpe SHARED
 target_include_directories(wpe PRIVATE
     "include"
     "src"
-    ${DERIVED_SOURCES_DIR}/..
     $<TARGET_PROPERTY:GL::egl,INTERFACE_INCLUDE_DIRECTORIES>
 )
 target_compile_definitions(wpe PRIVATE
@@ -145,10 +142,8 @@ IF(BUILD_DOCS)
       --sitemap=${CMAKE_SOURCE_DIR}/docs/sitemap.txt
       --output=${CMAKE_CURRENT_BINARY_DIR}/Documentation/
       --c-sources "${CMAKE_SOURCE_DIR}/include/wpe/*.h"
-                  "${DERIVED_SOURCES_DIR}/version.h"
-                  "${DERIVED_SOURCES_DIR}/version-deprecated.h"
       --extra-c-flags=-DWPE_COMPILATION=1
-      --c-include-directories ${CMAKE_SOURCE_DIR}/include ${DERIVED_SOURCES_DIR}
+      --c-include-directories ${CMAKE_SOURCE_DIR}/include
       --c-smart-index
     )
   ELSE()
