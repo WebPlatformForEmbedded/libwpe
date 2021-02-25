@@ -1,3 +1,12 @@
+function(READ_VERSION_HEADER var_prefix def_regex file_path)
+    file(STRINGS "${file_path}" lines)
+    foreach (line ${lines})
+        if (line MATCHES "^#define[ \t]+(${def_regex})[ \t]+([0-9]+)$")
+            set("${var_prefix}${CMAKE_MATCH_1}" "${CMAKE_MATCH_2}" PARENT_SCOPE)
+        endif()
+    endforeach()
+endfunction()
+
 macro(SET_PROJECT_VERSION major minor micro)
     set(PROJECT_VERSION_MAJOR "${major}")
     set(PROJECT_VERSION_MINOR "${minor}")

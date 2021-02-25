@@ -28,59 +28,58 @@
 #error "Only <wpe/wpe.h> can be included directly."
 #endif
 
-#ifndef wpe_version_deprecated_h
-#define wpe_version_deprecated_h
+#ifndef wpe_version_h
+#define wpe_version_h
+
+/**
+ * SECTION:version
+ * @short_description: Library Version
+ * @title: Version
+ * @symbols:
+ *   - wpe_backend_get_major_version
+ *   - wpe_backend_get_minor_version
+ *   - wpe_backend_get_micro_version
+ */
 
 #if defined(WPE_COMPILATION)
-#include "wpe/export.h"
+#include "export.h"
 #endif
+
+#include "libwpe-version.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#define WPE_BACKEND_MAJOR_VERSION (@PROJECT_VERSION_MAJOR@)
-#define WPE_BACKEND_MINOR_VERSION (@PROJECT_VERSION_MINOR@)
-#define WPE_BACKEND_MICRO_VERSION (@PROJECT_VERSION_PATCH@)
-
-#define WPE_BACKEND_CHECK_VERSION(major, minor, micro) \
-    (WPE_BACKEND_MAJOR_VERSION > (major) || \
-    (WPE_BACKEND_MAJOR_VERSION == (major) && WPE_BACKEND_MINOR_VERSION > (minor)) || \
-    (WPE_BACKEND_MAJOR_VERSION == (major) && WPE_BACKEND_MINOR_VERSION == (minor) && \
-     WPE_BACKEND_MICRO_VERSION >= (micro)))
+#define WPE_CHECK_VERSION(major, minor, micro) \
+    (WPE_MAJOR_VERSION > (major) || \
+    (WPE_MAJOR_VERSION == (major) && WPE_MINOR_VERSION > (minor)) || \
+    (WPE_MAJOR_VERSION == (major) && WPE_MINOR_VERSION == (minor) && \
+     WPE_MICRO_VERSION >= (micro)))
 
 /**
- * wpe_backend_get_major_version:
+ * wpe_get_major_version:
  *
  * Returns: Major version of the `libwpe` library.
- *
- * Deprecated: Since `libwpe` version 1.0.0, use wpe_get_major_version()
- *     instead.
  */
-WPE_EXPORT unsigned wpe_backend_get_major_version(void);
+WPE_EXPORT unsigned wpe_get_major_version(void);
 
 /**
- * wpe_backend_get_minor_version:
+ * wpe_get_minor_version:
  *
  * Returns: Minor version of the `libwpe` library.
- *
- * Deprecated: Since `libwpe` version 1.0.0, use wpe_get_minor_version()
- *     instead.
  */
-WPE_EXPORT unsigned wpe_backend_get_minor_version(void);
+WPE_EXPORT unsigned wpe_get_minor_version(void);
 
 /**
- * wpe_backend_get_micro_version:
+ * wpe_get_micro_version:
  *
  * Returns: Micro version of the `libwpe` library.
- *
- * Deprecated: Since `libwpe` version 1.0.0, use wpe_get_micro_version()
- *     instead.
  */
-WPE_EXPORT unsigned wpe_backend_get_micro_version(void);
+WPE_EXPORT unsigned wpe_get_micro_version(void);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* wpe_version_deprecated_h */
+#endif /* wpe_version_h */
