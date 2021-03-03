@@ -24,14 +24,6 @@ api_version = '1.0'
 # - If the interface is the same as the previous version, use [C, R+1, A].
 soversion = [5, 2, 4]
 
-# Split the *project* version into its components.
-version_info = meson.project_version().split('.')
-version_info = {
-	'PROJECT_VERSION_MAJOR': version_info[0],
-	'PROJECT_VERSION_MINOR': version_info[1],
-	'PROJECT_VERSION_PATCH': version_info[2],
-}
-
 # Mangle [C, R, A] into an actual usable *soversion*.
 soversion_major = soversion[0] - soversion[2]  # Current-Age
 soversion_minor = soversion[2]  # Age
