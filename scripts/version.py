@@ -11,7 +11,7 @@ import re
 
 version = {}
 version_re = re.compile(r"^#define\s+WPE_([A-Z]+)_VERSION\s+(\d+)$")
-version_file = path.join(environ["MESON_SOURCE_ROOT"],
+version_file = path.join(environ["MESON_SOURCE_ROOT"], environ["MESON_SUBDIR"],
                          "include", "wpe", "libwpe-version.h")
 
 with open(version_file, "r") as f:
