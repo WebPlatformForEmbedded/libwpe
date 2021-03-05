@@ -1,3 +1,10 @@
+======================
+1.9.90 - March 6, 2021
+======================
+
+- Improve build system reliability by avoiding generated headers.
+- Fix usage of libwpe as a Meson subproject.
+
 ========================
 1.9.1 - January 18, 2021
 ========================
