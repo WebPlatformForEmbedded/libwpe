@@ -141,7 +141,8 @@ wpe_renderer_backend_egl_target_frame_rendered(struct wpe_renderer_backend_egl_t
 void
 wpe_renderer_backend_egl_target_deinitialize(struct wpe_renderer_backend_egl_target* target)
 {
-    target->base.interface->deinitialize(target->base.interface_data);
+    if (target->base.interface->deinitialize)
+        target->base.interface->deinitialize(target->base.interface_data);
 }
 
 struct wpe_renderer_backend_egl_offscreen_target*
