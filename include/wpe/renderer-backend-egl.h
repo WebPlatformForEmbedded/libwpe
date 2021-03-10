@@ -81,9 +81,9 @@ struct wpe_renderer_backend_egl_target_interface {
     void (*resize)(void*, uint32_t, uint32_t);
     void (*frame_will_render)(void*);
     void (*frame_rendered)(void*);
+    void (*deinitialize)(void*);
 
     /*< private >*/
-    void (*_wpe_reserved0)(void);
     void (*_wpe_reserved1)(void);
     void (*_wpe_reserved2)(void);
     void (*_wpe_reserved3)(void);
@@ -161,6 +161,10 @@ wpe_renderer_backend_egl_target_frame_will_render(struct wpe_renderer_backend_eg
 WPE_EXPORT
 void
 wpe_renderer_backend_egl_target_frame_rendered(struct wpe_renderer_backend_egl_target*);
+
+WPE_EXPORT
+void
+wpe_renderer_backend_egl_target_deinitialize(struct wpe_renderer_backend_egl_target*);
 
 WPE_EXPORT
 struct wpe_renderer_backend_egl_offscreen_target*
