@@ -1,3 +1,11 @@
+=======================
+1.9.91 - March 15, 2021
+=======================
+
+- New API to explicitly deinitialize an EGL renderer target, which allows
+  implementors of the wpe_renderer_backend_egl_target_interface to
+  differentiate between destruction and deinitialization.
+
 ======================
 1.9.90 - March 6, 2021
 ======================
