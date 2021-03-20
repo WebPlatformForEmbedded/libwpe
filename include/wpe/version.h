@@ -51,6 +51,15 @@
 extern "C" {
 #endif
 
+/**
+ * WPE_CHECK_VERSION:
+ * @major: Major version number.
+ * @minor: Minor version number.
+ * @micro: Micro version number.
+ *
+ * Checks whether the version of libwpe used during compilation are equal
+ * or never than a given *major.minor.micro* version number.
+ */
 #define WPE_CHECK_VERSION(major, minor, micro) \
     (WPE_MAJOR_VERSION > (major) || \
     (WPE_MAJOR_VERSION == (major) && WPE_MINOR_VERSION > (minor)) || \

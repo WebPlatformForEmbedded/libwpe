@@ -45,6 +45,17 @@ extern "C" {
 #define WPE_BACKEND_MINOR_VERSION WPE_MINOR_VERSION
 #define WPE_BACKEND_MICRO_VERSION WPE_MICRO_VERSION
 
+/**
+ * WPE_BACKEND_CHECK_VERSION:
+ * @major: Major version number.
+ * @minor: Minor version number.
+ * @micro: Micro version number.
+ *
+ * Checks whether the version of libwpe used during compilation are equal
+ * or never than a given *major.minor.micro* version number.
+ *
+ * Deprecated: 1.0
+ */
 #define WPE_BACKEND_CHECK_VERSION(major, minor, micro) \
     (WPE_BACKEND_MAJOR_VERSION > (major) || \
     (WPE_BACKEND_MAJOR_VERSION == (major) && WPE_BACKEND_MINOR_VERSION > (minor)) || \
