@@ -13,9 +13,8 @@ jobs:
       - name: Install Debian Packages
         run: |
           sudo apt update
-          sudo apt install -y cmake flex libjson-glib-dev libxkbcommon-dev \
-            libegl1-mesa-dev libxml2-dev libxslt1-dev libyaml-dev llvm-dev \
-            libclang-dev libglib2.0-dev ninja-build
+          sudo apt install -y cmake libxkbcommon-dev libegl1-mesa-dev \
+            libglib2.0-dev libgirepository1.0-dev ninja-build
       - name: Setup Python
         uses: actions/setup-python@v1
         with:
@@ -28,8 +27,9 @@ jobs:
           restore-keys: ${{ runner.os }}-pip-
       - name: Install Python Packages
         run: |
-          python -m pip install --upgrade pip setuptools wheel
-          HOTDOC_BUILD_C_EXTENSION=enabled pip install hotdoc meson==0.49
+          pip install --upgrade pip gi-docgen==2021.2 meson==0.49
+          printf '#! /bin/sh\nexec python -m gidocgen.gidocmain "$@"\n' \
+            > "$(which gi-docgen)"
       - name: Meson - Configure
         run: |
           mkdir -p _work/meson
@@ -52,7 +52,7 @@ jobs:
       - name: CMake - Configure
         run: |
           mkdir -p _work/cmake/build && cd $_
-          cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_DOCS=ON ../../..
+          cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_DOCS=OFF ../../..
       - name: CMake - Build
         run: |
           make -C _work/cmake/build -j$(nproc)
