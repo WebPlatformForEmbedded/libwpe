@@ -1,0 +1,24 @@
+[library]
+description = "The WPE library"
+license = "MIT"
+authors = "The WPE WebKit team"
+version = "@VERSION@"
+browse_url = "https://github.com/WebPlatformForEmbedded/libwpe"
+repository_url = "https://github.com/WebPlatformForEmbedded/libwpe"
+website_url = "https://wpewebkit.org"
+devhelp = true
+search_index = true
+
+[theme]
+name = "basic"
+show_index_summary = true
+show_class_hierarchy = true
+
+[source-location]
+base_url = "https://github.com/WebPlatformForEmbedded/libwpe/blob/master/"
+
+[extra]
+content_files = [
+	"overview.md",
+]
+content_images = []

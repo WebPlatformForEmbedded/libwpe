@@ -1,4 +1,4 @@
-api_headers = [
+api_headers = files(
 	'export.h',
 	'input.h',
 	'keysyms.h',
@@ -12,7 +12,7 @@ api_headers = [
 	'view-backend.h',
 	'wpe-egl.h',
 	'wpe.h',
-]
+)
 install_headers(api_headers,
 	subdir: join_paths('wpe-' + api_version, 'wpe'),
 )

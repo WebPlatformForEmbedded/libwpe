@@ -64,7 +64,7 @@ if not cc.has_function('dlopen')
 	dependencies += cc.find_library('dl')
 endif
 
-libwpe = library('wpe-' + api_version,
+libwpe_sources = files(
 	'src/input.c',
 	'src/key-unicode.c',
 	'src/loader.c',
@@ -75,6 +75,10 @@ libwpe = library('wpe-' + api_version,
 	'src/renderer-host.c',
 	'src/version.c',
 	'src/view-backend.c',
+)
+
+libwpe = library('wpe-' + api_version,
+	libwpe_sources,
 	install: true,
 	dependencies: dependencies,
 	version: soversion,
@@ -92,32 +96,44 @@ import('pkgconfig').generate(
 	version: meson.project_version(),
 )
 
-if get_option('build-docs')
-	hotdoc = import('hotdoc')
-	assert(hotdoc.has_extensions('c-extension'),
-		'The HotDoc C extension is required.'
-	)
-	libwpe_doc = hotdoc.generate_doc(meson.project_name(),
-		project_version: api_version,
-		dependencies: dependencies,
-		index: 'docs/index.md',
-		sitemap: 'docs/sitemap.txt',
-		console: true,
-		install: true,
-		build_by_default: true,
-		c_smart_index: true,
-		c_sources: api_headers,
-		c_include_directories: [
-			include_directories('include'),
-			meson.current_build_dir()
-		],
-		# The space here is relevant, see
-		# https://github.com/mesonbuild/meson/issues/5800#issuecomment-552198354
-		extra_c_flags: [' -DWPE_COMPILATION=1'],
-	)
-endif
-
 libwpe_dep = declare_dependency(link_with : libwpe,
   include_directories : include_directories('include'),
   dependencies : dependencies,
 )
+
+if get_option('build-docs')
+	gi_docgen_exe = find_program('gi-docgen', 'gi-docgen.py')
+
+	libwpe_gir = import('gnome').generate_gir(
+		libwpe,
+		install: false,
+		nsversion: api_version,
+		export_packages: ['wpe-' + api_version],
+		namespace: 'wpe',
+		identifier_prefix: 'wpe_',
+		symbol_prefix: 'wpe',
+		header: 'wpe/wpe.h',
+		sources: libwpe_sources + api_headers,
+	)
+
+	libwpe_doc_config = configure_file(
+		configuration: {'VERSION': meson.project_version()},
+		input: 'docs/wpe.toml.in',
+		output: 'wpe.toml',
+	)
+
+	libwpe_doc = custom_target('docs',
+		build_by_default: true,
+		install: false,
+		output: 'docs',
+		command: [gi_docgen_exe, 'generate',
+			'--quiet',
+			'--fatal-warnings',
+			'--no-namespace-dir',
+			'--config', libwpe_doc_config,
+			'--content-dir', join_paths(meson.current_source_dir(), 'docs'),
+			'--output-dir', '@OUTPUT@',
+			libwpe_gir[0],
+		],
+	)
+endif
