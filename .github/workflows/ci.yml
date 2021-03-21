@@ -49,6 +49,11 @@ jobs:
         with:
           name: build-meson
           path: _work/meson/prefix
+      - name: Meson - Archive Documentation
+        uses: actions/upload-artifact@v2
+        with:
+          name: docs
+          path: _work/meson/build/docs
       - name: CMake - Configure
         run: |
           mkdir -p _work/cmake/build && cd $_
@@ -73,3 +78,18 @@ jobs:
           diff -u _work/{cmake,meson}/files
           diff -u _work/{cmake,meson}/symbols
           diff -Naur _work/{cmake,meson}/prefix/usr/include/
+  publish:
+    if: ${{ github.ref == 'refs/heads/aperezdc/docs' }}
+    needs: build
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Fetch Documentation
+        uses: actions/download-artifact@v2
+        with:
+          name: docs
+          path: html
+      - name: Deploy Documentation
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: html
