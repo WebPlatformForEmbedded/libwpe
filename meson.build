@@ -3,7 +3,6 @@ project('libwpe', 'cpp', 'c',
 	default_options: [
 		'b_ndebug=if-release',
 		'c_std=c99',
-		'cpp_eh=none',
 		'cpp_std=c++11',
 	],
 	license: 'BSD-2-Clause',
@@ -35,7 +34,7 @@ add_project_arguments('-DWPE_COMPILATION=1', language: ['c', 'cpp'])
 # Switch to the 'cpp_rtti=false' default option when updating to Meson 0.53 or newer, see
 # https://mesonbuild.com/FAQ.html#how-do-i-disable-exceptions-and-rtti-in-my-c-project
 add_project_arguments(
-	meson.get_compiler('cpp').get_supported_arguments(['-fno-rtti']),
+	meson.get_compiler('cpp').get_supported_arguments(['-fno-rtti', '-fno-exceptions']),
 	language: 'cpp'
 )
 
