@@ -45,7 +45,7 @@ jobs:
             > _work/meson/symbols
           (cd _work/meson/prefix && find lib -type f | sort) > _work/meson/files
       - name: Meson - Archive Artifacts
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: build-meson
           path: _work/meson/prefix
@@ -64,7 +64,7 @@ jobs:
             > _work/cmake/symbols
           (cd _work/cmake/prefix && find lib -type f | sort) > _work/cmake/files
       - name: CMake - Archive Artifacts
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: build-cmake
           path: _work/cmake/prefix
@@ -73,3 +73,24 @@ jobs:
           diff -u _work/{cmake,meson}/files
           diff -u _work/{cmake,meson}/symbols
           diff -Naur _work/{cmake,meson}/prefix/usr/include/
+      - name: Archive Documentation
+        uses: actions/upload-artifact@v2
+        with:
+          name: docs
+          path: _work/cmake/build/Documentation/html
+  publish:
+    if: ${{ github.ref == 'refs/heads/master' }}
+    needs: build
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Fetch Documentation
+        uses: actions/download-artifact@v2
+        with:
+          name: docs
+          path: html
+      - name: Deploy Documentation
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force_orphan: true
+          publish_dir: html
