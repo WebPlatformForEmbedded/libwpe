@@ -5,7 +5,7 @@ name: CI
 on: [push]
 
 jobs:
-  build:
+  linux:
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout
@@ -80,7 +80,7 @@ jobs:
           path: _work/cmake/build/Documentation/html
   publish:
     if: ${{ github.ref == 'refs/heads/master' }}
-    needs: build
+    needs: linux
     runs-on: ubuntu-18.04
     steps:
       - name: Fetch Documentation
@@ -94,3 +94,32 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           force_orphan: true
           publish_dir: html
+  windows:
+    runs-on: windows-latest
+    env:
+      PYTHONIOENCODING: "utf-8"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Checkout libxkbcommon
+        uses: actions/checkout@v2
+        with:
+          repository: xkbcommon/libxkbcommon
+          path: subprojects/libxkbcommon
+      - name: Setup Python
+        uses: actions/setup-python@v1
+      - name: Setup MSVC
+        uses: seanmiddleditch/gha-setup-vsdevenv@master
+      - name: Install Bison
+        run: |
+          choco install winflexbison3 -y --no-progress --stop-on-first-failure
+      - name: Build
+        uses: BSFishy/meson-build@v1.0.3
+        with:
+          action: build
+          setup-options: >-
+            -Dbuild-docs=false
+            -Dlibxkbcommon:enable-docs=false
+            -Dlibxkbcommon:enable-wayland=false
+            -Dlibxkbcommon:enable-x11=false
+            -Dlibxkbcommon:enable-xkbregistry=false
