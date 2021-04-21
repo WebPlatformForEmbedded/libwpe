@@ -43,9 +43,21 @@ if default_backend != ''
 	add_project_arguments('-DWPE_BACKEND="@0@"'.format(default_backend), language: ['c', 'cpp'])
 endif
 
-dependencies = [
-	dependency('xkbcommon'),
-]
+dependencies = []
+
+#
+# Meson 0.55.0 is needed for "patch_directory" in .wrap files
+# and for the "allow_fallback" keyword in dependency() calls.
+#
+can_allow_fallback = meson.version().version_compare('>=0.55.0')
+
+if can_allow_fallback
+	dependencies += dependency('xkbcommon',
+		fallback: ['libxkbcommon', 'libxkbcommon_dep'],
+	)
+else
+	dependencies += dependency('xkbcommon')
+endif
 
 cc = meson.get_compiler('c')
 egl_dep = dependency('egl', required: false)
@@ -61,7 +73,6 @@ elif target_machine.system() != 'windows'
 endif
 
 if not cc.has_function('dlopen')
-	can_allow_fallback = meson.version().version_compare('>=0.55.0')
 	dl_dep = cc.find_library('dl', required: not can_allow_fallback)
 	if can_allow_fallback and not dl_dep.found()
 		dl_dep = dependency('dl', required: true,

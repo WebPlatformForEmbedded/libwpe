@@ -1,0 +1,6 @@
+[wrap-file]
+directory = libxkbcommon-1.2.1
+source_url = https://xkbcommon.org/download/libxkbcommon-1.2.1.tar.xz
+source_filename = libxkbcommon-1.2.1.tar.xz
+source_hash = e833a7d3024c9bb9d5eb2b20f6d5de08865541f21bb7ba227c83cbd236691fb3
+patch_directory = libxkbcommon-1.2.1
