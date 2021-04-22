@@ -61,7 +61,14 @@ elif target_machine.system() != 'windows'
 endif
 
 if not cc.has_function('dlopen')
-	dependencies += cc.find_library('dl')
+	can_allow_fallback = meson.version().version_compare('>=0.55.0')
+	dl_dep = cc.find_library('dl', required: not can_allow_fallback)
+	if can_allow_fallback and not dl_dep.found()
+		dl_dep = dependency('dl', required: true,
+			allow_fallback: target_machine.system() == 'windows',
+		)
+	endif
+	dependencies += dl_dep
 endif
 
 libwpe = library('wpe-' + api_version,
