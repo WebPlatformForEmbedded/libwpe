@@ -41,7 +41,25 @@
 #include "export.h"
 #endif
 
-#include <EGL/eglplatform.h>
+#ifdef _WIN32
+/*
+ * Only the definitions for the display and window types are needed,
+ * and getting an EGL implementation for Windows typically involves
+ * building ANGLE, so to simplify the process of building libwpe it
+ * is enough to define the types accordingly in the same way as the
+ * official Khronos header:
+ *       https://www.khronos.org/registry/EGL/api/EGL/eglplatform.h
+ */
+# ifndef WIN32_LEAN_AND_MEAN
+# define WIN32_LEAN_AND_MEAN 1
+# endif /* !WIN32_LEAN_AND_MEAN */
+# include <windows.h>
+typedef HDC  EGLNativeDisplayType;
+typedef HWND EGLNativeWindowType;
+#else
+# include <EGL/eglplatform.h>
+#endif
+
 #include <stdint.h>
 
 #ifdef __cplusplus
