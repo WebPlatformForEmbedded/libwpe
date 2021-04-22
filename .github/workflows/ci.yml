@@ -117,6 +117,7 @@ jobs:
         uses: BSFishy/meson-build@v1.0.3
         with:
           action: build
+          meson-version: 0.56.0
           setup-options: >-
             -Dbuild-docs=false
             -Dlibxkbcommon:enable-docs=false
