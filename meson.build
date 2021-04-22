@@ -54,7 +54,7 @@ if egl_dep.found()
 		compile_args: true,
 		includes: true,
 	)
-else
+elif target_machine.system() != 'windows'
 	assert(cc.has_header('EGL/eglplatform.h'),
 		'Required header <EGL/eglplatform.h> not found'
 	)
