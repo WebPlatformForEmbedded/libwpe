@@ -42,6 +42,12 @@ struct wpe_view_backend {
     const struct wpe_view_backend_input_client* input_client;
     void* input_client_data;
 
+    const struct wpe_view_backend_fullscreen_client* fullscreen_client;
+    void* fullscreen_client_data;
+
+    wpe_view_backend_fullscreen_handler fullscreen_handler;
+    void* fullscreen_handler_data;
+
     uint32_t activity_state;
 };
 

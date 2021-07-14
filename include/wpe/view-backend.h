@@ -45,6 +45,7 @@
 extern "C" {
 #endif
 
+#include <stdbool.h>
 #include <stdint.h>
 
 struct wpe_view_backend;
@@ -56,6 +57,7 @@ struct wpe_input_touch_event;
 
 struct wpe_view_backend_client;
 struct wpe_view_backend_input_client;
+struct wpe_view_backend_fullscreen_client;
 
 struct wpe_view_backend_interface {
     void* (*create)(void*, struct wpe_view_backend*);
@@ -96,6 +98,53 @@ wpe_view_backend_set_backend_client(struct wpe_view_backend*, const struct wpe_v
 WPE_EXPORT
 void
 wpe_view_backend_set_input_client(struct wpe_view_backend*, const struct wpe_view_backend_input_client*, void*);
+
+/**
+ * wpe_view_backend_set_fullscreen_client:
+ * @view_backend: (transfer none): The view backend to obtains events from.
+ * @client: (transfer none): Client with callbacks for the events.
+ * @userdata: (transfer none): User data passed to client callbacks.
+ * 
+ * Configure a @client with callbacks invoked for DOM fullscreen requests.
+ * 
+ * This function must be only used once for a given @view_backend, the client
+ * cannot be changed once it has been set.
+ *
+ * Since: 1.12
+ */
+WPE_EXPORT
+void
+wpe_view_backend_set_fullscreen_client(struct wpe_view_backend*, const struct wpe_view_backend_fullscreen_client*, void*);
+
+/**
+ * wpe_view_backend_fullscreen_handler:
+ * @userdata: (transfer none): User data passed to the embedder.
+ * @enable: (transfer none): User data passed to the embedder.
+ * 
+ * Type of functions used by an embedder to implement fullscreening web views.
+ *
+ * Returns: a boolean indicating whether the operation was completed.
+ * 
+ * Since: 1.12
+ */
+typedef bool (*wpe_view_backend_fullscreen_handler)(void *userdata, bool enable);
+
+/**
+ * wpe_view_backend_set_fullscreen_handler:
+ * @view_backend: (transfer none): The view backend to obtains events from.
+ * @handler: (transfer none): Function used by an embedder to implement fullscreening web views.
+ * @userdata: (transfer none): User data passed to the handler function.
+ * 
+ * Handler function set by an embedder to implement fullscreening web views.
+ * 
+ * This function must be only used once for a given @view_backend, the handler
+ * cannot be changed once it has been set.
+ *
+ * Since: 1.12
+ */
+WPE_EXPORT
+void
+wpe_view_backend_set_fullscreen_handler(struct wpe_view_backend*, wpe_view_backend_fullscreen_handler handler, void* userdata);
 
 WPE_EXPORT
 void
@@ -178,6 +227,97 @@ wpe_view_backend_dispatch_axis_event(struct wpe_view_backend*, struct wpe_input_
 WPE_EXPORT
 void
 wpe_view_backend_dispatch_touch_event(struct wpe_view_backend*, struct wpe_input_touch_event*);
+
+/**
+ * wpe_view_backend_fullscreen_client:
+ * @did_enter_fullscreen: Invoked after fullscreen has been successfully entered.
+ * @did_exit_fullscreen: Invoked after fullscreen has been exited.
+ * @request_enter_fullscreen: Invoked after user has requested to enter fullscreen.
+ * @request_exit_fullscreen: Invoked after user has requested to exit fullscreen.
+ *
+ * A view backend's fullscreen client provides a series of callback functions
+ * which are invoked at different stages when a web view becomes fullscreened
+ * and back.
+ *
+ * Since: 1.12
+ */
+struct wpe_view_backend_fullscreen_client {
+    void (*did_enter_fullscreen)(void*);
+    void (*did_exit_fullscreen)(void*);
+    void (*request_enter_fullscreen)(void*);
+    void (*request_exit_fullscreen)(void*);
+
+    /*< private >*/
+    void (*_wpe_reserved0)(void);
+    void (*_wpe_reserved1)(void);
+    void (*_wpe_reserved2)(void);
+    void (*_wpe_reserved3)(void);
+};
+
+/**
+ * wpe_view_backend_platform_set_fullscreen:
+ * @view_backend: (transfer none): The view backend which fullscreen state will be changed.
+ * @fullscreen: (transfer none): True if fullscreen.
+ * 
+ * Returns: a boolean indicating whether the operation was completed.
+ * 
+ * DOM content calls this function to request the platform to enter/exit fullscreen.
+ * The platform will attempt to change it's window fullscreen state.
+ *
+ * Since: 1.12
+ */
+WPE_EXPORT
+bool
+wpe_view_backend_platform_set_fullscreen(struct wpe_view_backend*, bool);
+
+/**
+ * wpe_view_backend_dispatch_did_enter_fullscreen:
+ * @view_backend: (transfer none): The view backend that triggered the event.
+ * 
+ * Dispatchs the event that indicates fullscreen has been successfully entered.
+ *
+ * Since: 1.12
+ */
+WPE_EXPORT
+void
+wpe_view_backend_dispatch_did_enter_fullscreen(struct wpe_view_backend*);
+
+/**
+ * wpe_view_backend_dispatch_did_exit_fullscreen:
+ * @view_backend: (transfer none): The view backend that triggered the event.
+ * 
+ * Dispatchs the event that indicated fullscreen has been successfully entered.
+ *
+ * Since: 1.12
+ */
+WPE_EXPORT
+void
+wpe_view_backend_dispatch_did_exit_fullscreen(struct wpe_view_backend*);
+
+/**
+ * wpe_view_backend_dispatch_request_enter_fullscreen:
+ * @view_backend: (transfer none): The view backend that triggered the event.
+ * 
+ * Dispatchs the event that indicates user wants to enter DOM fullscreen state.
+ *
+ * Since: 1.12
+ */
+WPE_EXPORT
+void
+wpe_view_backend_dispatch_request_enter_fullscreen(struct wpe_view_backend*);
+
+/**
+ * wpe_view_backend_dispatch_request_exit_fullscreen:
+ * @view_backend: (transfer none): The view backend that triggered the event.
+ * 
+ * Dispatchs the event that indicates user wants to exit DOM fullscreen state.
+ *
+ * Since: 1.12
+ */
+WPE_EXPORT
+void
+wpe_view_backend_dispatch_request_exit_fullscreen(struct wpe_view_backend*);
+
 
 #ifdef __cplusplus
 }
