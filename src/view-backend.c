@@ -27,6 +27,7 @@
 #include "view-backend-private.h"
 
 #include "loader-private.h"
+#include <assert.h>
 #include <stdlib.h>
 
 
@@ -65,6 +66,9 @@ wpe_view_backend_destroy(struct wpe_view_backend* backend)
     backend->input_client = 0;
     backend->input_client_data = 0;
 
+    backend->fullscreen_client = NULL;
+    backend->fullscreen_client_data = NULL;
+
     backend->activity_state = 0;
 
     free(backend);
@@ -91,6 +95,15 @@ wpe_view_backend_set_input_client(struct wpe_view_backend* backend, const struct
 {
     backend->input_client = client;
     backend->input_client_data = client_data;
+}
+
+void
+wpe_view_backend_set_fullscreen_client(struct wpe_view_backend* backend, const struct wpe_view_backend_fullscreen_client* client, void* client_data)
+{
+    assert(!backend->fullscreen_client);
+
+    backend->fullscreen_client = client;
+    backend->fullscreen_client_data = client_data;
 }
 
 void
@@ -186,4 +199,49 @@ wpe_view_backend_dispatch_touch_event(struct wpe_view_backend* backend, struct w
 {
     if (backend->input_client)
         backend->input_client->handle_touch_event(backend->input_client_data, event);
+}
+
+void
+wpe_view_backend_set_fullscreen_handler(struct wpe_view_backend* backend, wpe_view_backend_fullscreen_handler handler, void* userdata)
+{
+    assert(!backend->fullscreen_handler);
+
+    backend->fullscreen_handler = handler;
+    backend->fullscreen_handler_data = userdata;
+}
+
+bool
+wpe_view_backend_platform_set_fullscreen(struct wpe_view_backend* backend, bool fullscreen)
+{
+    if (backend->fullscreen_handler)
+        return backend->fullscreen_handler(backend->fullscreen_handler_data, fullscreen);
+    return false;
+}
+
+void
+wpe_view_backend_dispatch_did_enter_fullscreen(struct wpe_view_backend* backend)
+{
+    if (backend->fullscreen_client)
+        backend->fullscreen_client->did_enter_fullscreen(backend->fullscreen_client_data);
+}
+
+void
+wpe_view_backend_dispatch_did_exit_fullscreen(struct wpe_view_backend* backend)
+{
+    if (backend->fullscreen_client)
+        backend->fullscreen_client->did_exit_fullscreen(backend->fullscreen_client_data);
+}
+
+void
+wpe_view_backend_dispatch_request_enter_fullscreen(struct wpe_view_backend* backend)
+{
+    if (backend->fullscreen_client)
+        backend->fullscreen_client->request_enter_fullscreen(backend->fullscreen_client_data);
+}
+
+void
+wpe_view_backend_dispatch_request_exit_fullscreen(struct wpe_view_backend* backend)
+{
+    if (backend->fullscreen_client)
+        backend->fullscreen_client->request_exit_fullscreen(backend->fullscreen_client_data);
 }
