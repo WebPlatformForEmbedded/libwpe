@@ -1,3 +1,11 @@
+=======================
+1.11.1 - August 4, 2021
+=======================
+
+- New API to handle requests initiated by web content to (un)fullscreen web
+  views.
+- Support building on Windows.
+
 ========================
 1.9.1 - January 18, 2021
 ========================
