@@ -1,5 +1,6 @@
 api_headers = [
 	'export.h',
+	'gamepad.h',
 	'input.h',
 	'input-xkb.h',
 	'keysyms.h',

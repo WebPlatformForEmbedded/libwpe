@@ -81,6 +81,7 @@ if pkg_cflags.length() > 0
 endif
 
 libwpe = library('wpe-' + api_version,
+	'src/gamepad.c',
 	'src/input-xkb.c',
 	'src/key-unicode.c',
 	'src/pasteboard.c',
