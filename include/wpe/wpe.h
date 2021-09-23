@@ -34,6 +34,7 @@
 #define __WPE_H_INSIDE__
 
 #include "export.h"
+#include "gamepad.h"
 #include "input-xkb.h"
 #include "input.h"
 #include "keysyms.h"

@@ -62,6 +62,7 @@ set(WPE_PUBLIC_HEADERS
     include/wpe/version.h
     include/wpe/version-deprecated.h
     include/wpe/export.h
+    include/wpe/gamepad.h
     include/wpe/input.h
     include/wpe/input-xkb.h
     include/wpe/keysyms.h
@@ -85,6 +86,7 @@ add_library(
     src/renderer-host.c
     src/version.c
     src/view-backend.c
+    src/gamepad.c
 )
 
 if (BUILD_SHARED_LIBS)
