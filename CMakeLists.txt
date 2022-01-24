@@ -19,6 +19,10 @@ calculate_library_versions_from_libtool_triple(LIBWPE 6 0 5)
 
 project(libwpe VERSION "${PROJECT_VERSION}")
 
+set(BUILD_SHARED_LIBS
+    ON
+    CACHE BOOL "Build libwpe as a shared library"
+)
 set(WPE_BACKEND
     ""
     CACHE STRING "Name of the backend library to load, instead of libWPEBackend-default.so"
@@ -71,10 +75,9 @@ set(WPE_PUBLIC_HEADERS
 )
 
 add_library(
-    wpe SHARED
+    wpe
     src/input-xkb.c
     src/key-unicode.c
-    src/loader.c
     src/pasteboard.c
     src/pasteboard-generic.cpp
     src/pasteboard-noop.cpp
@@ -83,6 +86,23 @@ add_library(
     src/version.c
     src/view-backend.c
 )
+
+if (BUILD_SHARED_LIBS)
+    target_sources(wpe PRIVATE src/loader.c)
+
+    set_target_properties(
+        wpe
+        PROPERTIES
+            C_VISIBILITY_PRESET hidden
+            CXX_VISIBILITY_PRESET hidden
+            OUTPUT_NAME wpe-${WPE_API_VERSION}
+            VERSION ${LIBWPE_VERSION}
+            SOVERSION ${LIBWPE_VERSION_MAJOR}
+    )
+else ()
+    target_sources(wpe PRIVATE src/loader-static.c)
+endif ()
+
 target_include_directories(
     wpe PRIVATE "include" "src" $<TARGET_PROPERTY:GL::egl,INTERFACE_INCLUDE_DIRECTORIES>
 )
@@ -104,16 +124,6 @@ if (WPE_ENABLE_XKB)
     target_link_libraries(wpe PRIVATE XkbCommon::libxkbcommon)
     set(WPE_PC_REQUIRES xkbcommon)
 endif ()
-
-set_target_properties(
-    wpe
-    PROPERTIES
-        C_VISIBILITY_PRESET hidden
-        CXX_VISIBILITY_PRESET hidden
-        OUTPUT_NAME wpe-${WPE_API_VERSION}
-        VERSION ${LIBWPE_VERSION}
-        SOVERSION ${LIBWPE_VERSION_MAJOR}
-)
 
 install(
     TARGETS wpe
