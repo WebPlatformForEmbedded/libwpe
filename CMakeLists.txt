@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.0)
 cmake_policy(VERSION 3.0)
 
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(VersioningUtils)
 
-READ_VERSION_HEADER("" "WPE_[A-Z]+_VERSION" "${CMAKE_SOURCE_DIR}/include/wpe/libwpe-version.h")
+READ_VERSION_HEADER("" "WPE_[A-Z]+_VERSION" "${CMAKE_CURRENT_SOURCE_DIR}/include/wpe/libwpe-version.h")
 SET_PROJECT_VERSION(${WPE_MAJOR_VERSION} ${WPE_MINOR_VERSION} ${WPE_MICRO_VERSION})
 set(WPE_API_VERSION "1.0")
 
@@ -138,12 +138,12 @@ IF(BUILD_DOCS)
       ${HOTDOC} run
       --project-name=libwpe
       --project-version=1.0
-      --include-paths="${CMAKE_SOURCE_DIR}/docs"
-      --sitemap=${CMAKE_SOURCE_DIR}/docs/sitemap.txt
+      --include-paths="${CMAKE_CURRENT_SOURCE_DIR}/docs"
+      --sitemap=${CMAKE_CURRENT_SOURCE_DIR}/docs/sitemap.txt
       --output=${CMAKE_CURRENT_BINARY_DIR}/Documentation/
-      --c-sources "${CMAKE_SOURCE_DIR}/include/wpe/*.h"
+      --c-sources "${CMAKE_CURRENT_SOURCE_DIR}/include/wpe/*.h"
       --extra-c-flags=-DWPE_COMPILATION=1
-      --c-include-directories ${CMAKE_SOURCE_DIR}/include
+      --c-include-directories ${CMAKE_CURRENT_SOURCE_DIR}/include
       --c-smart-index
     )
   ELSE()

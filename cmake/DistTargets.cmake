@@ -18,12 +18,12 @@ set(ARCHIVE_FULL_NAME ${ARCHIVE_BASE_NAME}.tar.xz)
 
 add_custom_target(dist
 	COMMAND ${CMAKE_COMMAND} -E echo "Creating '${ARCHIVE_FULL_NAME}'..."
-	COMMAND git archive --prefix=${ARCHIVE_BASE_NAME}/ HEAD | xz -z > ${CMAKE_BINARY_DIR}/${ARCHIVE_FULL_NAME}
-	COMMAND ${CMAKE_COMMAND} -E echo "Distribution tarball '${ARCHIVE_FULL_NAME}' created at ${CMAKE_BINARY_DIR}"
-	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+	COMMAND git archive --prefix=${ARCHIVE_BASE_NAME}/ HEAD | xz -z > ${CMAKE_CURRENT_BINARY_DIR}/${ARCHIVE_FULL_NAME}
+	COMMAND ${CMAKE_COMMAND} -E echo "Distribution tarball '${ARCHIVE_FULL_NAME}' created at ${CMAKE_CURRENT_BINARY_DIR}"
+	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-set(disttest_extract_dir "${CMAKE_BINARY_DIR}/${ARCHIVE_BASE_NAME}")
+set(disttest_extract_dir "${CMAKE_CURRENT_BINARY_DIR}/${ARCHIVE_BASE_NAME}")
 set(disttest_build_dir "${disttest_extract_dir}/_build")
 set(disttest_install_dir "${disttest_extract_dir}/_install")
 
@@ -32,7 +32,7 @@ add_custom_command(OUTPUT ${disttest_build_dir}/Makefile
 	COMMAND ${CMAKE_COMMAND} -E remove_directory ${disttest_extract_dir}
 
 	# extract the tarball
-	COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_BINARY_DIR} tar -xf ${ARCHIVE_FULL_NAME}
+	COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_CURRENT_BINARY_DIR} tar -xf ${ARCHIVE_FULL_NAME}
 
 	# create a _build sub-directory
 	COMMAND ${CMAKE_COMMAND} -E make_directory "${disttest_build_dir}"
