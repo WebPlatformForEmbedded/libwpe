@@ -43,8 +43,6 @@
 
 #include <stdbool.h>
 #include <stdint.h>
-#include <xkbcommon/xkbcommon.h>
-#include <xkbcommon/xkbcommon-compose.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -139,58 +137,6 @@ struct wpe_input_touch_event {
     uint32_t modifiers;
 };
 
-
-struct wpe_input_xkb_context;
-
-struct wpe_input_xkb_keymap_entry {
-    uint32_t hardware_key_code;
-    int32_t layout;
-    int32_t level;
-};
-
-WPE_EXPORT
-struct wpe_input_xkb_context*
-wpe_input_xkb_context_get_default();
-
-WPE_EXPORT
-struct xkb_context*
-wpe_input_xkb_context_get_context(struct wpe_input_xkb_context*);
-
-WPE_EXPORT
-struct xkb_keymap*
-wpe_input_xkb_context_get_keymap(struct wpe_input_xkb_context*);
-
-WPE_EXPORT
-void
-wpe_input_xkb_context_set_keymap(struct wpe_input_xkb_context*, struct xkb_keymap*);
-
-WPE_EXPORT
-struct xkb_state*
-wpe_input_xkb_context_get_state(struct wpe_input_xkb_context*);
-
-WPE_EXPORT
-struct xkb_compose_table*
-wpe_input_xkb_context_get_compose_table(struct wpe_input_xkb_context*);
-
-WPE_EXPORT
-void
-wpe_input_xkb_context_set_compose_table(struct wpe_input_xkb_context*, struct xkb_compose_table*);
-
-WPE_EXPORT
-struct xkb_compose_state*
-wpe_input_xkb_context_get_compose_state(struct wpe_input_xkb_context*);
-
-WPE_EXPORT
-uint32_t
-wpe_input_xkb_context_get_modifiers(struct wpe_input_xkb_context*, uint32_t depressed, uint32_t latched, uint32_t locked, uint32_t group);
-
-WPE_EXPORT
-uint32_t
-wpe_input_xkb_context_get_key_code(struct wpe_input_xkb_context*, uint32_t hardware_key_code, bool pressed);
-
-WPE_EXPORT
-void
-wpe_input_xkb_context_get_entries_for_key_code(struct wpe_input_xkb_context*, uint32_t key_code, struct wpe_input_xkb_keymap_entry**, uint32_t* n_entries);
 
 WPE_EXPORT
 uint32_t

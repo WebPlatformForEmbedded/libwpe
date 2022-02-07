@@ -3,6 +3,11 @@ option('default-backend',
 	value: '',
 	description: 'Name of the backend library to load, instead of libWPEBackend-default.so'
 )
+option('disable-xkb-input',
+	type: 'boolean',
+	value: false,
+	description: 'Disable use of libxkbcommon for keyboard input'
+)
 option('build-docs',
 	type: 'boolean',
 	value: false,

@@ -21,6 +21,7 @@ project(libwpe VERSION "${PROJECT_VERSION}")
 
 set(WPE_BACKEND "" CACHE STRING
     "Name of the backend library to load, instead of libWPEBackend-default.so")
+set(WPE_DISABLE_XKB_INPUT OFF CACHE STRING "Disable use of libxkbcommon for keyboard input")
 
 include(CheckCCompilerFlag)
 include(CheckCXXCompilerFlag)
@@ -46,7 +47,6 @@ include(DistTargets)
 include(GNUInstallDirs)
 
 find_package(EGL REQUIRED)
-find_package(Libxkbcommon REQUIRED)
 
 set(WPE_PUBLIC_HEADERS
   include/wpe/libwpe-version.h
@@ -65,7 +65,7 @@ set(WPE_PUBLIC_HEADERS
 )
 
 add_library(wpe SHARED
-    src/input.c
+    src/input-xkb.c
     src/key-unicode.c
     src/loader.c
     src/pasteboard.c
@@ -88,10 +88,18 @@ target_compile_definitions(wpe PRIVATE
 if (WPE_BACKEND)
     target_compile_definitions(wpe PRIVATE WPE_BACKEND=\"${WPE_BACKEND}\")
 endif()
+if (WPE_DISABLE_XKB_INPUT)
+    target_compile_definitions(wpe PUBLIC WPE_DISABLE_XKB_INPUT=1)
+endif()
 target_compile_options(wpe PRIVATE
     $<TARGET_PROPERTY:GL::egl,INTERFACE_COMPILE_OPTIONS>
 )
-target_link_libraries(wpe PRIVATE XkbCommon::libxkbcommon ${CMAKE_DL_LIBS})
+
+target_link_libraries(wpe PRIVATE ${CMAKE_DL_LIBS})
+if (NOT WPE_DISABLE_XKB_INPUT)
+    find_package(Libxkbcommon REQUIRED)
+    target_link_libraries(wpe PRIVATE XkbCommon::libxkbcommon)
+endif()
 
 set_target_properties(wpe PROPERTIES
   C_VISIBILITY_PRESET hidden

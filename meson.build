@@ -51,12 +51,16 @@ dependencies = []
 #
 can_allow_fallback = meson.version().version_compare('>=0.55.0')
 
-if can_allow_fallback
-	dependencies += dependency('xkbcommon',
-		fallback: ['libxkbcommon', 'libxkbcommon_dep'],
-	)
+if get_option('disable-xkb-input')
+	add_project_arguments('-DWPE_DISABLE_XKB_INPUT=1', language: ['c', 'cpp'])
 else
-	dependencies += dependency('xkbcommon')
+	if can_allow_fallback
+		dependencies += dependency('xkbcommon',
+			fallback: ['libxkbcommon', 'libxkbcommon_dep'],
+		)
+	else
+		dependencies += dependency('xkbcommon')
+	endif
 endif
 
 cc = meson.get_compiler('c')
@@ -83,7 +87,7 @@ if not cc.has_function('dlopen')
 endif
 
 libwpe = library('wpe-' + api_version,
-	'src/input.c',
+	'src/input-xkb.c',
 	'src/key-unicode.c',
 	'src/loader.c',
 	'src/pasteboard.c',
