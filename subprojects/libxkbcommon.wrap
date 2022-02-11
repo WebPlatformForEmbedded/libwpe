@@ -1,3 +1,5 @@
-[wrap-git]
-revision = 9d87f8491595e0a6bd2d8b3eff266712c9b5c63d
-url = https://github.com/xkbcommon/libxkbcommon
+[wrap-file]
+directory = libxkbcommon-1.4.0
+source_url = https://xkbcommon.org/download/libxkbcommon-1.4.0.tar.xz
+source_filename = libxkbcommon-1.4.0.tar.xz
+source_hash = 106cec5263f9100a7e79b5f7220f889bc78e7d7ffc55d2b6fdb1efefb8024031
