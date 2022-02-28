@@ -69,7 +69,15 @@ struct wpe_loader_interface {
  * @impl_library_name: (transfer none): Name of the shared library object
  *     to load as WPE backend implementation.
  *
- * Initializes the `libwpe` object loader
+ * Initializes the `libwpe` object loader. If the @impl_library_name is a
+ * full path it will be used as-is, while a relative path will cause the
+ * backend implementation library to be searched for in a fixed location.
+ *
+ * The backends location is determined at build time, and typically will
+ * be `<prefix>/lib/wpe-<apiversion>`, where `<prefix>` is the installation
+ * prefix and `<apiversion>` is the libwpe API version being used. See the
+ * [backend implementation
+ * documentation](backend-implementing.md#Installation) for more.
  *
  * Returns: Whether initialization succeeded.
  */
@@ -81,10 +89,11 @@ wpe_loader_init(const char* impl_library_name);
  * wpe_loader_get_loaded_implementation_library_name:
  *
  * Obtain the name of the shared library object loaded as WPE backend
- * implementation. Note that in general this will return the value passed
- * to wpe_loader_init(), but that is not guaranteed.
+ * implementation. Note that in general this will return the actual location
+ * of the backend being used, which may not be the same value passed to
+ * wpe_loader_init().
  *
- * Returns: (transfer none): Name of the shared library object for the
+ * Returns: (transfer none): Path of the shared library object for the
  *     backend implementation.
  */
 WPE_EXPORT
