@@ -24,6 +24,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#if defined(WPE_ENABLE_XKB) && WPE_ENABLE_XKB
+
+#include "../include/wpe/input-xkb.h"
 #include "../include/wpe/input.h"
 
 #include <locale.h>
@@ -244,3 +247,5 @@ wpe_input_xkb_context_get_entries_for_key_code(struct wpe_input_xkb_context* xkb
     *entries = array;
     *n_entries = array_size;
 }
+
+#endif /* defined(WPE_ENABLE_XKB) && WPE_ENABLE_XKB */
