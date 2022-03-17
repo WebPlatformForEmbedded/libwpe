@@ -36,6 +36,7 @@
 
 #include "export.h"
 #include "input.h"
+#include "input-xkb.h"
 #include "keysyms.h"
 #include "loader.h"
 #include "pasteboard.h"

@@ -1,6 +1,7 @@
 api_headers = [
 	'export.h',
 	'input.h',
+	'input-xkb.h',
 	'keysyms.h',
 	'libwpe-version.h',
 	'loader.h',
