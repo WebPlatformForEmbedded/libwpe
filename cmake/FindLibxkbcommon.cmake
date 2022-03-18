@@ -32,11 +32,13 @@
 find_package(PkgConfig)
 pkg_check_modules(LIBXKBCOMMON IMPORTED_TARGET xkbcommon)
 
-find_path(LIBXKBCOMMON_INCLUDE_DIR
+find_path(
+    LIBXKBCOMMON_INCLUDE_DIR
     NAMES xkbcommon/xkbcommon.h
     HINTS ${LIBXKBCOMMON_INCLUDEDIR} ${LIBXKBCOMMON_INCLUDE_DIRS}
 )
-find_library(LIBXKBCOMMON_LIBRARY
+find_library(
+    LIBXKBCOMMON_LIBRARY
     NAMES xkbcommon
     HINTS ${LIBXKBCOMMON_LIBDIR} ${LIBXKBCOMMON_LIBRARY_DIRS}
 )
@@ -48,17 +50,21 @@ find_library(LIBXKBCOMMON_LIBRARY
 if (LIBXKBCOMMON_LIBRARY AND NOT TARGET XkbCommon::libxkbcommon)
     add_library(XkbCommon::libxkbcommon INTERFACE IMPORTED)
     if (TARGET PkgConfig::LIBXKBCOMMON)
-        set_property(TARGET XkbCommon::libxkbcommon PROPERTY
-            INTERFACE_LINK_LIBRARIES PkgConfig::LIBXKBCOMMON)
+        set_property(
+            TARGET XkbCommon::libxkbcommon PROPERTY INTERFACE_LINK_LIBRARIES PkgConfig::LIBXKBCOMMON
+        )
     else ()
-        set_property(TARGET XkbCommon::libxkbcommon PROPERTY
-            INTERFACE_LINK_LIBRARIES ${LIBXKBCOMMON_LIBRARY})
-        set_property(TARGET XkbCommon::libxkbcommon PROPERTY
-            INTERFACE_INCLUDE_DIRECTORIES ${LIBXKBCOMMON_INCLUDE_DIR})
+        set_property(
+            TARGET XkbCommon::libxkbcommon PROPERTY INTERFACE_LINK_LIBRARIES ${LIBXKBCOMMON_LIBRARY}
+        )
+        set_property(
+            TARGET XkbCommon::libxkbcommon PROPERTY INTERFACE_INCLUDE_DIRECTORIES
+                                                    ${LIBXKBCOMMON_INCLUDE_DIR}
+        )
     endif ()
 endif ()
 
-
 include(FindPackageHandleStandardArgs)
-find_package_handle_standard_args(LIBXKBCOMMON REQUIRED_VARS
-    LIBXKBCOMMON_LIBRARY LIBXKBCOMMON_INCLUDE_DIR)
+find_package_handle_standard_args(
+    LIBXKBCOMMON REQUIRED_VARS LIBXKBCOMMON_LIBRARY LIBXKBCOMMON_INCLUDE_DIR
+)
