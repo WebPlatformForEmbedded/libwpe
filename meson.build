@@ -44,6 +44,7 @@ if default_backend != ''
 endif
 
 dependencies = []
+pkg_cflags = []
 
 #
 # Meson 0.55.0 is needed for "patch_directory" in .wrap files
@@ -52,7 +53,7 @@ dependencies = []
 can_allow_fallback = meson.version().version_compare('>=0.55.0')
 
 if get_option('enable-xkb')
-	add_project_arguments('-DWPE_ENABLE_XKB=1', language: ['c', 'cpp'])
+	pkg_cflags += ['-DWPE_ENABLE_XKB=1']
 	if can_allow_fallback
 		dependencies += dependency('xkbcommon',
 			fallback: ['libxkbcommon', 'libxkbcommon_dep'],
@@ -85,6 +86,10 @@ if not cc.has_function('dlopen')
 	dependencies += dl_dep
 endif
 
+if pkg_cflags.length() > 0
+	add_project_arguments(pkg_cflags, language: ['c', 'cpp'])
+endif
+
 libwpe = library('wpe-' + api_version,
 	'src/input-xkb.c',
 	'src/key-unicode.c',
@@ -111,6 +116,7 @@ import('pkgconfig').generate(
 	subdirs: 'wpe-' + api_version,
 	libraries: libwpe,
 	version: meson.project_version(),
+	extra_cflags: pkg_cflags,
 )
 
 if get_option('build-docs')
