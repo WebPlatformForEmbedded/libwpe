@@ -86,6 +86,7 @@ if not cc.has_function('dlopen')
 endif
 
 libwpe = library('wpe-' + api_version,
+	get_option(default_library) == "shared" ? 'src/loader.c' : 'src/loader-static.c'
 	'src/input-xkb.c',
 	'src/key-unicode.c',
 	'src/loader.c',
