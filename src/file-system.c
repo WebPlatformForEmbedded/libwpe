@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Igalia S.L.
+ * Copyright (C) 2022 Igalia S.L.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,29 +24,28 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifdef __WEBKIT_WEB_EXTENSION_H__
-#error "Headers <wpe/wpe.h> and <wpe/webkit-web-extension.h> cannot be included together."
-#endif
+#if defined(WPE_ENABLE_FS) && WPE_ENABLE_FS
 
-#ifndef __wpe_h__
-#define __wpe_h__
+#include "../include/wpe/file-system.h"
+#include <stdlib.h>
 
-#define __WPE_H_INSIDE__
+static wpe_file_system_path_handler fs_handler = NULL;
+static void*                        fs_handler_data = NULL;
 
-#include "export.h"
-#include "file-system.h"
-#include "gamepad.h"
-#include "input-xkb.h"
-#include "input.h"
-#include "keysyms.h"
-#include "libwpe-version.h"
-#include "loader.h"
-#include "pasteboard.h"
-#include "renderer-host.h"
-#include "version-deprecated.h"
-#include "version.h"
-#include "view-backend.h"
+void
+wpe_file_system_path_set_handler(wpe_file_system_path_handler handler, void* userdata)
+{
+    fs_handler = handler;
+    fs_handler_data = userdata;
+}
 
-#undef __WPE_H_INSIDE__
+const char*
+wpe_file_system_path_get(enum wpe_file_system_path path)
+{
+    if (fs_handler)
+        return fs_handler(fs_handler_data, path);
 
-#endif /* __wpe_h__ */
+    return NULL;
+}
+
+#endif /* defined(WPE_ENABLE_FS) && WPE_ENABLE_FS */

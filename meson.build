@@ -46,6 +46,10 @@ endif
 dependencies = []
 pkg_cflags = []
 
+if get_option('enable-fs')
+	pkg_cflags += ['-DWPE_ENABLE_FS=1']
+endif
+
 if get_option('enable-xkb')
 	pkg_cflags += ['-DWPE_ENABLE_XKB=1']
 	dependencies += dependency('xkbcommon',
@@ -81,6 +85,7 @@ if pkg_cflags.length() > 0
 endif
 
 libwpe = library('wpe-' + api_version,
+	'src/file-system.c',
 	'src/gamepad.c',
 	'src/input-xkb.c',
 	'src/key-unicode.c',

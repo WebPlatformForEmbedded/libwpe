@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Igalia S.L.
+ * Copyright (C) 2022 Igalia S.L.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,29 +24,48 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifdef __WEBKIT_WEB_EXTENSION_H__
-#error "Headers <wpe/wpe.h> and <wpe/webkit-web-extension.h> cannot be included together."
+#if !defined(__WPE_H_INSIDE__) && !defined(WPE_COMPILATION)
+#error "Only <wpe/wpe.h> can be included directly."
 #endif
 
-#ifndef __wpe_h__
-#define __wpe_h__
+#ifndef wpe_file_system_h
+#define wpe_file_system_h
 
-#define __WPE_H_INSIDE__
+/**
+ * SECTION:file-system
+ * @short_description: Library File System
+ * @title: File System
+ */
 
+#if defined(WPE_ENABLE_FS) && WPE_ENABLE_FS
+
+#if defined(WPE_COMPILATION)
 #include "export.h"
-#include "file-system.h"
-#include "gamepad.h"
-#include "input-xkb.h"
-#include "input.h"
-#include "keysyms.h"
-#include "libwpe-version.h"
-#include "loader.h"
-#include "pasteboard.h"
-#include "renderer-host.h"
-#include "version-deprecated.h"
-#include "version.h"
-#include "view-backend.h"
+#endif
 
-#undef __WPE_H_INSIDE__
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-#endif /* __wpe_h__ */
+enum wpe_file_system_path {
+    WPE_FILE_SYSTEM_PATH_USER_DATA,
+    WPE_FILE_SYSTEM_PATH_USER_CACHE,
+};
+
+typedef const char* (*wpe_file_system_path_handler)(void* userdata, enum wpe_file_system_path);
+
+/* Used by the embedder to customize paths. */
+WPE_EXPORT
+void wpe_file_system_path_set_handler(wpe_file_system_path_handler handler, void* userdata);
+
+/* Used inside WebKit to obtain the paths, if a handler is not set or returns NULL, may fall back to g_get_user_{cache,data}_dir */
+WPE_EXPORT
+const char* wpe_file_system_path_get(enum wpe_file_system_path);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* defined(WPE_ENABLE_FS) && WPE_ENABLE_FS */
+
+#endif /* wpe_file_system_h */

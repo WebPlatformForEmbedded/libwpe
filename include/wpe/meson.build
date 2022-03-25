@@ -3,6 +3,7 @@ api_headers = [
 	'gamepad.h',
 	'input.h',
 	'input-xkb.h',
+	'file-system.h',
 	'keysyms.h',
 	'libwpe-version.h',
 	'loader.h',

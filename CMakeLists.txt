@@ -27,6 +27,10 @@ set(WPE_BACKEND
     ""
     CACHE STRING "Name of the backend library to load, instead of libWPEBackend-default.so"
 )
+set(WPE_ENABLE_FS
+    ON
+    CACHE STRING "(Experimental) Enable file system path querying"
+)
 set(WPE_ENABLE_XKB
     ON
     CACHE STRING "Enable use of libxkbcommon for keyboard input"
@@ -62,6 +66,7 @@ set(WPE_PUBLIC_HEADERS
     include/wpe/version.h
     include/wpe/version-deprecated.h
     include/wpe/export.h
+    include/wpe/file-system.h
     include/wpe/gamepad.h
     include/wpe/input.h
     include/wpe/input-xkb.h
@@ -77,6 +82,7 @@ set(WPE_PUBLIC_HEADERS
 
 add_library(
     wpe
+    src/file-system.c
     src/input-xkb.c
     src/key-unicode.c
     src/pasteboard.c
@@ -114,9 +120,13 @@ target_compile_definitions(
 if (WPE_BACKEND)
     target_compile_definitions(wpe PRIVATE WPE_BACKEND=\"${WPE_BACKEND}\")
 endif ()
+if (WPE_ENABLE_FS)
+    target_compile_definitions(wpe PUBLIC WPE_ENABLE_FS=1)
+    list(APPEND WPE_PC_CFLAGS -DWPE_ENABLE_FS=1)
+endif ()
 if (WPE_ENABLE_XKB)
     target_compile_definitions(wpe PUBLIC WPE_ENABLE_XKB=1)
-    set(WPE_PC_CFLAGS -DWPE_ENABLE_XKB=1)
+    list(APPEND WPE_PC_CFLAGS -DWPE_ENABLE_XKB=1)
 endif ()
 target_compile_options(wpe PRIVATE $<TARGET_PROPERTY:GL::egl,INTERFACE_COMPILE_OPTIONS>)
 
