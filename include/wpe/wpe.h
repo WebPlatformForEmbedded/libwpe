@@ -24,7 +24,6 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
 #ifdef __WEBKIT_WEB_EXTENSION_H__
 #error "Headers <wpe/wpe.h> and <wpe/webkit-web-extension.h> cannot be included together."
 #endif
@@ -35,16 +34,16 @@
 #define __WPE_H_INSIDE__
 
 #include "export.h"
-#include "input.h"
 #include "input-xkb.h"
+#include "input.h"
 #include "keysyms.h"
+#include "libwpe-version.h"
 #include "loader.h"
 #include "pasteboard.h"
 #include "renderer-host.h"
-#include "view-backend.h"
-#include "libwpe-version.h"
-#include "version.h"
 #include "version-deprecated.h"
+#include "version.h"
+#include "view-backend.h"
 
 #undef __WPE_H_INSIDE__
 
