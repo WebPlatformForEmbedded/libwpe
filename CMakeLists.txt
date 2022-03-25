@@ -27,6 +27,10 @@ set(WPE_BACKEND
     ""
     CACHE STRING "Name of the backend library to load, instead of libWPEBackend-default.so"
 )
+set(WPE_ENABLE_UA
+    ON
+    CACHE STRING "Enable user agent platform information"
+)
 set(WPE_ENABLE_XKB
     ON
     CACHE STRING "Enable use of libxkbcommon for keyboard input"
@@ -70,6 +74,7 @@ set(WPE_PUBLIC_HEADERS
     include/wpe/pasteboard.h
     include/wpe/renderer-backend-egl.h
     include/wpe/renderer-host.h
+    include/wpe/user-agent.h
     include/wpe/view-backend.h
     include/wpe/wpe-egl.h
     include/wpe/wpe.h
@@ -82,6 +87,7 @@ add_library(
     src/pasteboard.c
     src/pasteboard-generic.cpp
     src/pasteboard-noop.cpp
+    src/user-agent.c
     src/renderer-backend-egl.c
     src/renderer-host.c
     src/version.c
@@ -114,9 +120,13 @@ target_compile_definitions(
 if (WPE_BACKEND)
     target_compile_definitions(wpe PRIVATE WPE_BACKEND=\"${WPE_BACKEND}\")
 endif ()
+if (WPE_ENABLE_UA)
+    target_compile_definitions(wpe PUBLIC WPE_ENABLE_UA=1)
+    list(APPEND WPE_PC_CFLAGS -DWPE_ENABLE_UA=1)
+endif ()
 if (WPE_ENABLE_XKB)
     target_compile_definitions(wpe PUBLIC WPE_ENABLE_XKB=1)
-    set(WPE_PC_CFLAGS -DWPE_ENABLE_XKB=1)
+    list(APPEND WPE_PC_CFLAGS -DWPE_ENABLE_XKB=1)
 endif ()
 target_compile_options(wpe PRIVATE $<TARGET_PROPERTY:GL::egl,INTERFACE_COMPILE_OPTIONS>)
 

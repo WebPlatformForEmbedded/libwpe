@@ -9,6 +9,7 @@ api_headers = [
 	'pasteboard.h',
 	'renderer-backend-egl.h',
 	'renderer-host.h',
+	'user-agent.h',
 	'version.h',
 	'version-deprecated.h',
 	'view-backend.h',
