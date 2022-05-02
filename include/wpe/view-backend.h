@@ -166,9 +166,7 @@ struct wpe_view_backend_client {
     void (*activity_state_changed)(void*, uint32_t);
     void* (*get_accessible)(void*);
     void (*set_device_scale_factor)(void*, float);
-
-    /*< private >*/
-    void (*_wpe_reserved0)(void);
+    void (*target_refresh_rate_changed)(void*, uint32_t);
 };
 
 WPE_EXPORT
@@ -198,6 +196,12 @@ wpe_view_backend_dispatch_get_accessible(struct wpe_view_backend* backend);
 WPE_EXPORT
 void
 wpe_view_backend_dispatch_set_device_scale_factor(struct wpe_view_backend*, float);
+
+WPE_EXPORT
+uint32_t wpe_view_backend_get_target_refresh_rate(struct wpe_view_backend*);
+
+WPE_EXPORT
+void wpe_view_backend_set_target_refresh_rate(struct wpe_view_backend*, uint32_t);
 
 struct wpe_view_backend_input_client {
     void (*handle_keyboard_event)(void*, struct wpe_input_keyboard_event*);
