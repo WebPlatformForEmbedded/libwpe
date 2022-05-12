@@ -1,3 +1,16 @@
+=====================
+1.13.1 - May 12, 2022
+=====================
+
+- New API to provide input events to be treated by WebKit as gamepad inputs.
+- New WPE_ENABLE_XKB build option, enabled by default, which can be used to
+  completely avoid usage of libxkbcommon.
+- Allow libwpe to be built as a static library. The rest of the code
+  linked with the static library must provide the _wpe_loader_interface
+  symbol, as dlopen() will not be used.
+- Allow building libwpe within a larger CMake project.
+- Update the required Meson version to 0.55.0
+
 =======================
 1.11.1 - August 4, 2021
 =======================
