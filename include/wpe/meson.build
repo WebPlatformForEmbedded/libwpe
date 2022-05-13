@@ -7,6 +7,7 @@ api_headers = [
 	'libwpe-version.h',
 	'loader.h',
 	'pasteboard.h',
+	'process.h',
 	'renderer-backend-egl.h',
 	'renderer-host.h',
 	'version.h',
