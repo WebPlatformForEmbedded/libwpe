@@ -41,6 +41,7 @@
 #include "libwpe-version.h"
 #include "loader.h"
 #include "pasteboard.h"
+#include "process.h"
 #include "renderer-host.h"
 #include "version-deprecated.h"
 #include "version.h"
