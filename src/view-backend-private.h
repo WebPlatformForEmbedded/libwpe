@@ -49,6 +49,7 @@ struct wpe_view_backend {
     void* fullscreen_handler_data;
 
     uint32_t activity_state;
+    uint32_t refresh_rate;
 };
 
 #ifdef __cplusplus

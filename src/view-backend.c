@@ -70,6 +70,7 @@ wpe_view_backend_destroy(struct wpe_view_backend* backend)
     backend->fullscreen_client_data = NULL;
 
     backend->activity_state = 0;
+    backend->refresh_rate = 0;
 
     free(backend);
 }
@@ -171,6 +172,22 @@ wpe_view_backend_dispatch_set_device_scale_factor(struct wpe_view_backend* backe
 {
     if (backend->backend_client && backend->backend_client->set_device_scale_factor)
         backend->backend_client->set_device_scale_factor(backend->backend_client_data, scale);
+}
+
+void
+wpe_view_backend_set_target_refresh_rate(struct wpe_view_backend* backend, uint32_t rate)
+{
+    if (backend->refresh_rate != rate) {
+        backend->refresh_rate = rate;
+        if (backend->backend_client && backend->backend_client->target_refresh_rate_changed)
+            backend->backend_client->target_refresh_rate_changed(backend->backend_client_data, backend->refresh_rate);
+    }
+}
+
+uint32_t
+wpe_view_backend_get_target_refresh_rate(struct wpe_view_backend* backend)
+{
+    return backend->refresh_rate;
 }
 
 void
