@@ -21,7 +21,7 @@ api_version = '1.0'
 # - If binary compatibility has been broken (eg removed or changed interfaces)
 #   change to [C+1, 0, 0]
 # - If the interface is the same as the previous version, use [C, R+1, A].
-soversion = [8, 1, 7]
+soversion = [8, 2, 7]
 
 # Mangle [C, R, A] into an actual usable *soversion*.
 soversion_major = soversion[0] - soversion[2]  # Current-Age
