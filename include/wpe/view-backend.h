@@ -193,6 +193,29 @@ WPE_EXPORT
 void*
 wpe_view_backend_dispatch_get_accessible(struct wpe_view_backend* backend);
 
+/**
+ * wpe_view_backend_dispatch_set_device_scale_factor:
+ * @view_backend: (transfer none): The view backend to configure.
+ * @factor: Scaling factor to apply.
+ *
+ * Configure the device scaling factor applied to rendered content.
+ *
+ * Set the @factor by which sizes of content rendered to a web view will be
+ * multiplied by. The typical reason to set a value other than `1.0` (the
+ * default) is to produce output that will display at the intended physical
+ * size in displays with a high density of pixels.
+ *
+ * Only values from `0.05` up to `5.0` are allowed. Setting a value outside
+ * this range will be ignored, and in debug builds execution will be aborted.
+ *
+ * For example, a display that has a physical resolution of 3840x2160 with
+ * a scaling factor of `2.0` will make web content behave as if the screen
+ * had a size of 1920x1080, and content will be rendered at twice the size:
+ * each “logical” pixel will occupy four “physical” pixels (a 2x2 box) on
+ * the output.
+ *
+ * Since: 1.4
+ */
 WPE_EXPORT
 void
 wpe_view_backend_dispatch_set_device_scale_factor(struct wpe_view_backend*, float);
