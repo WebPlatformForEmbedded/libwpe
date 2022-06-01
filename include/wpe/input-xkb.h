@@ -45,12 +45,16 @@
 
 #include <stdbool.h>
 #include <stdint.h>
-#include <xkbcommon/xkbcommon.h>
-#include <xkbcommon/xkbcommon-compose.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+struct xkb_compose_state;
+struct xkb_compose_table;
+struct xkb_context;
+struct xkb_keymap;
+struct xkb_state;
 
 struct wpe_input_xkb_context;
 
