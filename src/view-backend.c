@@ -170,6 +170,11 @@ wpe_view_backend_dispatch_get_accessible(struct wpe_view_backend* backend)
 void
 wpe_view_backend_dispatch_set_device_scale_factor(struct wpe_view_backend* backend, float scale)
 {
+    if (scale < 0.05f || scale > 5.0f) {
+        assert(!"Scale factor not in the [0.05, 5.0] range");
+        return;
+    }
+
     if (backend->backend_client && backend->backend_client->set_device_scale_factor)
         backend->backend_client->set_device_scale_factor(backend->backend_client_data, scale);
 }
