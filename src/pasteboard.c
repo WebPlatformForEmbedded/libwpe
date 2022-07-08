@@ -70,7 +70,7 @@ wpe_pasteboard_get_singleton()
         s_pasteboard = wpe_calloc(1, sizeof(struct wpe_pasteboard));
         s_pasteboard->interface = wpe_load_object("_wpe_pasteboard_interface");
         if (!s_pasteboard->interface)
-            s_pasteboard->interface = &noop_pasteboard_interface;
+            s_pasteboard->interface = &generic_pasteboard_interface;
         s_pasteboard->interface_data = s_pasteboard->interface->initialize(s_pasteboard);
     }
 
