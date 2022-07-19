@@ -26,6 +26,7 @@
 
 #include "pasteboard-private.h"
 
+#include "alloc-private.h"
 #include "loader-private.h"
 #include <stdlib.h>
 #include <string.h>
@@ -36,7 +37,7 @@ wpe_pasteboard_string_initialize(struct wpe_pasteboard_string* string, const cha
     if (string->data)
         return;
 
-    string->data = calloc(in_length, sizeof(char));
+    string->data = wpe_calloc(in_length, sizeof(char));
     string->length = in_length;
     memcpy(string->data, in_string, in_length);
 }
@@ -44,8 +45,7 @@ wpe_pasteboard_string_initialize(struct wpe_pasteboard_string* string, const cha
 void
 wpe_pasteboard_string_free(struct wpe_pasteboard_string* string)
 {
-    if (string->data)
-        free((void*)string->data);
+    wpe_free(string->data);
     string->data = 0;
     string->length = 0;
 }
@@ -56,7 +56,7 @@ wpe_pasteboard_string_vector_free(struct wpe_pasteboard_string_vector* vector)
     if (vector->strings) {
         for (uint64_t i = 0; i < vector->length; ++i)
             wpe_pasteboard_string_free(&vector->strings[i]);
-        free(vector->strings);
+        wpe_free(vector->strings);
     }
     vector->strings = 0;
     vector->length = 0;
@@ -67,7 +67,7 @@ wpe_pasteboard_get_singleton()
 {
     static struct wpe_pasteboard* s_pasteboard = 0;
     if (!s_pasteboard) {
-        s_pasteboard = calloc(1, sizeof(struct wpe_pasteboard));
+        s_pasteboard = wpe_calloc(1, sizeof(struct wpe_pasteboard));
         s_pasteboard->interface = wpe_load_object("_wpe_pasteboard_interface");
         if (!s_pasteboard->interface)
             s_pasteboard->interface = &noop_pasteboard_interface;

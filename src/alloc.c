@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015, 2016, 2022 Igalia S.L.
+ * Copyright (C) 2022 Igalia S.L.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,22 +24,14 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "renderer-host-private.h"
-
 #include "alloc-private.h"
-#include "loader-private.h"
 
-int
-wpe_renderer_host_create_client()
+#include <stdio.h>
+
+void
+wpe_alloc_fail(const char* file, unsigned line, size_t amount)
 {
-    static struct wpe_renderer_host* s_renderer_host = 0;
-    if (!s_renderer_host) {
-        s_renderer_host = wpe_calloc(1, sizeof(struct wpe_renderer_host));
-        s_renderer_host->base.interface = wpe_load_object("_wpe_renderer_host_interface");
-        s_renderer_host->base.interface_data = s_renderer_host->base.interface->create();
-
-        // FIXME: atexit() should clean up the object.
-    }
-
-    return s_renderer_host->base.interface->create_client(s_renderer_host->base.interface_data);
+    fprintf(stderr, "%s:%u: failed to allocate %zu bytes\n", file, line, amount);
+    fflush(stderr);
+    abort();
 }

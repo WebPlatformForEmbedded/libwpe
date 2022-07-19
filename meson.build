@@ -84,6 +84,7 @@ endif
 
 libwpe = library('wpe-' + api_version,
 	'src/input.c',
+	'src/alloc.c',
 	'src/key-unicode.c',
 	'src/loader.c',
 	'src/pasteboard.c',
