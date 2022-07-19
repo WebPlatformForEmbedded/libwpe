@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015, 2016 Igalia S.L.
+ * Copyright (C) 2015, 2016, 2022 Igalia S.L.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,10 +29,11 @@
 #include "../include/wpe/input-xkb.h"
 #include "../include/wpe/input.h"
 
+#include "alloc-private.h"
 #include <locale.h>
 #include <stdlib.h>
-#include <xkbcommon/xkbcommon.h>
 #include <xkbcommon/xkbcommon-compose.h>
+#include <xkbcommon/xkbcommon.h>
 
 struct wpe_input_xkb_context {
     struct xkb_context* context;
@@ -45,7 +46,7 @@ wpe_input_xkb_context_get_default()
 {
     static struct wpe_input_xkb_context* s_xkb_context = NULL;
     if (!s_xkb_context) {
-        s_xkb_context = calloc(1, sizeof(struct wpe_input_xkb_context));
+        s_xkb_context = wpe_calloc(1, sizeof(struct wpe_input_xkb_context));
         s_xkb_context->context = xkb_context_new(XKB_CONTEXT_NO_FLAGS);
     }
 
@@ -231,7 +232,8 @@ wpe_input_xkb_context_get_entries_for_key_code(struct wpe_input_xkb_context* xkb
                     if (syms[sym] == key) {
                         if (++array_size > array_allocated_size) {
                             array_allocated_size += 4;
-                            array = (struct wpe_input_xkb_keymap_entry*)realloc(array, array_allocated_size * sizeof(struct wpe_input_xkb_keymap_entry));
+                            array =
+                                wpe_realloc(array, array_allocated_size * sizeof(struct wpe_input_xkb_keymap_entry));
                         }
                         struct wpe_input_xkb_keymap_entry* entry = &array[array_size - 1];
 

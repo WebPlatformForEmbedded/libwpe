@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015, 2016 Igalia S.L.
+ * Copyright (C) 2015, 2016, 2022 Igalia S.L.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,20 +26,18 @@
 
 #include "../include/wpe/renderer-backend-egl.h"
 
+#include "alloc-private.h"
 #include "loader-private.h"
 #include "renderer-backend-egl-private.h"
-#include <stdlib.h>
 
 struct wpe_renderer_backend_egl*
 wpe_renderer_backend_egl_create(int host_fd)
 {
-    struct wpe_renderer_backend_egl* backend = calloc(1, sizeof(struct wpe_renderer_backend_egl));
-    if (!backend)
-        return 0;
+    struct wpe_renderer_backend_egl* backend = wpe_calloc(1, sizeof(struct wpe_renderer_backend_egl));
 
     backend->base.interface = wpe_load_object("_wpe_renderer_backend_egl_interface");
     if (!backend->base.interface) {
-        free(backend);
+        wpe_free(backend);
         return 0;
     }
 
@@ -54,7 +52,7 @@ wpe_renderer_backend_egl_destroy(struct wpe_renderer_backend_egl* backend)
     backend->base.interface->destroy(backend->base.interface_data);
     backend->base.interface_data = 0;
 
-    free(backend);
+    wpe_free(backend);
 }
 
 EGLNativeDisplayType
@@ -74,13 +72,11 @@ wpe_renderer_backend_egl_get_platform(struct wpe_renderer_backend_egl* backend)
 struct wpe_renderer_backend_egl_target*
 wpe_renderer_backend_egl_target_create(int host_fd)
 {
-    struct wpe_renderer_backend_egl_target* target = calloc(1, sizeof(struct wpe_renderer_backend_egl_target));
-    if (!target)
-        return 0;
+    struct wpe_renderer_backend_egl_target* target = wpe_calloc(1, sizeof(struct wpe_renderer_backend_egl_target));
 
     target->base.interface = wpe_load_object("_wpe_renderer_backend_egl_target_interface");
     if (!target->base.interface) {
-        free(target);
+        wpe_free(target);
         return 0;
     }
 
@@ -98,7 +94,7 @@ wpe_renderer_backend_egl_target_destroy(struct wpe_renderer_backend_egl_target* 
     target->client = 0;
     target->client_data = 0;
 
-    free(target);
+    wpe_free(target);
 }
 
 void
@@ -148,13 +144,12 @@ wpe_renderer_backend_egl_target_deinitialize(struct wpe_renderer_backend_egl_tar
 struct wpe_renderer_backend_egl_offscreen_target*
 wpe_renderer_backend_egl_offscreen_target_create()
 {
-    struct wpe_renderer_backend_egl_offscreen_target* target = calloc(1, sizeof(struct wpe_renderer_backend_egl_offscreen_target));
-    if (!target)
-        return 0;
+    struct wpe_renderer_backend_egl_offscreen_target* target =
+        wpe_calloc(1, sizeof(struct wpe_renderer_backend_egl_offscreen_target));
 
     target->base.interface = wpe_load_object("_wpe_renderer_backend_egl_offscreen_target_interface");
     if (!target->base.interface) {
-        free(target);
+        wpe_free(target);
         return 0;
     }
 
@@ -169,7 +164,7 @@ wpe_renderer_backend_egl_offscreen_target_destroy(struct wpe_renderer_backend_eg
     target->base.interface->destroy(target->base.interface_data);
     target->base.interface_data = 0;
 
-    free(target);
+    wpe_free(target);
 }
 
 void
