@@ -20,8 +20,8 @@
 
 #include "../include/wpe/gamepad.h"
 
+#include "alloc-private.h"
 #include <stdint.h>
-#include <stdlib.h>
 
 struct wpe_gamepad_provider {
     void*                                               backend;
@@ -44,10 +44,7 @@ wpe_gamepad_provider_create(void)
     if (!provider_interface)
         return NULL;
 
-    struct wpe_gamepad_provider* provider = calloc(1, sizeof(struct wpe_gamepad_provider));
-    if (!provider)
-        return NULL;
-
+    struct wpe_gamepad_provider* provider = wpe_calloc(1, sizeof(struct wpe_gamepad_provider));
     if (provider_interface->create)
         provider->backend = provider_interface->create(provider);
     return provider;
@@ -62,7 +59,7 @@ wpe_gamepad_provider_destroy(struct wpe_gamepad_provider* provider)
     if (provider_interface && provider_interface->destroy)
         provider_interface->destroy(provider->backend);
     provider->backend = NULL;
-    free(provider);
+    wpe_free(provider);
 }
 
 void
@@ -119,10 +116,7 @@ wpe_gamepad_create(unsigned gamepad_id)
     if (!gamepad_interface)
         return NULL;
 
-    struct wpe_gamepad* gamepad = calloc(1, sizeof(struct wpe_gamepad));
-    if (!gamepad)
-        return NULL;
-
+    struct wpe_gamepad* gamepad = wpe_calloc(1, sizeof(struct wpe_gamepad));
     if (gamepad_interface->create)
         gamepad->backend = gamepad_interface->create(gamepad, gamepad_id);
     return gamepad;
@@ -137,7 +131,7 @@ wpe_gamepad_destroy(struct wpe_gamepad* gamepad)
     if (gamepad_interface && gamepad_interface->destroy)
         gamepad_interface->destroy(gamepad->backend);
     gamepad->backend = NULL;
-    free(gamepad);
+    wpe_free(gamepad);
 }
 
 void

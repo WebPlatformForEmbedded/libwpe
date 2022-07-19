@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015, 2016 Igalia S.L.
+ * Copyright (C) 2015, 2016, 2022 Igalia S.L.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,6 +26,7 @@
 
 #include "pasteboard-private.h"
 
+#include "alloc-private.h"
 #include <cstdlib>
 #include <cstring>
 #include <map>
@@ -51,7 +52,8 @@ struct wpe_pasteboard_interface generic_pasteboard_interface = {
         if (!length)
             return;
 
-        out_vector->strings = static_cast<struct wpe_pasteboard_string*>(calloc(length, sizeof(struct wpe_pasteboard_string)));
+        out_vector->strings =
+            static_cast<struct wpe_pasteboard_string*>(wpe_calloc(length, sizeof(struct wpe_pasteboard_string)));
         out_vector->length = length;
         memset(out_vector->strings, 0, sizeof(struct wpe_pasteboard_string) * length);
 

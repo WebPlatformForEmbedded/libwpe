@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015, 2016 Igalia S.L.
+ * Copyright (C) 2015, 2016, 2022 Igalia S.L.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,6 +26,7 @@
 
 #include "view-backend-private.h"
 
+#include "alloc-private.h"
 #include "loader-private.h"
 #include <assert.h>
 #include <stdlib.h>
@@ -44,9 +45,7 @@ wpe_view_backend_create()
 struct wpe_view_backend*
 wpe_view_backend_create_with_backend_interface(struct wpe_view_backend_interface* interface, void* interface_user_data)
 {
-    struct wpe_view_backend* backend = calloc(1, sizeof(struct wpe_view_backend));
-    if (!backend)
-        return 0;
+    struct wpe_view_backend* backend = wpe_calloc(1, sizeof(struct wpe_view_backend));
 
     backend->base.interface = interface;
     backend->base.interface_data = backend->base.interface->create(interface_user_data, backend);
@@ -72,7 +71,7 @@ wpe_view_backend_destroy(struct wpe_view_backend* backend)
     backend->activity_state = 0;
     backend->refresh_rate = 0;
 
-    free(backend);
+    wpe_free(backend);
 }
 
 static void
