@@ -67,7 +67,6 @@ set(WPE_PUBLIC_HEADERS
 add_library(wpe SHARED
     src/input.c
     src/alloc.c
-    src/input-xkb.c
     src/key-unicode.c
     src/loader.c
     src/pasteboard.c
