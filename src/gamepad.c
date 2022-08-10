@@ -111,14 +111,14 @@ wpe_gamepad_provider_dispatch_gamepad_disconnected(struct wpe_gamepad_provider* 
 }
 
 struct wpe_gamepad*
-wpe_gamepad_create(unsigned gamepad_id)
+wpe_gamepad_create(struct wpe_gamepad_provider* provider, unsigned gamepad_id)
 {
     if (!gamepad_interface)
         return NULL;
 
     struct wpe_gamepad* gamepad = wpe_calloc(1, sizeof(struct wpe_gamepad));
     if (gamepad_interface->create)
-        gamepad->backend = gamepad_interface->create(gamepad, gamepad_id);
+        gamepad->backend = gamepad_interface->create(gamepad, provider, gamepad_id);
     return gamepad;
 }
 

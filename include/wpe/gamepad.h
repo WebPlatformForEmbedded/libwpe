@@ -183,7 +183,7 @@ struct wpe_gamepad_provider_interface {
  * Since: 1.14
  */
 struct wpe_gamepad_interface {
-    void* (*create)(struct wpe_gamepad*, unsigned);
+    void* (*create)(struct wpe_gamepad*, struct wpe_gamepad_provider*, unsigned);
     void (*destroy)(void*);
     const char* (*get_id)(void*);
 
@@ -296,6 +296,7 @@ void wpe_gamepad_provider_dispatch_gamepad_disconnected(struct wpe_gamepad_provi
 
 /**
  * wpe_gamepad_create:
+ * @provider:  provider of the gamepad to create.
  * @gamepad_id: opaque application's representation of gamepad provider.
  *
  * Method called by WPEWebKit to create an internal representation of a gamepad device.
@@ -305,7 +306,7 @@ void wpe_gamepad_provider_dispatch_gamepad_disconnected(struct wpe_gamepad_provi
  * Since: 1.14
  */
 WPE_EXPORT
-struct wpe_gamepad* wpe_gamepad_create(unsigned);
+struct wpe_gamepad* wpe_gamepad_create(struct wpe_gamepad_provider*, unsigned);
 
 /**
  * wpe_gamepad_destroy:
