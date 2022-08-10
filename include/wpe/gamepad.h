@@ -257,6 +257,19 @@ WPE_EXPORT
 void wpe_gamepad_provider_stop(struct wpe_gamepad_provider*);
 
 /**
+ * wpe_gamepad_provider_get_backend:
+ * @provider: opaque libwpe's representation of gamepad provider.
+ *
+ * Called by application (gamepad implementator) to access it's internal object.
+
+ * Returns: the pointer to the implementator's object.
+ *
+ * Since: 1.14
+ */
+WPE_EXPORT
+void* wpe_gamepad_provider_get_backend(struct wpe_gamepad_provider*);
+
+/**
  * wpe_gampepad_provider_get_view_backend:
  * @provider: opaque libwpe's representation of gamepad provider.
  * @gamepad: opaque libwep's representation of gampead

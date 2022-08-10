@@ -88,6 +88,14 @@ wpe_gamepad_provider_stop(struct wpe_gamepad_provider* provider)
         provider_interface->stop(provider->backend);
 }
 
+void*
+wpe_gamepad_provider_get_backend(struct wpe_gamepad_provider* provider)
+{
+    if (provider)
+        return provider->backend;
+    return NULL;
+}
+
 struct wpe_view_backend*
 wpe_gamepad_provider_get_view_backend(struct wpe_gamepad_provider* provider, struct wpe_gamepad* gamepad)
 {
