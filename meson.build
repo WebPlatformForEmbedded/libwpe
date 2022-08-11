@@ -46,6 +46,10 @@ endif
 dependencies = []
 pkg_cflags = []
 
+if get_option('enable-ua')
+	pkg_cflags += ['-DWPE_ENABLE_UA=1']
+endif
+
 if get_option('enable-xkb')
 	pkg_cflags += ['-DWPE_ENABLE_XKB=1']
 	dependencies += dependency('xkbcommon',
@@ -90,6 +94,7 @@ libwpe = library('wpe-' + api_version,
 	'src/pasteboard-noop.cpp',
 	'src/renderer-backend-egl.c',
 	'src/renderer-host.c',
+	'src/user-agent.c',
 	'src/version.c',
 	'src/view-backend.c',
 	get_option('default_library') == 'shared' ? 'src/loader.c' : 'src/loader-static.c',
