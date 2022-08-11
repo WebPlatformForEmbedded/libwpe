@@ -1,3 +1,15 @@
+========================
+1.13.3 - August 11, 2022
+========================
+
+- Modify the gamepad API to pass the wpe_gamepad_provider when creating
+  new gamepad instances, and the associated wpe_gamepad_provider_get_backend()
+  accessor.
+- Restrict the range of values allowed for the device scaling factor, which
+  prevents both divisions by zero and impossibly big graphics buffers.
+- Fix pasteboard to use the generic interface by default.
+- Fix memory allocation to always abort execution on failure.
+
 =====================
 1.13.2 - May 16, 2022
 =====================
