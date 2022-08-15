@@ -35,8 +35,8 @@ struct wpe_gamepad {
     void*                                      client_data;
 };
 
-static struct wpe_gamepad_provider_interface* provider_interface = NULL;
-static struct wpe_gamepad_interface*          gamepad_interface = NULL;
+static const struct wpe_gamepad_provider_interface* provider_interface = NULL;
+static const struct wpe_gamepad_interface*          gamepad_interface = NULL;
 
 struct wpe_gamepad_provider*
 wpe_gamepad_provider_create(void)
@@ -63,9 +63,9 @@ wpe_gamepad_provider_destroy(struct wpe_gamepad_provider* provider)
 }
 
 void
-wpe_gamepad_provider_set_client(struct wpe_gamepad_provider*                  provider,
-                                struct wpe_gamepad_provider_client_interface* client_interface,
-                                void*                                         client_data)
+wpe_gamepad_provider_set_client(struct wpe_gamepad_provider*                        provider,
+                                const struct wpe_gamepad_provider_client_interface* client_interface,
+                                void*                                               client_data)
 {
     if (!provider)
         return;
@@ -105,21 +105,21 @@ wpe_gamepad_provider_get_view_backend(struct wpe_gamepad_provider* provider, str
 }
 
 void
-wpe_gamepad_provider_dispatch_gamepad_connected(struct wpe_gamepad_provider* provider, unsigned gamepad_id)
+wpe_gamepad_provider_dispatch_gamepad_connected(struct wpe_gamepad_provider* provider, uintptr_t gamepad_id)
 {
     if (provider && provider->client_interface && provider->client_interface->connected)
         provider->client_interface->connected(provider->client_data, gamepad_id);
 }
 
 void
-wpe_gamepad_provider_dispatch_gamepad_disconnected(struct wpe_gamepad_provider* provider, unsigned gamepad_id)
+wpe_gamepad_provider_dispatch_gamepad_disconnected(struct wpe_gamepad_provider* provider, uintptr_t gamepad_id)
 {
     if (provider && provider->client_interface && provider->client_interface->disconnected)
         provider->client_interface->disconnected(provider->client_data, gamepad_id);
 }
 
 struct wpe_gamepad*
-wpe_gamepad_create(struct wpe_gamepad_provider* provider, unsigned gamepad_id)
+wpe_gamepad_create(struct wpe_gamepad_provider* provider, uintptr_t gamepad_id)
 {
     if (!gamepad_interface)
         return NULL;
@@ -143,9 +143,9 @@ wpe_gamepad_destroy(struct wpe_gamepad* gamepad)
 }
 
 void
-wpe_gamepad_set_client(struct wpe_gamepad*                  gamepad,
-                       struct wpe_gamepad_client_interface* client_interface,
-                       void*                                client_data)
+wpe_gamepad_set_client(struct wpe_gamepad*                        gamepad,
+                       const struct wpe_gamepad_client_interface* client_interface,
+                       void*                                      client_data)
 {
     if (gamepad) {
         gamepad->client_interface = client_interface;
@@ -176,8 +176,8 @@ wpe_gamepad_dispatch_axis_changed(struct wpe_gamepad* gamepad, enum wpe_gamepad_
 }
 
 void
-wpe_gamepad_set_handler(struct wpe_gamepad_provider_interface* provider_iface,
-                        struct wpe_gamepad_interface*          gamepad_iface)
+wpe_gamepad_set_handler(const struct wpe_gamepad_provider_interface* provider_iface,
+                        const struct wpe_gamepad_interface*          gamepad_iface)
 {
     if (provider_iface && !provider_interface && gamepad_iface && !gamepad_interface) {
         provider_interface = provider_iface;

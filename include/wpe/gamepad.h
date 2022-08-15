@@ -119,8 +119,8 @@ struct wpe_gamepad_provider;
  * Since: 1.14
  */
 struct wpe_gamepad_provider_client_interface {
-    void (*connected)(void*, unsigned);
-    void (*disconnected)(void*, unsigned);
+    void (*connected)(void*, uintptr_t);
+    void (*disconnected)(void*, uintptr_t);
 
     /*< private >*/
     void (*_wpe_reserved1)(void);
@@ -183,7 +183,7 @@ struct wpe_gamepad_provider_interface {
  * Since: 1.14
  */
 struct wpe_gamepad_interface {
-    void* (*create)(struct wpe_gamepad*, struct wpe_gamepad_provider*, unsigned);
+    void* (*create)(struct wpe_gamepad*, struct wpe_gamepad_provider*, uintptr_t);
     void (*destroy)(void*);
     const char* (*get_id)(void*);
 
@@ -229,8 +229,9 @@ void wpe_gamepad_provider_destroy(struct wpe_gamepad_provider*);
  * Since: 1.14
  */
 WPE_EXPORT
-void
-wpe_gamepad_provider_set_client(struct wpe_gamepad_provider*, struct wpe_gamepad_provider_client_interface*, void*);
+void wpe_gamepad_provider_set_client(struct wpe_gamepad_provider*,
+                                     const struct wpe_gamepad_provider_client_interface*,
+                                     void*);
 
 /**
  * wpe_gamepad_provider_start:
@@ -292,7 +293,7 @@ struct wpe_view_backend* wpe_gamepad_provider_get_view_backend(struct wpe_gamepa
  * Since: 1.14
  */
 WPE_EXPORT
-void wpe_gamepad_provider_dispatch_gamepad_connected(struct wpe_gamepad_provider*, unsigned);
+void wpe_gamepad_provider_dispatch_gamepad_connected(struct wpe_gamepad_provider*, uintptr_t);
 
 /**
  * wpe_gamepad_provider_dispatch_gamepad_disconnected:
@@ -305,7 +306,7 @@ void wpe_gamepad_provider_dispatch_gamepad_connected(struct wpe_gamepad_provider
  * Since: 1.14
  */
 WPE_EXPORT
-void wpe_gamepad_provider_dispatch_gamepad_disconnected(struct wpe_gamepad_provider*, unsigned);
+void wpe_gamepad_provider_dispatch_gamepad_disconnected(struct wpe_gamepad_provider*, uintptr_t);
 
 /**
  * wpe_gamepad_create:
@@ -319,7 +320,7 @@ void wpe_gamepad_provider_dispatch_gamepad_disconnected(struct wpe_gamepad_provi
  * Since: 1.14
  */
 WPE_EXPORT
-struct wpe_gamepad* wpe_gamepad_create(struct wpe_gamepad_provider*, unsigned);
+struct wpe_gamepad* wpe_gamepad_create(struct wpe_gamepad_provider*, uintptr_t);
 
 /**
  * wpe_gamepad_destroy:
@@ -344,7 +345,7 @@ void wpe_gamepad_destroy(struct wpe_gamepad*);
  * Since: 1.14
  */
 WPE_EXPORT
-void wpe_gamepad_set_client(struct wpe_gamepad*, struct wpe_gamepad_client_interface*, void*);
+void wpe_gamepad_set_client(struct wpe_gamepad*, const struct wpe_gamepad_client_interface*, void*);
 
 /**
  * wpe_gamepad_get_id:
@@ -399,7 +400,7 @@ void wpe_gamepad_dispatch_axis_changed(struct wpe_gamepad*, enum wpe_gamepad_axi
  * Since: 1.14
  */
 WPE_EXPORT
-void wpe_gamepad_set_handler(struct wpe_gamepad_provider_interface*, struct wpe_gamepad_interface*);
+void wpe_gamepad_set_handler(const struct wpe_gamepad_provider_interface*, const struct wpe_gamepad_interface*);
 
 #ifdef __cplusplus
 }
