@@ -29,6 +29,6 @@
 
 #define WPE_MAJOR_VERSION 1
 #define WPE_MINOR_VERSION 13
-#define WPE_MICRO_VERSION 3
+#define WPE_MICRO_VERSION 90
 
 #endif /* !LIBWPE_VERSION_H */
