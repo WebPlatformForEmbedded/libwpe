@@ -1,3 +1,10 @@
+===========================
+1.14.0 - September 19, 2022
+===========================
+
+- New API which allow clients to supply an alternative mechanism for
+  spawning WebKit auxiliart processes.
+
 =========================
 1.13.90 - August 23, 2022
 =========================
