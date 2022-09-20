@@ -132,3 +132,48 @@ jobs:
       - name: Meson - Build
         run: |
           ninja -C _build
+  analyze:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install Dependencies
+        run: |
+          curl -sL https://apt.llvm.org/llvm-snapshot.gpg.key | \
+            sudo apt-key add -
+          sudo add-apt-repository \
+            'deb http://apt.llvm.org/focal/ llvm-toolchain-focal-14 main'
+          sudo apt update
+          sudo apt install -y flex libjson-glib-dev libxkbcommon-dev \
+            libegl1-mesa-dev libxml2-dev libxslt1-dev libyaml-dev llvm-14-dev \
+            libclang-14-dev libglib2.0-dev ninja-build clang-tools-14
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.6'
+      - name: Python Package Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('.github/workflows/ci.yml') }}
+          restore-keys: ${{ runner.os }}-pip-
+      - name: Install Python Packages
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          pip install scan-build meson==0.55
+      - name: Configure
+        run: |
+          meson _work --prefix /usr -Dbuild-docs=false
+      - name: Analyze
+        run: |
+          analyze-build \
+            --enable-checker nullability.NullablePassedToNonnull \
+            --enable-checker optin.cplusplus.UninitializedObject \
+            --enable-checker optin.cplusplus.VirtualCall \
+            --enable-checker optin.performance.Padding \
+            --enable-checker optin.portability.UnixAPI \
+            --enable-checker valist.CopyToSelf \
+            --enable-checker valist.Uninitialized \
+            --enable-checker valist.Unterminated \
+            --cdb _work/compile_commands.json \
+            -o _work/report
