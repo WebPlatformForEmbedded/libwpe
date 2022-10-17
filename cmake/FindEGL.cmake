@@ -39,7 +39,7 @@ find_path(
 )
 find_library(
     EGL_LIBRARY
-    NAMES egl EGL
+    NAMES ${EGL_NAMES} egl EGL
     HINTS ${EGL_LIBDIR} ${EGL_LIBRARY_DIRS}
 )
 mark_as_advanced(EGL_INCLUDE_DIR EGL_LIBRARY)
@@ -47,8 +47,7 @@ mark_as_advanced(EGL_INCLUDE_DIR EGL_LIBRARY)
 # If pkg-config has not found the module but find_path+find_library have
 # figured out where the header and library are, create the PkgConfig::EGL
 # imported target anyway with the found paths.
-#
-if (EGL_LIBRARIES AND NOT TARGET GL::egl)
+if (EGL_LIBRARY AND NOT TARGET GL::egl)
     add_library(GL::egl INTERFACE IMPORTED)
     if (TARGET PkgConfig::EGL)
         set_property(TARGET GL::egl PROPERTY INTERFACE_LINK_LIBRARIES PkgConfig::EGL)
@@ -59,4 +58,7 @@ if (EGL_LIBRARIES AND NOT TARGET GL::egl)
 endif ()
 
 include(FindPackageHandleStandardArgs)
-find_package_handle_standard_args(EGL REQUIRED_VARS EGL_LIBRARY EGL_INCLUDE_DIR)
+find_package_handle_standard_args(EGL
+    FOUND_VAR EGL_FOUND
+    REQUIRED_VARS EGL_LIBRARY EGL_INCLUDE_DIR
+)
