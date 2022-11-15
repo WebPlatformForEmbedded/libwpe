@@ -26,10 +26,11 @@
 
 #include "pasteboard-private.h"
 
-#include "alloc-private.h"
 #include "loader-private.h"
 #include <stdlib.h>
 #include <string.h>
+
+#include "alloc-private.h"
 
 void
 wpe_pasteboard_string_initialize(struct wpe_pasteboard_string* string, const char* in_string, uint64_t in_length)
