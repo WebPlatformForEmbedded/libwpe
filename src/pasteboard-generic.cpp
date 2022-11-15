@@ -28,12 +28,12 @@
 
 #include <map>
 #include <string>
+#include <cstring>
 
 // We need to include this header last, in order to avoid template expansions
 // from the C++ standard library happening after it forbids usage of the libc
 // memory functions.
 #include "alloc-private.h"
-#include <cstring>
 
 namespace Generic {
 using Pasteboard = std::map<std::string, std::string>;

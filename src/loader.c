@@ -26,10 +26,11 @@
 
 #include "loader-private.h"
 
-#include "alloc-private.h"
 #include <dlfcn.h>
 #include <stdio.h>
 #include <string.h>
+
+#include "alloc-private.h"
 
 static void* s_impl_library = 0;
 static struct wpe_loader_interface* s_impl_loader = 0;
