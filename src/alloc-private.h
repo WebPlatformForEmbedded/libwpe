@@ -28,6 +28,7 @@
 #define wpe_alloc_private_h
 
 #include <stdlib.h>
+#include <string.h>
 
 #if defined(__has_attribute) && __has_attribute(noreturn)
 #define WPE_NORETURN __attribute__((noreturn))
