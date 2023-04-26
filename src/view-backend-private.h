@@ -48,6 +48,9 @@ struct wpe_view_backend {
     wpe_view_backend_fullscreen_handler fullscreen_handler;
     void* fullscreen_handler_data;
 
+    wpe_view_backend_pointer_lock_handler pointer_lock_handler;
+    void*                                 pointer_lock_handler_data;
+
     uint32_t activity_state;
     uint32_t refresh_rate;
 };

@@ -53,6 +53,7 @@ struct wpe_view_backend;
 struct wpe_input_axis_event;
 struct wpe_input_keyboard_event;
 struct wpe_input_pointer_event;
+struct wpe_input_pointer_lock_event;
 struct wpe_input_touch_event;
 
 struct wpe_view_backend_client;
@@ -146,6 +147,37 @@ WPE_EXPORT
 void
 wpe_view_backend_set_fullscreen_handler(struct wpe_view_backend*, wpe_view_backend_fullscreen_handler handler, void* userdata);
 
+/**
+ * wpe_view_backend_pointer_lock_handler:
+ * @userdata: (transfer none): User data passed to the embedder.
+ * @enable: (transfer none): User data passed to the embedder.
+ *
+ * Type of functions used by an embedder to implement pointer lock in web views.
+ *
+ * Returns: a boolean indicating whether the operation was completed.
+ *
+ * Since: 1.14
+ */
+typedef bool (*wpe_view_backend_pointer_lock_handler)(void* userdata, bool enable);
+
+/**
+ * wpe_view_backend_set_pointer_lock_handler:
+ * @view_backend: (transfer none): The view backend to obtains events from.
+ * @handler: (transfer none): Function used by an embedder to implement pointer lock.
+ * @userdata: (transfer none): User data passed to the handler function.
+ *
+ * Handler function set by an embedder to implement pointer lock in web views.
+ *
+ * This function must be only used once for a given @view_backend, the handler
+ * cannot be changed once it has been set.
+ *
+ * Since: 1.14
+ */
+WPE_EXPORT
+void wpe_view_backend_set_pointer_lock_handler(struct wpe_view_backend*,
+                                               wpe_view_backend_pointer_lock_handler handler,
+                                               void*                                 userdata);
+
 WPE_EXPORT
 void
 wpe_view_backend_initialize(struct wpe_view_backend*);
@@ -231,12 +263,12 @@ struct wpe_view_backend_input_client {
     void (*handle_pointer_event)(void*, struct wpe_input_pointer_event*);
     void (*handle_axis_event)(void*, struct wpe_input_axis_event*);
     void (*handle_touch_event)(void*, struct wpe_input_touch_event*);
+    void (*handle_pointer_lock_event)(void*, struct wpe_input_pointer_lock_event*);
 
     /*< private >*/
     void (*_wpe_reserved0)(void);
     void (*_wpe_reserved1)(void);
     void (*_wpe_reserved2)(void);
-    void (*_wpe_reserved3)(void);
 };
 
 WPE_EXPORT
@@ -254,6 +286,9 @@ wpe_view_backend_dispatch_axis_event(struct wpe_view_backend*, struct wpe_input_
 WPE_EXPORT
 void
 wpe_view_backend_dispatch_touch_event(struct wpe_view_backend*, struct wpe_input_touch_event*);
+
+WPE_EXPORT
+void wpe_view_backend_dispatch_pointer_lock_event(struct wpe_view_backend*, struct wpe_input_pointer_lock_event*);
 
 /**
  * wpe_view_backend_fullscreen_client:
@@ -345,6 +380,31 @@ WPE_EXPORT
 void
 wpe_view_backend_dispatch_request_exit_fullscreen(struct wpe_view_backend*);
 
+/**
+ * wpe_view_backend_request_pointer_lock:
+ * @view_backend: (transfer none): The view backend that triggered the event.
+ *
+ * Request the platform to lock the pointer.
+ *
+ * Returns: a boolean indicating whether the operation was completed.
+ *
+ * Since: 1.14
+ */
+WPE_EXPORT
+bool wpe_view_backend_request_pointer_lock(struct wpe_view_backend*);
+
+/**
+ * wpe_view_backend_request_pointer_unlock:
+ * @view_backend: (transfer none): The view backend that triggered the event.
+ *
+ * Request the platform to unlock the pointer.
+ *
+ * Returns: a boolean indicating whether the operation was completed.
+ *
+ * Since: 1.14
+ */
+WPE_EXPORT
+bool wpe_view_backend_request_pointer_unlock(struct wpe_view_backend*);
 
 #ifdef __cplusplus
 }
