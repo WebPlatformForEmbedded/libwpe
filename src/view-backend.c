@@ -68,6 +68,9 @@ wpe_view_backend_destroy(struct wpe_view_backend* backend)
     backend->fullscreen_client = NULL;
     backend->fullscreen_client_data = NULL;
 
+    backend->pointer_lock_handler = NULL;
+    backend->pointer_lock_handler_data = NULL;
+
     backend->activity_state = 0;
     backend->refresh_rate = 0;
 
@@ -209,6 +212,14 @@ wpe_view_backend_dispatch_pointer_event(struct wpe_view_backend* backend, struct
 }
 
 void
+wpe_view_backend_dispatch_pointer_lock_event(struct wpe_view_backend*             backend,
+                                             struct wpe_input_pointer_lock_event* event)
+{
+    if (backend->input_client)
+        backend->input_client->handle_pointer_lock_event(backend->input_client_data, event);
+}
+
+void
 wpe_view_backend_dispatch_axis_event(struct wpe_view_backend* backend, struct wpe_input_axis_event* event)
 {
     if (backend->input_client)
@@ -265,4 +276,31 @@ wpe_view_backend_dispatch_request_exit_fullscreen(struct wpe_view_backend* backe
 {
     if (backend->fullscreen_client)
         backend->fullscreen_client->request_exit_fullscreen(backend->fullscreen_client_data);
+}
+
+void
+wpe_view_backend_set_pointer_lock_handler(struct wpe_view_backend*              backend,
+                                          wpe_view_backend_pointer_lock_handler handler,
+                                          void*                                 userdata)
+{
+    assert(!backend->pointer_lock_handler);
+
+    backend->pointer_lock_handler = handler;
+    backend->pointer_lock_handler_data = userdata;
+}
+
+bool
+wpe_view_backend_request_pointer_lock(struct wpe_view_backend* backend)
+{
+    if (backend->pointer_lock_handler)
+        return backend->pointer_lock_handler(backend->pointer_lock_handler_data, true);
+    return false;
+}
+
+bool
+wpe_view_backend_request_pointer_unlock(struct wpe_view_backend* backend)
+{
+    if (backend->pointer_lock_handler)
+        return backend->pointer_lock_handler(backend->pointer_lock_handler_data, false);
+    return false;
 }

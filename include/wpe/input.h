@@ -86,6 +86,11 @@ struct wpe_input_pointer_event {
     uint32_t modifiers;
 };
 
+struct wpe_input_pointer_lock_event {
+    struct wpe_input_pointer_event base;
+    double                         x_delta;
+    double                         y_delta;
+};
 
 enum wpe_input_axis_event_type {
     wpe_input_axis_event_type_null,
