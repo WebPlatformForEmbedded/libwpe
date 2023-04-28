@@ -46,8 +46,11 @@ wpe_input_xkb_context_get_default()
 {
     static struct wpe_input_xkb_context* s_xkb_context = NULL;
     if (!s_xkb_context) {
-        s_xkb_context = wpe_calloc(1, sizeof(struct wpe_input_xkb_context));
-        s_xkb_context->context = xkb_context_new(XKB_CONTEXT_NO_FLAGS);
+        struct xkb_context* context = xkb_context_new(XKB_CONTEXT_NO_FLAGS);
+        if (context) {
+            s_xkb_context = wpe_calloc(1, sizeof(struct wpe_input_xkb_context));
+            s_xkb_context->context = context;
+        }
     }
 
     return s_xkb_context;
