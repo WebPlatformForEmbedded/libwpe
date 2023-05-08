@@ -1,3 +1,14 @@
+====================
+1.15.1 - May 8, 2023
+====================
+
+- New API to override the default to override the default implementation
+  for subprocess launch and termination.
+- New API for handling pointer lock events.
+- Fix build failures with certain C library versions.
+- Properly handle the EGL library when available without a pkg-config
+  module file present.
+
 ========================
 1.13.3 - August 11, 2022
 ========================
