@@ -29,7 +29,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-extern struct wpe_loader_interface* _wpe_loader_interface;
+extern struct wpe_loader_interface _wpe_loader_interface;
 
 bool
 wpe_loader_init(const char* impl_library_name)
@@ -50,13 +50,11 @@ wpe_loader_get_loaded_implementation_library_name(void)
 void*
 wpe_load_object(const char* object_name)
 {
-    if (_wpe_loader_interface) {
-        if (!_wpe_loader_interface->load_object) {
-            fprintf(stderr, "wpe_load_object: failed to load object with name '%s': backend doesn't implement load_object vfunc\n", object_name);
-            abort();
-        }
-        return _wpe_loader_interface->load_object(object_name);
+    if (!_wpe_loader_interface.load_object) {
+        fprintf(stderr,
+                "wpe_load_object: failed to load object with name '%s': backend doesn't implement load_object vfunc\n",
+                object_name);
+        abort();
     }
-
-    return NULL;
+    return _wpe_loader_interface.load_object(object_name);
 }
