@@ -100,8 +100,6 @@ wpe_view_backend_set_input_client(struct wpe_view_backend* backend, const struct
 void
 wpe_view_backend_set_fullscreen_client(struct wpe_view_backend* backend, const struct wpe_view_backend_fullscreen_client* client, void* client_data)
 {
-    assert(!backend->fullscreen_client);
-
     backend->fullscreen_client = client;
     backend->fullscreen_client_data = client_data;
 }

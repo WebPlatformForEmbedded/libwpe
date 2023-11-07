@@ -102,8 +102,8 @@ wpe_view_backend_set_input_client(struct wpe_view_backend*, const struct wpe_vie
 /**
  * wpe_view_backend_set_fullscreen_client:
  * @view_backend: (transfer none): The view backend to obtains events from.
- * @client: (transfer none): Client with callbacks for the events.
- * @userdata: (transfer none): User data passed to client callbacks.
+ * @client: (transfer none) (nullable): Client with callbacks for the events.
+ * @userdata: (transfer none) (nullable): User data passed to client callbacks.
  * 
  * Configure a @client with callbacks invoked for DOM fullscreen requests.
  * 
