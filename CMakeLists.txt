@@ -15,7 +15,7 @@ set(WPE_API_VERSION "1.0")
 # - If binary compatibility has been broken (eg removed or changed interfaces)
 #   change to C+1:0:0
 # - If the interface is the same as the previous version, change to C:R+1:A
-calculate_library_versions_from_libtool_triple(LIBWPE 9 1 8)
+calculate_library_versions_from_libtool_triple(LIBWPE 9 2 8)
 
 project(libwpe VERSION "${PROJECT_VERSION}")
 
