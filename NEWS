@@ -1,3 +1,10 @@
+=========================
+1.15.2 - January 25, 2024
+=========================
+
+- Allow resetting the fullscreen client to a null pointer.
+- Fix usage of the _wpe_loader_interface with the static loader.
+
 ====================
 1.15.1 - May 8, 2023
 ====================
