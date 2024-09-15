@@ -1,0 +1,10 @@
+@require(parameters)
+
+@if parameters:
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+		@for parameter in parameters:
+			@parameter
+		@end
+	</div>
+@end

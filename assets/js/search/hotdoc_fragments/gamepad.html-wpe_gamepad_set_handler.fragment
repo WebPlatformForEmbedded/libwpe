@@ -1,0 +1,1 @@
+fragment_downloaded_cb({"url":"gamepad.html#wpe_gamepad_set_handler","fragment":"\n\twpe_gamepad_set_handler\n\nMethod called by the application (gamepad implementator) to\nregister, in libwpe, the callbacks for gamepad devices and gamepad\nprovider.\nNote that the last registered handlers will be used.\nParameters:\n\n\tSince\t\t\t: 1.14\n\t\t\n"});

@@ -1,0 +1,20 @@
+@require(members, member_designation, parent_is_class)
+
+
+@if members:
+@(
+if members[0].extension_attributes['order_by_section']:
+    if parent_is_class:
+        header_level = '3'
+    else:
+        header_level = '5'
+else:
+    header_level = '4'
+)
+	<div class="members-container">
+		<h@header_level>@member_designation</h@header_level>
+		@for member in members:
+			@member.detailed_description
+		@end
+	</div>
+@end

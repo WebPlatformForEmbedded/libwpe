@@ -1,0 +1,1 @@
+fragment_downloaded_cb({"url":"view-backend.html#wpe_view_backend_fullscreen_client","fragment":"\n\twpe_view_backend_fullscreen_client\n\nA view backend's fullscreen client provides a series of callback functions\nwhich are invoked at different stages when a web view becomes fullscreened\nand back.\n\n\tSince\t\t\t: 1.12\n\t\t\n"});

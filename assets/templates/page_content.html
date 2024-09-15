@@ -1,0 +1,43 @@
+@require(page)
+
+@if not page.meta.get("full-width"):
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/full-width.js"></script>
+  <div id="sitenav-wrapper">
+    <iframe src="hotdoc-sitemap.html" id="sitenav-frame"></iframe>
+  </div>
+</div>
+@end
+
+<div id="body">
+	<div id="main">
+		@def content():
+		@end
+		@content()
+		<subpages>
+		</subpages>
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		@include("footer.html")
+	</div>
+</div>
+
+@if not page.meta.get("full-width"):
+<div id="toc-column">
+	@def edit_button():
+	@end
+	@(btn = edit_button())
+	@if btn:
+	<div class="edit-button">
+		@btn
+	</div>
+	@end
+	<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+@end
+@end

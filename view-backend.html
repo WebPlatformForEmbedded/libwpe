@@ -1,0 +1,2467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>View Backend</title>
+
+<link rel="stylesheet" href="assets/css/dark-frontend.css" type="text/css" title="dark">
+<link rel="alternate stylesheet" href="assets/css/light-frontend.css" type="text/css" title="light">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
+
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css" title="dark">
+
+<link rel="alternate stylesheet" href="assets/css/prism.css" type="text/css" title="light">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+<script src="assets/js/styleswitcher.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
+
+
+</head>
+
+<body class="no-script
+">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<span title="light mode switch" class="glyphicon glyphicon-sunglasses pull-right" id="lightmode-icon"></span>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/home.svg" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+							</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+							</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="c-extension" data-hotdoc-in-toplevel="True" data-hotdoc-project="libwpe" data-hotdoc-ref="view-backend.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/full-width.js"></script>
+  <div id="sitenav-wrapper">
+    <iframe src="hotdoc-sitemap.html" id="sitenav-frame"></iframe>
+  </div>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="view-backend-page">View Backend</h1>
+    </div>
+        
+
+            <h2 class="symbol_section">Functions</h2>
+                    
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_backend_add_activity_state">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_add_activity_state">
+	<i>wpe_view_backend_add_activity_state</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_view_backend_add_activity_state (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * ,
+                                     int  uint32_t)</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code>uint32_t</code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_backend_create">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_create">
+	<i>wpe_view_backend_create</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> *
+wpe_view_backend_create ()</pre>
+
+
+
+
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> *<span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_backend_create_with_backend_interface">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_create_with_backend_interface">
+	<i>wpe_view_backend_create_with_backend_interface</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> *
+wpe_view_backend_create_with_backend_interface (struct <a title="wpe_view_backend_interface" href="view-backend.html#wpe_view_backend_interface">wpe_view_backend_interface</a> * ,
+                                                void * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> *<span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_backend_destroy">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_destroy">
+	<i>wpe_view_backend_destroy</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_view_backend_destroy (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_backend_dispatch_axis_event">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_dispatch_axis_event">
+	<i>wpe_view_backend_dispatch_axis_event</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_view_backend_dispatch_axis_event (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * ,
+                                      struct <a title="wpe_input_axis_event" href="input.html#wpe_input_axis_event">wpe_input_axis_event</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="since:1.12;" id="wpe_view_backend_dispatch_did_enter_fullscreen">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_dispatch_did_enter_fullscreen">
+	<i>wpe_view_backend_dispatch_did_enter_fullscreen</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_view_backend_dispatch_did_enter_fullscreen (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * )</pre>
+
+<p>Dispatchs the event that indicates fullscreen has been successfully entered.</p>
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+	<p>
+	<b>Since</b>			: 1.12
+		</p>
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="since:1.12;" id="wpe_view_backend_dispatch_did_exit_fullscreen">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_dispatch_did_exit_fullscreen">
+	<i>wpe_view_backend_dispatch_did_exit_fullscreen</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_view_backend_dispatch_did_exit_fullscreen (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * )</pre>
+
+<p>Dispatchs the event that indicated fullscreen has been successfully entered.</p>
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+	<p>
+	<b>Since</b>			: 1.12
+		</p>
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_backend_dispatch_frame_displayed">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_dispatch_frame_displayed">
+	<i>wpe_view_backend_dispatch_frame_displayed</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_view_backend_dispatch_frame_displayed (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_backend_dispatch_get_accessible">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_dispatch_get_accessible">
+	<i>wpe_view_backend_dispatch_get_accessible</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void *
+wpe_view_backend_dispatch_get_accessible (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * backend)</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code>backend</code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void *<span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_backend_dispatch_keyboard_event">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_dispatch_keyboard_event">
+	<i>wpe_view_backend_dispatch_keyboard_event</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_view_backend_dispatch_keyboard_event (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * ,
+                                          struct <a title="wpe_input_keyboard_event" href="input.html#wpe_input_keyboard_event">wpe_input_keyboard_event</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_backend_dispatch_pointer_event">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_dispatch_pointer_event">
+	<i>wpe_view_backend_dispatch_pointer_event</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_view_backend_dispatch_pointer_event (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * ,
+                                         struct <a title="wpe_input_pointer_event" href="input.html#wpe_input_pointer_event">wpe_input_pointer_event</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_backend_dispatch_pointer_lock_event">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_dispatch_pointer_lock_event">
+	<i>wpe_view_backend_dispatch_pointer_lock_event</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_view_backend_dispatch_pointer_lock_event (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * ,
+                                              struct <a title="wpe_input_pointer_lock_event" href="input.html#wpe_input_pointer_lock_event">wpe_input_pointer_lock_event</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="since:1.12;" id="wpe_view_backend_dispatch_request_enter_fullscreen">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_dispatch_request_enter_fullscreen">
+	<i>wpe_view_backend_dispatch_request_enter_fullscreen</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_view_backend_dispatch_request_enter_fullscreen (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * )</pre>
+
+<p>Dispatchs the event that indicates user wants to enter DOM fullscreen state.</p>
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+	<p>
+	<b>Since</b>			: 1.12
+		</p>
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="since:1.12;" id="wpe_view_backend_dispatch_request_exit_fullscreen">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_dispatch_request_exit_fullscreen">
+	<i>wpe_view_backend_dispatch_request_exit_fullscreen</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_view_backend_dispatch_request_exit_fullscreen (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * )</pre>
+
+<p>Dispatchs the event that indicates user wants to exit DOM fullscreen state.</p>
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+	<p>
+	<b>Since</b>			: 1.12
+		</p>
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="since:1.4;" id="wpe_view_backend_dispatch_set_device_scale_factor">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_dispatch_set_device_scale_factor">
+	<i>wpe_view_backend_dispatch_set_device_scale_factor</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_view_backend_dispatch_set_device_scale_factor (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * ,
+                                                   float  )</pre>
+
+<p>Configure the device scaling factor applied to rendered content.</p>
+<p>Set the <em>factor</em> by which sizes of content rendered to a web view will be
+multiplied by. The typical reason to set a value other than <code>1.0</code> (the
+default) is to produce output that will display at the intended physical
+size in displays with a high density of pixels.</p>
+<p>Only values from <code>0.05</code> up to <code>5.0</code> are allowed. Setting a value outside
+this range will be ignored, and in debug builds execution will be aborted.</p>
+<p>For example, a display that has a physical resolution of 3840x2160 with
+a scaling factor of <code>2.0</code> will make web content behave as if the screen
+had a size of 1920x1080, and content will be rendered at twice the size:
+each “logical” pixel will occupy four “physical” pixels (a 2x2 box) on
+the output.</p>
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+	<p>
+	<b>Since</b>			: 1.4
+		</p>
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_backend_dispatch_set_size">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_dispatch_set_size">
+	<i>wpe_view_backend_dispatch_set_size</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_view_backend_dispatch_set_size (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * ,
+                                    int  uint32_t,
+                                    int  )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code>uint32_t</code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_backend_dispatch_touch_event">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_dispatch_touch_event">
+	<i>wpe_view_backend_dispatch_touch_event</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_view_backend_dispatch_touch_event (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * ,
+                                       struct <a title="wpe_input_touch_event" href="input.html#wpe_input_touch_event">wpe_input_touch_event</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_backend_get_activity_state">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_get_activity_state">
+	<i>wpe_view_backend_get_activity_state</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+int 
+wpe_view_backend_get_activity_state (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>int <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_backend_get_renderer_host_fd">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_get_renderer_host_fd">
+	<i>wpe_view_backend_get_renderer_host_fd</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+int 
+wpe_view_backend_get_renderer_host_fd (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>int <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_backend_get_target_refresh_rate">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_get_target_refresh_rate">
+	<i>wpe_view_backend_get_target_refresh_rate</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+int 
+wpe_view_backend_get_target_refresh_rate (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>int <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_backend_initialize">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_initialize">
+	<i>wpe_view_backend_initialize</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_view_backend_initialize (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="since:1.12;" id="wpe_view_backend_platform_set_fullscreen">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_platform_set_fullscreen">
+	<i>wpe_view_backend_platform_set_fullscreen</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+_Bool 
+wpe_view_backend_platform_set_fullscreen (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * ,
+                                          _Bool  )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>_Bool <span>)</span>
+–
+			</div>
+							<p>a boolean indicating whether the operation was completed.</p>
+<p>DOM content calls this function to request the platform to enter/exit fullscreen.
+The platform will attempt to change it's window fullscreen state.</p>
+
+					</div>
+	</div>
+
+
+
+
+	<p>
+	<b>Since</b>			: 1.12
+		</p>
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_backend_remove_activity_state">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_remove_activity_state">
+	<i>wpe_view_backend_remove_activity_state</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_view_backend_remove_activity_state (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * ,
+                                        int  uint32_t)</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code>uint32_t</code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="since:1.14;" id="wpe_view_backend_request_pointer_lock">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_request_pointer_lock">
+	<i>wpe_view_backend_request_pointer_lock</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+_Bool 
+wpe_view_backend_request_pointer_lock (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * )</pre>
+
+<p>Request the platform to lock the pointer.</p>
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>_Bool <span>)</span>
+–
+			</div>
+							<p>a boolean indicating whether the operation was completed.</p>
+
+					</div>
+	</div>
+
+
+
+
+	<p>
+	<b>Since</b>			: 1.14
+		</p>
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="since:1.14;" id="wpe_view_backend_request_pointer_unlock">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_request_pointer_unlock">
+	<i>wpe_view_backend_request_pointer_unlock</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+_Bool 
+wpe_view_backend_request_pointer_unlock (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * )</pre>
+
+<p>Request the platform to unlock the pointer.</p>
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>_Bool <span>)</span>
+–
+			</div>
+							<p>a boolean indicating whether the operation was completed.</p>
+
+					</div>
+	</div>
+
+
+
+
+	<p>
+	<b>Since</b>			: 1.14
+		</p>
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_backend_set_backend_client">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_set_backend_client">
+	<i>wpe_view_backend_set_backend_client</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_view_backend_set_backend_client (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * ,
+                                     struct <a title="wpe_view_backend_client" href="view-backend.html#wpe_view_backend_client">wpe_view_backend_client</a> * ,
+                                     void * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="since:1.12;" id="wpe_view_backend_set_fullscreen_client">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_set_fullscreen_client">
+	<i>wpe_view_backend_set_fullscreen_client</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_view_backend_set_fullscreen_client (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * ,
+                                        struct <a title="wpe_view_backend_fullscreen_client" href="view-backend.html#wpe_view_backend_fullscreen_client">wpe_view_backend_fullscreen_client</a> * ,
+                                        void * )</pre>
+
+<p>Configure a <em>client</em> with callbacks invoked for DOM fullscreen requests.</p>
+<p>This function must be only used once for a given <em>view_backend</em>, the client
+cannot be changed once it has been set.</p>
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+	<p>
+	<b>Since</b>			: 1.12
+		</p>
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="since:1.12;" id="wpe_view_backend_set_fullscreen_handler">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_set_fullscreen_handler">
+	<i>wpe_view_backend_set_fullscreen_handler</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_view_backend_set_fullscreen_handler (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * ,
+                                         <a title="wpe_view_backend_fullscreen_handler" href="view-backend.html#wpe_view_backend_fullscreen_handler">wpe_view_backend_fullscreen_handler</a> handler,
+                                         void * userdata)</pre>
+
+<p>Handler function set by an embedder to implement fullscreening web views.</p>
+<p>This function must be only used once for a given <em>view_backend</em>, the handler
+cannot be changed once it has been set.</p>
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code>handler</code></em></i>
+–
+</div>
+<p>Function used by an embedder to implement fullscreening web views.</p>
+
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code>userdata</code></em></i>
+–
+</div>
+<p>User data passed to the handler function.</p>
+
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+	<p>
+	<b>Since</b>			: 1.12
+		</p>
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_backend_set_input_client">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_set_input_client">
+	<i>wpe_view_backend_set_input_client</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_view_backend_set_input_client (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * ,
+                                   struct <a title="wpe_view_backend_input_client" href="view-backend.html#wpe_view_backend_input_client">wpe_view_backend_input_client</a> * ,
+                                   void * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="since:1.14;" id="wpe_view_backend_set_pointer_lock_handler">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_set_pointer_lock_handler">
+	<i>wpe_view_backend_set_pointer_lock_handler</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_view_backend_set_pointer_lock_handler (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * ,
+                                           <a title="wpe_view_backend_pointer_lock_handler" href="view-backend.html#wpe_view_backend_pointer_lock_handler">wpe_view_backend_pointer_lock_handler</a> handler,
+                                           void * userdata)</pre>
+
+<p>Handler function set by an embedder to implement pointer lock in web views.</p>
+<p>This function must be only used once for a given <em>view_backend</em>, the handler
+cannot be changed once it has been set.</p>
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code>handler</code></em></i>
+–
+</div>
+<p>Function used by an embedder to implement pointer lock.</p>
+
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code>userdata</code></em></i>
+–
+</div>
+<p>User data passed to the handler function.</p>
+
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+	<p>
+	<b>Since</b>			: 1.14
+		</p>
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_backend_set_target_refresh_rate">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_set_target_refresh_rate">
+	<i>wpe_view_backend_set_target_refresh_rate</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_view_backend_set_target_refresh_rate (struct <a title="wpe_view_backend" href="gamepad.html#wpe_view_backend">wpe_view_backend</a> * ,
+                                          int  uint32_t)</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code>uint32_t</code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+
+            <h2 class="symbol_section">Structures</h2>
+                    
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_backend_base">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_base">
+	<i>wpe_view_backend_base</i>
+</h3>
+
+
+<pre class="raw_code">
+struct wpe_view_backend_base {
+    const struct wpe_view_backend_interface* interface;
+    void* interface_data;
+};
+</pre>
+
+
+
+
+	<div class="members-container">
+		<h4>Fields</h4>
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_view_backend_base.interface">
+	<div>
+		<i><em><code>interface</code></em></i>
+		(struct <a title="wpe_view_backend_interface" href="view-backend.html#wpe_view_backend_interface">wpe_view_backend_interface</a> *)
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_view_backend_base.interface_data">
+	<div>
+		<i><em><code>interface_data</code></em></i>
+		(void *)
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+			</div>
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_backend_client">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_client">
+	<i>wpe_view_backend_client</i>
+</h3>
+
+
+
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="since:1.12;" id="wpe_view_backend_fullscreen_client">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_fullscreen_client">
+	<i>wpe_view_backend_fullscreen_client</i>
+</h3>
+
+
+<p>A view backend's fullscreen client provides a series of callback functions
+which are invoked at different stages when a web view becomes fullscreened
+and back.</p>
+
+
+
+
+
+
+	<p>
+	<b>Since</b>			: 1.12
+		</p>
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_backend_input_client">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_input_client">
+	<i>wpe_view_backend_input_client</i>
+</h3>
+
+
+
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_backend_interface">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_interface">
+	<i>wpe_view_backend_interface</i>
+</h3>
+
+
+<pre class="raw_code">
+struct wpe_view_backend_interface {
+    void* (*create)(void*, struct wpe_view_backend*);
+    void (*destroy)(void*);
+
+    void (*initialize)(void*);
+    int (*get_renderer_host_fd)(void*);
+
+};
+</pre>
+
+
+
+
+	<div class="members-container">
+		<h4>Fields</h4>
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_view_backend_interface.create">
+	<div>
+		<i><em><code>create</code></em></i>
+		()
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_view_backend_interface.destroy">
+	<div>
+		<i><em><code>destroy</code></em></i>
+		()
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_view_backend_interface.initialize">
+	<div>
+		<i><em><code>initialize</code></em></i>
+		()
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_view_backend_interface.get_renderer_host_fd">
+	<div>
+		<i><em><code>get_renderer_host_fd</code></em></i>
+		()
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+			</div>
+
+
+
+
+<hr>
+
+</div>
+
+
+            <h2 class="symbol_section">Enumerations</h2>
+                    
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_view_activity_state">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_activity_state">
+	<i>wpe_view_activity_state</i>
+</h3>
+
+
+<pre class="raw_code">
+enum wpe_view_activity_state {
+    wpe_view_activity_state_visible   = 1 &lt;&lt; 0,
+    wpe_view_activity_state_focused   = 1 &lt;&lt; 1,
+    wpe_view_activity_state_in_window = 1 &lt;&lt; 2
+};
+</pre>
+
+
+
+
+	<div class="members-container">
+		<h4>Members</h4>
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_view_activity_state_visible">
+	<div>
+		<i><em><code>wpe_view_activity_state_visible</code></em></i>
+		(<span class="value">1</span>)
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_view_activity_state_focused">
+	<div>
+		<i><em><code>wpe_view_activity_state_focused</code></em></i>
+		(<span class="value">2</span>)
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_view_activity_state_in_window">
+	<div>
+		<i><em><code>wpe_view_activity_state_in_window</code></em></i>
+		(<span class="value">4</span>)
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+			</div>
+
+
+
+
+<hr>
+
+</div>
+
+
+            <h2 class="symbol_section">Callbacks</h2>
+                    
+
+<div class="base_symbol_container" data-hotdoc-tags="since:1.12;" id="wpe_view_backend_fullscreen_handler">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_fullscreen_handler">
+	<i>wpe_view_backend_fullscreen_handler</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+_Bool 
+(*wpe_view_backend_fullscreen_handler) (_Bool  enable)</pre>
+
+<p>Type of functions used by an embedder to implement fullscreening web views.</p>
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code>enable</code></em></i>
+–
+</div>
+<p>User data passed to the embedder.</p>
+
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>_Bool <span>)</span>
+–
+			</div>
+							<p>a boolean indicating whether the operation was completed.</p>
+
+					</div>
+	</div>
+
+
+
+
+	<p>
+	<b>Since</b>			: 1.12
+		</p>
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="since:1.14;" id="wpe_view_backend_pointer_lock_handler">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_view_backend_pointer_lock_handler">
+	<i>wpe_view_backend_pointer_lock_handler</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+_Bool 
+(*wpe_view_backend_pointer_lock_handler) (_Bool  enable)</pre>
+
+<p>Type of functions used by an embedder to implement pointer lock in web views.</p>
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code>enable</code></em></i>
+–
+</div>
+<p>User data passed to the embedder.</p>
+
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>_Bool <span>)</span>
+–
+			</div>
+							<p>a boolean indicating whether the operation was completed.</p>
+
+					</div>
+	</div>
+
+
+
+
+	<p>
+	<b>Since</b>			: 1.14
+		</p>
+
+<hr>
+
+</div>
+
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+@require(project)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base target="_parent">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet" href="assets/css/dark-sitenav.css" type="text/css" title="dark"/>
+<link rel="alternate stylesheet" href="assets/css/light-sitenav.css" type="text/css" title="light"/>
+
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/styleswitcher.js"></script>
+<script src="assets/js/navigation.js"></script>
+
+</head>
+
+<body>
+
+<div>
+	<div class="sidenav-main-panel-body">
+		<div id="site-navigation">
+
+		@def format_level(project, cpage_name, parent_name, level):
+		@(
+		subproject = project.subprojects.get(cpage_name)
+		if (subproject):
+			project = subproject
+			page = project.tree.root
+		else:
+			page = project.tree.get_pages()[cpage_name]
+
+		prefix = project.extensions[page.extension_name].formatter.get_output_folder(page)
+		page_link, attrs = page.link.get_link(project.app.link_resolver)
+
+		unique_ref = '%s-%s-%s' % (page.extension_name, page.project_name, page_link)
+
+		if prefix:
+			page_link = "%s/%s" % (prefix, page_link)
+
+		name = parent_name + '-' + str(level)
+		actual_level = name.count('-')
+		if actual_level % 2 == 0:
+			sidenav_panel_extra_class = "sidenav-panel-even"
+		else:
+			sidenav_panel_extra_class = "sidenav-panel-odd"
+		)
+
+		<div class="sidenav-panel-body @sidenav_panel_extra_class">
+			@if page.subpages:
+			<span class="sidenav-toggle" data-toggle="collapse" data-target="#@name-children" aria-expanded="false">
+			@end
+			<div class="panel-heading">
+				<h4 class="panel-title" data-toc-skip="true">
+					@if page.subpages:
+					<i class="glyphicon glyphicon-chevron-right pull-right"></i>
+					<i class="glyphicon glyphicon-chevron-down pull-right"></i>
+					@end
+					<a class="sidenav-ref" href="@page_link" data-nav-ref="@unique_ref">@page.get_title()!e</a>
+				</h4> 
+			</div>
+			@if page.subpages:
+			</span>
+			@end
+			<div id="@name-children" class="panel-collapse collapse" data-nav-ref="@unique_ref">
+				@(
+				level = 0
+				ext = project.extensions[page.extension_name]
+				subpages = ext.get_subpages_sorted(project.tree.get_pages(), page)
+				)
+				@for cpage_name in subpages:
+				@format_level(project, cpage_name, name, level)
+				@(level += 1)
+				@end
+			</div>
+		</div>
+		@end
+
+		@(
+		level=0
+		ext = project.extensions[project.tree.root.extension_name]
+		subpages = ext.get_subpages_sorted(project.tree.get_pages(), project.tree.root)
+		)
+		@for cpage_name in subpages:
+		@format_level(project, cpage_name, "main", level)
+		@(level += 1)
+		@end
+
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

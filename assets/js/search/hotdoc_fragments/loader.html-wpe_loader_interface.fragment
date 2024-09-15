@@ -1,0 +1,1 @@
+fragment_downloaded_cb({"url":"loader.html#wpe_loader_interface","fragment":"\n\twpe_loader_interface\n\nFields\nAn implementation of a WPE backend must define a _wpe_loader_interface\nsymbol of this type.\nCallback invoked by libwpe to instantiate objects.\n"});

@@ -1,0 +1,1 @@
+fragment_downloaded_cb({"url":"gamepad.html#wpe_gamepad_provider_start","fragment":"\n\twpe_gamepad_provider_start\n\nCalled by WPEWebkit to start provider monitoring for gamepad\ndevices.\nParameters:\n\n\tSince\t\t\t: 1.14\n\t\t\n"});

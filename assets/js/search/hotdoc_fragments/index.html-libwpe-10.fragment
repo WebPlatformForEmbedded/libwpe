@@ -1,0 +1,1 @@
+fragment_downloaded_cb({"url":"index.html#libwpe-10","fragment":"libwpe 1.0\nlibwpe defines interfaces which can be used by\nWebKit, and a mechanism for loading a WPE backend\nwhich implements them. Using the public libwpe API decouples WebKit from\nthe platform-specific behaviour, which is implemented by each individual\nbackend.\n"});

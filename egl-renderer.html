@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>EGL Renderer</title>
+
+<link rel="stylesheet" href="assets/css/dark-frontend.css" type="text/css" title="dark">
+<link rel="alternate stylesheet" href="assets/css/light-frontend.css" type="text/css" title="light">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
+
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css" title="dark">
+
+<link rel="alternate stylesheet" href="assets/css/prism.css" type="text/css" title="light">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+<script src="assets/js/styleswitcher.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
+
+
+</head>
+
+<body class="no-script
+">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<span title="light mode switch" class="glyphicon glyphicon-sunglasses pull-right" id="lightmode-icon"></span>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/home.svg" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+							</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+							</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="c-extension" data-hotdoc-in-toplevel="True" data-hotdoc-project="libwpe" data-hotdoc-ref="egl-renderer.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/full-width.js"></script>
+  <div id="sitenav-wrapper">
+    <iframe src="hotdoc-sitemap.html" id="sitenav-frame"></iframe>
+  </div>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="egl-renderer-page">EGL Renderer</h1>
+    </div>
+        
+
+            <h2 class="symbol_section">Functions</h2>
+                    
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_create">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_create">
+	<i>wpe_renderer_backend_egl_create</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+struct <a title="wpe_renderer_backend_egl" href="egl-renderer.html#wpe_renderer_backend_egl">wpe_renderer_backend_egl</a> *
+wpe_renderer_backend_egl_create (int  )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>struct <a title="wpe_renderer_backend_egl" href="egl-renderer.html#wpe_renderer_backend_egl">wpe_renderer_backend_egl</a> *<span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_destroy">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_destroy">
+	<i>wpe_renderer_backend_egl_destroy</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_renderer_backend_egl_destroy (struct <a title="wpe_renderer_backend_egl" href="egl-renderer.html#wpe_renderer_backend_egl">wpe_renderer_backend_egl</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_get_native_display">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_get_native_display">
+	<i>wpe_renderer_backend_egl_get_native_display</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+EGLNativeDisplayType
+wpe_renderer_backend_egl_get_native_display (struct <a title="wpe_renderer_backend_egl" href="egl-renderer.html#wpe_renderer_backend_egl">wpe_renderer_backend_egl</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>EGLNativeDisplayType<span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_get_platform">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_get_platform">
+	<i>wpe_renderer_backend_egl_get_platform</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+int 
+wpe_renderer_backend_egl_get_platform (struct <a title="wpe_renderer_backend_egl" href="egl-renderer.html#wpe_renderer_backend_egl">wpe_renderer_backend_egl</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>int <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_offscreen_target_create">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_offscreen_target_create">
+	<i>wpe_renderer_backend_egl_offscreen_target_create</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+struct <a title="wpe_renderer_backend_egl_offscreen_target" href="egl-renderer.html#wpe_renderer_backend_egl_offscreen_target">wpe_renderer_backend_egl_offscreen_target</a> *
+wpe_renderer_backend_egl_offscreen_target_create ()</pre>
+
+
+
+
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>struct <a title="wpe_renderer_backend_egl_offscreen_target" href="egl-renderer.html#wpe_renderer_backend_egl_offscreen_target">wpe_renderer_backend_egl_offscreen_target</a> *<span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_offscreen_target_destroy">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_offscreen_target_destroy">
+	<i>wpe_renderer_backend_egl_offscreen_target_destroy</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_renderer_backend_egl_offscreen_target_destroy (struct <a title="wpe_renderer_backend_egl_offscreen_target" href="egl-renderer.html#wpe_renderer_backend_egl_offscreen_target">wpe_renderer_backend_egl_offscreen_target</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_offscreen_target_get_native_window">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_offscreen_target_get_native_window">
+	<i>wpe_renderer_backend_egl_offscreen_target_get_native_window</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+EGLNativeWindowType
+wpe_renderer_backend_egl_offscreen_target_get_native_window (struct <a title="wpe_renderer_backend_egl_offscreen_target" href="egl-renderer.html#wpe_renderer_backend_egl_offscreen_target">wpe_renderer_backend_egl_offscreen_target</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>EGLNativeWindowType<span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_offscreen_target_initialize">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_offscreen_target_initialize">
+	<i>wpe_renderer_backend_egl_offscreen_target_initialize</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_renderer_backend_egl_offscreen_target_initialize (struct <a title="wpe_renderer_backend_egl_offscreen_target" href="egl-renderer.html#wpe_renderer_backend_egl_offscreen_target">wpe_renderer_backend_egl_offscreen_target</a> * ,
+                                                      struct <a title="wpe_renderer_backend_egl" href="egl-renderer.html#wpe_renderer_backend_egl">wpe_renderer_backend_egl</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_target_create">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_target_create">
+	<i>wpe_renderer_backend_egl_target_create</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+struct <a title="wpe_renderer_backend_egl_target" href="egl-renderer.html#wpe_renderer_backend_egl_target">wpe_renderer_backend_egl_target</a> *
+wpe_renderer_backend_egl_target_create (int  )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>struct <a title="wpe_renderer_backend_egl_target" href="egl-renderer.html#wpe_renderer_backend_egl_target">wpe_renderer_backend_egl_target</a> *<span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_target_deinitialize">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_target_deinitialize">
+	<i>wpe_renderer_backend_egl_target_deinitialize</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_renderer_backend_egl_target_deinitialize (struct <a title="wpe_renderer_backend_egl_target" href="egl-renderer.html#wpe_renderer_backend_egl_target">wpe_renderer_backend_egl_target</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_target_destroy">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_target_destroy">
+	<i>wpe_renderer_backend_egl_target_destroy</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_renderer_backend_egl_target_destroy (struct <a title="wpe_renderer_backend_egl_target" href="egl-renderer.html#wpe_renderer_backend_egl_target">wpe_renderer_backend_egl_target</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_target_dispatch_frame_complete">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_target_dispatch_frame_complete">
+	<i>wpe_renderer_backend_egl_target_dispatch_frame_complete</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_renderer_backend_egl_target_dispatch_frame_complete (struct <a title="wpe_renderer_backend_egl_target" href="egl-renderer.html#wpe_renderer_backend_egl_target">wpe_renderer_backend_egl_target</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_target_frame_rendered">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_target_frame_rendered">
+	<i>wpe_renderer_backend_egl_target_frame_rendered</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_renderer_backend_egl_target_frame_rendered (struct <a title="wpe_renderer_backend_egl_target" href="egl-renderer.html#wpe_renderer_backend_egl_target">wpe_renderer_backend_egl_target</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_target_frame_will_render">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_target_frame_will_render">
+	<i>wpe_renderer_backend_egl_target_frame_will_render</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_renderer_backend_egl_target_frame_will_render (struct <a title="wpe_renderer_backend_egl_target" href="egl-renderer.html#wpe_renderer_backend_egl_target">wpe_renderer_backend_egl_target</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_target_get_native_window">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_target_get_native_window">
+	<i>wpe_renderer_backend_egl_target_get_native_window</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+EGLNativeWindowType
+wpe_renderer_backend_egl_target_get_native_window (struct <a title="wpe_renderer_backend_egl_target" href="egl-renderer.html#wpe_renderer_backend_egl_target">wpe_renderer_backend_egl_target</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>EGLNativeWindowType<span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_target_initialize">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_target_initialize">
+	<i>wpe_renderer_backend_egl_target_initialize</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_renderer_backend_egl_target_initialize (struct <a title="wpe_renderer_backend_egl_target" href="egl-renderer.html#wpe_renderer_backend_egl_target">wpe_renderer_backend_egl_target</a> * ,
+                                            struct <a title="wpe_renderer_backend_egl" href="egl-renderer.html#wpe_renderer_backend_egl">wpe_renderer_backend_egl</a> * ,
+                                            int  uint32_t,
+                                            int  )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code>uint32_t</code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_target_resize">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_target_resize">
+	<i>wpe_renderer_backend_egl_target_resize</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_renderer_backend_egl_target_resize (struct <a title="wpe_renderer_backend_egl_target" href="egl-renderer.html#wpe_renderer_backend_egl_target">wpe_renderer_backend_egl_target</a> * ,
+                                        int  uint32_t,
+                                        int  )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code>uint32_t</code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_target_set_client">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_target_set_client">
+	<i>wpe_renderer_backend_egl_target_set_client</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_renderer_backend_egl_target_set_client (struct <a title="wpe_renderer_backend_egl_target" href="egl-renderer.html#wpe_renderer_backend_egl_target">wpe_renderer_backend_egl_target</a> * ,
+                                            struct <a title="wpe_renderer_backend_egl_target_client" href="egl-renderer.html#wpe_renderer_backend_egl_target_client">wpe_renderer_backend_egl_target_client</a> * ,
+                                            void * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+
+            <h2 class="symbol_section">Structures</h2>
+                    
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl">
+	<i>wpe_renderer_backend_egl</i>
+</h3>
+
+
+
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_base">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_base">
+	<i>wpe_renderer_backend_egl_base</i>
+</h3>
+
+
+<pre class="raw_code">
+struct wpe_renderer_backend_egl_base {
+    const struct wpe_renderer_backend_egl_interface* interface;
+    void* interface_data;
+};
+</pre>
+
+
+
+
+	<div class="members-container">
+		<h4>Fields</h4>
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_renderer_backend_egl_base.interface">
+	<div>
+		<i><em><code>interface</code></em></i>
+		(struct <a title="wpe_renderer_backend_egl_interface" href="egl-renderer.html#wpe_renderer_backend_egl_interface">wpe_renderer_backend_egl_interface</a> *)
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_renderer_backend_egl_base.interface_data">
+	<div>
+		<i><em><code>interface_data</code></em></i>
+		(void *)
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+			</div>
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_interface">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_interface">
+	<i>wpe_renderer_backend_egl_interface</i>
+</h3>
+
+
+<pre class="raw_code">
+struct wpe_renderer_backend_egl_interface {
+    void* (*create)(int);
+    void (*destroy)(void*);
+
+    EGLNativeDisplayType (*get_native_display)(void*);
+    uint32_t (*get_platform)(void*);
+
+};
+</pre>
+
+
+
+
+	<div class="members-container">
+		<h4>Fields</h4>
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_renderer_backend_egl_interface.create">
+	<div>
+		<i><em><code>create</code></em></i>
+		()
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_renderer_backend_egl_interface.destroy">
+	<div>
+		<i><em><code>destroy</code></em></i>
+		()
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_renderer_backend_egl_interface.get_native_display">
+	<div>
+		<i><em><code>get_native_display</code></em></i>
+		()
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_renderer_backend_egl_interface.uint32_t">
+	<div>
+		<i><em><code>uint32_t</code></em></i>
+		(int ((int *))(void *) )
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+			</div>
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_offscreen_target">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_offscreen_target">
+	<i>wpe_renderer_backend_egl_offscreen_target</i>
+</h3>
+
+
+
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_offscreen_target_base">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_offscreen_target_base">
+	<i>wpe_renderer_backend_egl_offscreen_target_base</i>
+</h3>
+
+
+<pre class="raw_code">
+struct wpe_renderer_backend_egl_offscreen_target_base {
+    const struct wpe_renderer_backend_egl_offscreen_target_interface* interface;
+    void* interface_data;
+};
+</pre>
+
+
+
+
+	<div class="members-container">
+		<h4>Fields</h4>
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_renderer_backend_egl_offscreen_target_base.interface">
+	<div>
+		<i><em><code>interface</code></em></i>
+		(struct <a title="wpe_renderer_backend_egl_offscreen_target_interface" href="egl-renderer.html#wpe_renderer_backend_egl_offscreen_target_interface">wpe_renderer_backend_egl_offscreen_target_interface</a> *)
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_renderer_backend_egl_offscreen_target_base.interface_data">
+	<div>
+		<i><em><code>interface_data</code></em></i>
+		(void *)
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+			</div>
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_offscreen_target_interface">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_offscreen_target_interface">
+	<i>wpe_renderer_backend_egl_offscreen_target_interface</i>
+</h3>
+
+
+<pre class="raw_code">
+struct wpe_renderer_backend_egl_offscreen_target_interface {
+    void* (*create)();
+    void (*destroy)(void*);
+
+    void (*initialize)(void*, void*);
+    EGLNativeWindowType (*get_native_window)(void*);
+
+};
+</pre>
+
+
+
+
+	<div class="members-container">
+		<h4>Fields</h4>
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_renderer_backend_egl_offscreen_target_interface.create">
+	<div>
+		<i><em><code>create</code></em></i>
+		()
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_renderer_backend_egl_offscreen_target_interface.destroy">
+	<div>
+		<i><em><code>destroy</code></em></i>
+		()
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_renderer_backend_egl_offscreen_target_interface.initialize">
+	<div>
+		<i><em><code>initialize</code></em></i>
+		()
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_renderer_backend_egl_offscreen_target_interface.get_native_window">
+	<div>
+		<i><em><code>get_native_window</code></em></i>
+		()
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+			</div>
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_target">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_target">
+	<i>wpe_renderer_backend_egl_target</i>
+</h3>
+
+
+
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_target_base">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_target_base">
+	<i>wpe_renderer_backend_egl_target_base</i>
+</h3>
+
+
+<pre class="raw_code">
+struct wpe_renderer_backend_egl_target_base {
+    const struct wpe_renderer_backend_egl_target_interface* interface;
+    void* interface_data;
+};
+</pre>
+
+
+
+
+	<div class="members-container">
+		<h4>Fields</h4>
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_renderer_backend_egl_target_base.interface">
+	<div>
+		<i><em><code>interface</code></em></i>
+		(struct <a title="wpe_renderer_backend_egl_target_interface" href="egl-renderer.html#wpe_renderer_backend_egl_target_interface">wpe_renderer_backend_egl_target_interface</a> *)
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_renderer_backend_egl_target_base.interface_data">
+	<div>
+		<i><em><code>interface_data</code></em></i>
+		(void *)
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+			</div>
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_target_client">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_target_client">
+	<i>wpe_renderer_backend_egl_target_client</i>
+</h3>
+
+
+
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_renderer_backend_egl_target_interface">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_renderer_backend_egl_target_interface">
+	<i>wpe_renderer_backend_egl_target_interface</i>
+</h3>
+
+
+<pre class="raw_code">
+struct wpe_renderer_backend_egl_target_interface {
+    void* (*create)(struct wpe_renderer_backend_egl_target*, int);
+    void (*destroy)(void*);
+
+    void (*initialize)(void*, void*, uint32_t, uint32_t);
+    EGLNativeWindowType (*get_native_window)(void*);
+    void (*resize)(void*, uint32_t, uint32_t);
+    void (*frame_will_render)(void*);
+    void (*frame_rendered)(void*);
+    void (*deinitialize)(void*);
+
+};
+</pre>
+
+
+
+
+	<div class="members-container">
+		<h4>Fields</h4>
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_renderer_backend_egl_target_interface.create">
+	<div>
+		<i><em><code>create</code></em></i>
+		()
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_renderer_backend_egl_target_interface.destroy">
+	<div>
+		<i><em><code>destroy</code></em></i>
+		()
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_renderer_backend_egl_target_interface.initialize">
+	<div>
+		<i><em><code>initialize</code></em></i>
+		()
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_renderer_backend_egl_target_interface.get_native_window">
+	<div>
+		<i><em><code>get_native_window</code></em></i>
+		()
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_renderer_backend_egl_target_interface.resize">
+	<div>
+		<i><em><code>resize</code></em></i>
+		()
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_renderer_backend_egl_target_interface.frame_will_render">
+	<div>
+		<i><em><code>frame_will_render</code></em></i>
+		()
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_renderer_backend_egl_target_interface.frame_rendered">
+	<div>
+		<i><em><code>frame_rendered</code></em></i>
+		()
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_renderer_backend_egl_target_interface.deinitialize">
+	<div>
+		<i><em><code>deinitialize</code></em></i>
+		()
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+			</div>
+
+
+
+
+<hr>
+
+</div>
+
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>
