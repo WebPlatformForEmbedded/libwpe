@@ -49,10 +49,12 @@ extern "C" {
 #endif
 
 enum wpe_input_modifier {
-    wpe_input_keyboard_modifier_control = 1 << 0,
-    wpe_input_keyboard_modifier_shift   = 1 << 1,
-    wpe_input_keyboard_modifier_alt     = 1 << 2,
-    wpe_input_keyboard_modifier_meta    = 1 << 3,
+    wpe_input_keyboard_modifier_control  = 1 << 0,
+    wpe_input_keyboard_modifier_shift    = 1 << 1,
+    wpe_input_keyboard_modifier_alt      = 1 << 2,
+    wpe_input_keyboard_modifier_meta     = 1 << 3,
+    wpe_input_keyboard_modifier_capslock = 1 << 4,
+    wpe_input_keyboard_modifier_numlock  = 1 << 5,
 
     wpe_input_pointer_modifier_button1  = 1 << 20,
     wpe_input_pointer_modifier_button2  = 1 << 21,
