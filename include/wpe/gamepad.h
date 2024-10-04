@@ -142,7 +142,7 @@ struct wpe_gamepad_client_interface {
     void (*axis_changed)(void*, enum wpe_gamepad_axis, double);
 
     /*< private >*/
-    void (*_wpe_reserved1)(void);
+    void (*analog_button_changed)(void*, enum wpe_gamepad_button, double);
     void (*_wpe_reserved2)(void);
     void (*_wpe_reserved3)(void);
 };
@@ -357,6 +357,20 @@ void wpe_gamepad_set_client(struct wpe_gamepad*, const struct wpe_gamepad_client
  */
 WPE_EXPORT
 const char* wpe_gamepad_get_id(struct wpe_gamepad*);
+
+/**
+ * wpe_gamepad_dispatch_analog_button_changed:
+ * @gamepad: opaque gamepad object.
+ * @button: the analog button that changed its value.
+ * @value: the new analog @button value.
+ *
+ * Method called by application (gamepad implementator). It reports to
+ * WPEWebkit a change in the value  of analog @button.
+ *
+ * Since: 1.15
+ */
+WPE_EXPORT
+void wpe_gamepad_dispatch_analog_button_changed(struct wpe_gamepad*, enum wpe_gamepad_button, double);
 
 /**
  * wpe_gamepad_dispatch_button_changed:
