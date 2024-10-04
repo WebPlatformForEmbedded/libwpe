@@ -162,6 +162,13 @@ wpe_gamepad_get_id(struct wpe_gamepad* gamepad)
 }
 
 void
+wpe_gamepad_dispatch_analog_button_changed(struct wpe_gamepad* gamepad, enum wpe_gamepad_button button, double value)
+{
+    if (gamepad && gamepad->client_interface && gamepad->client_interface->analog_button_changed)
+        gamepad->client_interface->analog_button_changed(gamepad->client_data, button, value);
+}
+
+void
 wpe_gamepad_dispatch_button_changed(struct wpe_gamepad* gamepad, enum wpe_gamepad_button button, bool pressed)
 {
     if (gamepad && gamepad->client_interface && gamepad->client_interface->button_changed)
