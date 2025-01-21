@@ -1,3 +1,11 @@
+=========================
+1.16.1 - January 21, 2025
+=========================
+
+- Add support for non-discrete gamepad button values. This allows
+  representing button pressure sensitivity for devices with analog
+  button inputs.
+
 =======================
 1.16.0 - March 21, 2024
 =======================
