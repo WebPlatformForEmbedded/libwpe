@@ -145,7 +145,6 @@ struct wpe_gamepad_client_interface {
     /*< private >*/
     void (*_wpe_reserved1)(void);
     void (*_wpe_reserved2)(void);
-    void (*_wpe_reserved3)(void);
 };
 
 /**
