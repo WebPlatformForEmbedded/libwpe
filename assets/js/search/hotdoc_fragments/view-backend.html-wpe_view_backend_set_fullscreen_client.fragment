@@ -1,0 +1,1 @@
+fragment_downloaded_cb({"url":"view-backend.html#wpe_view_backend_set_fullscreen_client","fragment":"\n\twpe_view_backend_set_fullscreen_client\n\nConfigure a client with callbacks invoked for DOM fullscreen requests.\nThis function must be only used once for a given view_backend, the client\ncannot be changed once it has been set.\nParameters:\n\n\tSince\t\t\t: 1.12\n\t\t\n"});

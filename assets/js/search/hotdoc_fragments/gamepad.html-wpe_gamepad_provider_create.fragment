@@ -1,0 +1,1 @@
+fragment_downloaded_cb({"url":"gamepad.html#wpe_gamepad_provider_create","fragment":"\n\twpe_gamepad_provider_create\n\nThis method is called by WPEWebKit.\nan opaque object representing the gamepad provider in libwpe.\n\n\tSince\t\t\t: 1.14\n\t\t\n"});

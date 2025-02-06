@@ -1,0 +1,1 @@
+fragment_downloaded_cb({"url":"gamepad.html#wpe_gamepad_provider_destroy","fragment":"\n\twpe_gamepad_provider_destroy\n\nFrees the internal resources used by provider.\nThis method is called by WPEWebKit.\nParameters:\n\n\tSince\t\t\t: 1.14\n\t\t\n"});

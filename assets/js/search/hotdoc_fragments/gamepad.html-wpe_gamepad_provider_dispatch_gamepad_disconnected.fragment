@@ -1,0 +1,1 @@
+fragment_downloaded_cb({"url":"gamepad.html#wpe_gamepad_provider_dispatch_gamepad_disconnected","fragment":"\n\twpe_gamepad_provider_dispatch_gamepad_disconnected\n\nMethod called by application (gamepad implementator) to inform\nWPEWebKit that a plugged gamepad device has been unplugged.\nParameters:\n\n\tSince\t\t\t: 1.14\n\t\t\n"});

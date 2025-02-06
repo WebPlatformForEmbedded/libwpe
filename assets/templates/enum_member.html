@@ -1,0 +1,17 @@
+@require(symbol, link, detail, value)
+
+<div class="symbol-detail" data-hotdoc-id="@link.id_">
+	<div>
+		<i><em><code>@link.title</code></em></i>
+		(<span class="value">@value</span>)
+		–
+	</div>
+	@if detail:
+		@detail
+	@else:
+		<i>No description available</i>
+	@end
+  @if symbol.comment and 'since' in symbol.comment.tags:
+	(Since: @symbol.comment.tags['since'].description)
+  @end
+</div>

@@ -1,0 +1,42 @@
+@require(page, subpages)
+
+@if not page.render_subpages:
+<div class="hide-if-js">
+@end
+
+<div id="subpages">
+	<p><b>Subpages:</b></p>
+	<div class="thumb-subpages">
+		@for link, subpage in subpages.items():
+		\
+			@if subpage.thumbnail:
+				<div class="thumb-subpage">
+					<a href="@link">
+						<img src="@subpage.thumbnail"/>
+					</a>
+					<p>
+						<a href="@link">@subpage.get_title()!e</a>
+						@if subpage.short_description:
+							– @subpage.short_description
+						@end
+					</p>
+				</div>
+			@end
+		@end
+	</div>
+	@for link, subpage in subpages.items():
+	\
+		@if not subpage.thumbnail:
+			<p>
+			<a href="@link">@subpage.get_title()!e</a>
+			@if subpage.short_description:
+				– @subpage.short_description
+			@end
+			</p>
+		@endif
+	@end
+</div>
+
+@if not page.render_subpages:
+</div>
+@end

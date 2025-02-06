@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href=".">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Pasteboard</title>
+
+<link rel="stylesheet" href="assets/css/dark-frontend.css" type="text/css" title="dark">
+<link rel="alternate stylesheet" href="assets/css/light-frontend.css" type="text/css" title="light">
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css">
+
+
+<link rel="stylesheet" href="assets/css/prism-tomorrow.css" type="text/css" title="dark">
+
+<link rel="alternate stylesheet" href="assets/css/prism.css" type="text/css" title="light">
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+<script src="assets/js/styleswitcher.js"></script>
+
+<script src="assets/js/lines_around_headings.js"></script>
+
+<script src="assets/js/prism-core.js"></script>
+<script src="assets/js/prism-autoloader.js"></script>
+<script src="assets/js/prism_autoloader_path_override.js"></script>
+<script src="assets/js/trie.js"></script>
+
+
+</head>
+
+<body class="no-script
+">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+<nav class="navbar navbar-fixed-top navbar-default" id="topnav">
+	<div class="container-fluid">
+		<div class="navbar-right">
+			<a id="toc-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<span title="light mode switch" class="glyphicon glyphicon-sunglasses pull-right" id="lightmode-icon"></span>
+			<form class="navbar-form pull-right" id="navbar-search-form">
+                               <div class="form-group has-feedback">
+                                       <input type="text" class="form-control input-sm" name="search" id="sidenav-lookup-field" placeholder="search" disabled>
+				       <span class="glyphicon glyphicon-search form-control-feedback" id="search-mgn-glass"></span>
+                               </div>
+                        </form>
+		</div>
+		<div class="navbar-header">
+			<a id="sidenav-toggle">
+				<span class="glyphicon glyphicon-menu-right"></span>
+				<span class="glyphicon glyphicon-menu-left"></span>
+			</a>
+			<a id="home-link" href="index.html" class="hotdoc-navbar-brand">
+				<img src="assets/images/home.svg" alt="Home">
+			</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-wrapper">
+			<ul class="nav navbar-nav" id="menu">
+							</ul>
+			<div class="hidden-xs hidden-sm navbar-text navbar-center">
+							</div>
+		</div>
+	</div>
+</nav>
+
+<main>
+<div data-extension="c-extension" data-hotdoc-in-toplevel="True" data-hotdoc-project="libwpe" data-hotdoc-ref="pasteboard.html" class="page_container" id="page-wrapper">
+<script src="assets/js/utils.js"></script>
+
+<div class="panel panel-collapse oc-collapsed" id="sidenav" data-hotdoc-role="navigation">
+	<script src="assets/js/full-width.js"></script>
+  <div id="sitenav-wrapper">
+    <iframe src="hotdoc-sitemap.html" id="sitenav-frame"></iframe>
+  </div>
+</div>
+
+<div id="body">
+	<div id="main">
+				    <div id="page-description" data-hotdoc-role="main">
+        <h1 id="pasteboard-page">Pasteboard</h1>
+    </div>
+        
+
+            <h2 class="symbol_section">Functions</h2>
+                    
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_pasteboard_get_singleton">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_pasteboard_get_singleton">
+	<i>wpe_pasteboard_get_singleton</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+struct <a title="wpe_pasteboard" href="pasteboard.html#wpe_pasteboard">wpe_pasteboard</a> *
+wpe_pasteboard_get_singleton ()</pre>
+
+<p>Obtains the pasteboard object, creating it if neccessary.</p>
+
+
+
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>struct <a title="wpe_pasteboard" href="pasteboard.html#wpe_pasteboard">wpe_pasteboard</a> *<span>)</span>
+–
+			</div>
+							<p>The pasteboard object.</p>
+
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_pasteboard_get_string">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_pasteboard_get_string">
+	<i>wpe_pasteboard_get_string</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_pasteboard_get_string (struct <a title="wpe_pasteboard" href="pasteboard.html#wpe_pasteboard">wpe_pasteboard</a> * ,
+                           const char * ,
+                           struct <a title="wpe_pasteboard_string" href="pasteboard.html#wpe_pasteboard_string">wpe_pasteboard_string</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_pasteboard_get_types">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_pasteboard_get_types">
+	<i>wpe_pasteboard_get_types</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_pasteboard_get_types (struct <a title="wpe_pasteboard" href="pasteboard.html#wpe_pasteboard">wpe_pasteboard</a> * ,
+                          struct <a title="wpe_pasteboard_string_vector" href="pasteboard.html#wpe_pasteboard_string_vector">wpe_pasteboard_string_vector</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_pasteboard_string_free">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_pasteboard_string_free">
+	<i>wpe_pasteboard_string_free</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_pasteboard_string_free (struct <a title="wpe_pasteboard_string" href="pasteboard.html#wpe_pasteboard_string">wpe_pasteboard_string</a> * pbstring)</pre>
+
+<p>Frees any resources associated with <em>pbstring</em> which may have been
+previously allocated by <a href="pasteboard.html#wpe_pasteboard_string_initialize">wpe_pasteboard_string_initialize</a>.</p>
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code>pbstring</code></em></i>
+–
+</div>
+<p>A pasteboard string.</p>
+
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_pasteboard_string_initialize">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_pasteboard_string_initialize">
+	<i>wpe_pasteboard_string_initialize</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_pasteboard_string_initialize (struct <a title="wpe_pasteboard_string" href="pasteboard.html#wpe_pasteboard_string">wpe_pasteboard_string</a> * pbstring,
+                                  const char * contents,
+                                  int  length)</pre>
+
+<p>Initializes a pasteboard string.</p>
+<p>When the string is not needed anymore, use <a href="pasteboard.html#wpe_pasteboard_string_free">wpe_pasteboard_string_free</a>
+to free resources.</p>
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code>pbstring</code></em></i>
+–
+</div>
+<p>A pasteboard string.</p>
+
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code>contents</code></em></i>
+–
+</div>
+<p>Contents to copy into the pasteboard string.</p>
+
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code>length</code></em></i>
+–
+</div>
+<p>Length of the contents, in bytes.</p>
+
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_pasteboard_string_vector_free">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_pasteboard_string_vector_free">
+	<i>wpe_pasteboard_string_vector_free</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_pasteboard_string_vector_free (struct <a title="wpe_pasteboard_string_vector" href="pasteboard.html#wpe_pasteboard_string_vector">wpe_pasteboard_string_vector</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_pasteboard_write">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_pasteboard_write">
+	<i>wpe_pasteboard_write</i>
+</h3>
+
+
+
+
+<pre class="c-prototype language-c">
+void 
+wpe_pasteboard_write (struct <a title="wpe_pasteboard" href="pasteboard.html#wpe_pasteboard">wpe_pasteboard</a> * ,
+                      struct <a title="wpe_pasteboard_string_map" href="pasteboard.html#wpe_pasteboard_string_map">wpe_pasteboard_string_map</a> * )</pre>
+
+
+
+
+	<div class="parameters-container">
+		<p><b>Parameters:</b></p>
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+					
+<div class="symbol-detail">
+	<div>
+		<i><em><code></code></em></i>
+–
+</div>
+<i>No description available</i>
+</div>
+
+			</div>
+
+		<div class="return-values-container">
+		<div class="symbol-detail">
+			<div>
+				<b>Returns</b>
+<span>(</span>void <span>)</span>
+–
+			</div>
+							<i>No description available</i>
+					</div>
+	</div>
+
+
+
+
+
+<hr>
+
+</div>
+
+
+            <h2 class="symbol_section">Structures</h2>
+                    
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_pasteboard">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_pasteboard">
+	<i>wpe_pasteboard</i>
+</h3>
+
+
+
+
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_pasteboard_interface">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_pasteboard_interface">
+	<i>wpe_pasteboard_interface</i>
+</h3>
+
+
+<pre class="raw_code">
+struct wpe_pasteboard_interface {
+    void* (*initialize)(struct wpe_pasteboard*);
+
+    void (*get_types)(void*, struct wpe_pasteboard_string_vector*);
+    void (*get_string)(void*, const char*, struct wpe_pasteboard_string*);
+    void (*write)(void*, struct wpe_pasteboard_string_map*);
+
+};
+</pre>
+
+
+
+
+	<div class="members-container">
+		<h4>Fields</h4>
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_pasteboard_interface.initialize">
+	<div>
+		<i><em><code>initialize</code></em></i>
+		()
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_pasteboard_interface.get_types">
+	<div>
+		<i><em><code>get_types</code></em></i>
+		()
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_pasteboard_interface.get_string">
+	<div>
+		<i><em><code>get_string</code></em></i>
+		()
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_pasteboard_interface.write">
+	<div>
+		<i><em><code>write</code></em></i>
+		()
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+			</div>
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_pasteboard_string">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_pasteboard_string">
+	<i>wpe_pasteboard_string</i>
+</h3>
+
+
+<pre class="raw_code">
+struct wpe_pasteboard_string {
+    char* data;
+    uint64_t length;
+};
+</pre>
+
+
+
+
+	<div class="members-container">
+		<h4>Fields</h4>
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_pasteboard_string.data">
+	<div>
+		<i><em><code>data</code></em></i>
+		(char *)
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_pasteboard_string.length">
+	<div>
+		<i><em><code>length</code></em></i>
+		(int )
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+			</div>
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_pasteboard_string_map">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_pasteboard_string_map">
+	<i>wpe_pasteboard_string_map</i>
+</h3>
+
+
+<pre class="raw_code">
+struct wpe_pasteboard_string_map {
+    struct wpe_pasteboard_string_pair* pairs;
+    uint64_t length;
+};
+</pre>
+
+
+
+
+	<div class="members-container">
+		<h4>Fields</h4>
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_pasteboard_string_map.pairs">
+	<div>
+		<i><em><code>pairs</code></em></i>
+		(struct <a title="wpe_pasteboard_string_pair" href="pasteboard.html#wpe_pasteboard_string_pair">wpe_pasteboard_string_pair</a> *)
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_pasteboard_string_map.length">
+	<div>
+		<i><em><code>length</code></em></i>
+		(int )
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+			</div>
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_pasteboard_string_pair">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_pasteboard_string_pair">
+	<i>wpe_pasteboard_string_pair</i>
+</h3>
+
+
+<pre class="raw_code">
+struct wpe_pasteboard_string_pair {
+    struct wpe_pasteboard_string type;
+    struct wpe_pasteboard_string string;
+};
+</pre>
+
+
+
+
+	<div class="members-container">
+		<h4>Fields</h4>
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_pasteboard_string_pair.type">
+	<div>
+		<i><em><code>type</code></em></i>
+		(struct <a title="wpe_pasteboard_string" href="pasteboard.html#wpe_pasteboard_string">wpe_pasteboard_string</a>)
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_pasteboard_string_pair.string">
+	<div>
+		<i><em><code>string</code></em></i>
+		(struct <a title="wpe_pasteboard_string" href="pasteboard.html#wpe_pasteboard_string">wpe_pasteboard_string</a>)
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+			</div>
+
+
+
+
+<hr>
+
+</div>
+
+            
+
+<div class="base_symbol_container" data-hotdoc-tags="" id="wpe_pasteboard_string_vector">
+	
+
+
+
+<h3 data-hotdoc-id="wpe_pasteboard_string_vector">
+	<i>wpe_pasteboard_string_vector</i>
+</h3>
+
+
+<pre class="raw_code">
+struct wpe_pasteboard_string_vector {
+    struct wpe_pasteboard_string* strings;
+    uint64_t length;
+};
+</pre>
+
+
+
+
+	<div class="members-container">
+		<h4>Fields</h4>
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_pasteboard_string_vector.strings">
+	<div>
+		<i><em><code>strings</code></em></i>
+		(struct <a title="wpe_pasteboard_string" href="pasteboard.html#wpe_pasteboard_string">wpe_pasteboard_string</a> *)
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+					
+<div class="symbol-detail" data-hotdoc-id="wpe_pasteboard_string_vector.length">
+	<div>
+		<i><em><code>length</code></em></i>
+		(int )
+		–
+	</div>
+			<i>No description available</i>
+	</div>
+
+			</div>
+
+
+
+
+<hr>
+
+</div>
+
+
+
+
+
+		
+	</div>
+	<div id="search_results">
+		<p>The results of the search are</p>
+	</div>
+	<div id="footer">
+		    
+
+	</div>
+</div>
+
+<div id="toc-column">
+	
+		<div class="edit-button">
+		
+
+	</div>
+		<div id="toc-wrapper">
+		<nav id="toc"></nav>
+	</div>
+</div>
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>

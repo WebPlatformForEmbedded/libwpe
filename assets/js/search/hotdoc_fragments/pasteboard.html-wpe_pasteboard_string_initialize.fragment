@@ -1,0 +1,1 @@
+fragment_downloaded_cb({"url":"pasteboard.html#wpe_pasteboard_string_initialize","fragment":"\n\twpe_pasteboard_string_initialize\n\nInitializes a pasteboard string.\nWhen the string is not needed anymore, use wpe_pasteboard_string_free\nto free resources.\nParameters:\nA pasteboard string.\nContents to copy into the pasteboard string.\nLength of the contents, in bytes.\n"});

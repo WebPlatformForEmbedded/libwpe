@@ -1,0 +1,1 @@
+fragment_downloaded_cb({"url":"pasteboard.html#wpe_pasteboard_string_free","fragment":"\n\twpe_pasteboard_string_free\n\nFrees any resources associated with pbstring which may have been\npreviously allocated by wpe_pasteboard_string_initialize.\nParameters:\nA pasteboard string.\n"});
