@@ -1,3 +1,11 @@
+===========================
+1.16.3 - September 24, 2025
+===========================
+
+- Log messages to the logd service on Android, instead of using
+  the standard error stream.
+- Fix the build with CMake 4.0 and newer.
+
 =========================
 1.16.2 - February 6, 2025
 =========================
