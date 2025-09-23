@@ -28,10 +28,11 @@
 
 #include <stdio.h>
 
+#include "logging-private.h"
+
 void
 wpe_alloc_fail(const char* file, unsigned line, size_t amount)
 {
-    fprintf(stderr, "%s:%u: failed to allocate %zu bytes\n", file, line, amount);
-    fflush(stderr);
+    wpe_log_fatal("%s:%u: failed to allocate %zu bytes", file, line, amount);
     abort();
 }

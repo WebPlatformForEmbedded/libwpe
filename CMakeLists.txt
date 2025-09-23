@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.5)
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(VersioningUtils)
 
+include(CheckIncludeFile)
+
 read_version_header("" "WPE_[A-Z]+_VERSION" "${CMAKE_CURRENT_SOURCE_DIR}/include/wpe/libwpe-version.h")
 set_project_version(${WPE_MAJOR_VERSION} ${WPE_MINOR_VERSION} ${WPE_MICRO_VERSION})
 set(WPE_API_VERSION "1.0")
@@ -127,6 +129,22 @@ if (WPE_ENABLE_XKB)
     find_package(Libxkbcommon REQUIRED)
     target_link_libraries(wpe PRIVATE XkbCommon::libxkbcommon)
     set(WPE_PC_REQUIRES xkbcommon)
+endif ()
+
+check_include_file("android/log.h" HAVE_ANDROID_LOG_H)
+if (HAVE_ANDROID_LOG_H)
+    include(CMakePushCheckState)
+    include(CheckFunctionExists)
+
+    cmake_push_check_state(RESET)
+    list(APPEND CMAKE_REQUIRED_LIBRARIES -llog)
+    check_function_exists(__android_log_print HAVE_ANDROID_LOG_PRINT)
+    cmake_pop_check_state()
+
+    if (HAVE_ANDROID_LOG_PRINT)
+        target_compile_definitions(wpe PRIVATE WPE_ENABLE_ANDROID=1)
+        target_link_libraries(wpe PRIVATE -llog)
+    endif ()
 endif ()
 
 install(

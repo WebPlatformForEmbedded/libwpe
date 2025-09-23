@@ -76,6 +76,12 @@ if not cc.has_function('dlopen')
 	dependencies += dl_dep
 endif
 
+android_log_lib = cc.find_library('log', has_headers: ['android/log.h'], required: false)
+if android_log_lib.found()
+	add_project_arguments('-DWPE_ENABLE_ANDROID=1', language: ['c', 'cpp'])
+	dependencies += [android_log_lib]
+endif
+
 if pkg_cflags.length() > 0
 	add_project_arguments(pkg_cflags, language: ['c', 'cpp'])
 endif
