@@ -26,8 +26,9 @@
 
 #include "loader-private.h"
 
-#include <stdio.h>
 #include <stdlib.h>
+
+#include "logging-private.h"
 
 extern struct wpe_loader_interface _wpe_loader_interface;
 
@@ -51,9 +52,9 @@ void*
 wpe_load_object(const char* object_name)
 {
     if (!_wpe_loader_interface.load_object) {
-        fprintf(stderr,
-                "wpe_load_object: failed to load object with name '%s': backend doesn't implement load_object vfunc\n",
-                object_name);
+        wpe_log_fatal(
+            "wpe_load_object: failed to load object with name '%s': backend doesn't implement load_object vfunc",
+            object_name);
         abort();
     }
     return _wpe_loader_interface.load_object(object_name);
