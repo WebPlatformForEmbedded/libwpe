@@ -1,0 +1,1 @@
+fragment_downloaded_cb({"url":"pasteboard.html#wpe_pasteboard_get_singleton","fragment":"\n\twpe_pasteboard_get_singleton\n\nObtains the pasteboard object, creating it if neccessary.\nThe pasteboard object.\n"});

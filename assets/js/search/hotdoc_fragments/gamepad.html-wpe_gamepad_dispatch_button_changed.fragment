@@ -1,0 +1,1 @@
+fragment_downloaded_cb({"url":"gamepad.html#wpe_gamepad_dispatch_button_changed","fragment":"\n\twpe_gamepad_dispatch_button_changed\n\nMethod called by application (gamepad implementator). It reports to\nWPEWebkit a change in the status of button.\nParameters:\n\n\tSince\t\t\t: 1.14\n\t\t\n"});

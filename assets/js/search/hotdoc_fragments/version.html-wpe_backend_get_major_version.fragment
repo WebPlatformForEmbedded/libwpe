@@ -1,0 +1,1 @@
+fragment_downloaded_cb({"url":"version.html#wpe_backend_get_major_version","fragment":"\n\twpe_backend_get_major_version\n\nMajor version of the libwpe library.\n\n\tdeprecated\t\t\t: \nSince libwpe version 1.0.0, use wpe_get_major_version\ninstead.\n"});

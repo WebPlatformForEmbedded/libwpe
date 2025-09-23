@@ -1,0 +1,1 @@
+fragment_downloaded_cb({"url":"loader.html#wpe_loader_init","fragment":"\n\twpe_loader_init\n\nInitializes the libwpe object loader\nParameters:\nName of the shared library object\nto load as WPE backend implementation.\nWhether initialization succeeded.\n"});

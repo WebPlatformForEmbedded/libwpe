@@ -1,0 +1,14 @@
+@require(symbol, detail)
+
+<div class="symbol-detail" data-hotdoc-id="@symbol.link.id_">
+	<div>
+		<i><em><code>@symbol.link.get_title()</code></em></i>
+		(@symbol.formatted_link)
+		–
+	</div>
+	@if detail:
+		@detail
+	@else:
+		<i>No description available</i>
+	@end
+</div>

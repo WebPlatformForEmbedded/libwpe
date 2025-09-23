@@ -1,0 +1,1 @@
+fragment_downloaded_cb({"url":"gamepad.html#wpe_gamepad_get_id","fragment":"\n\twpe_gamepad_get_id\n\nGets the identification string for the gamepad.\nParameters:\n\n\tSince\t\t\t: 1.14\n\t\t\n"});

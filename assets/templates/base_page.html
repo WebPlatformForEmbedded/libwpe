@@ -1,0 +1,88 @@
+@require(page, meta, rel_path, scripts, stylesheets, dark_stylesheets, light_stylesheets, in_toplevel)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<base href="@rel_path" />
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+@for key, value in meta.items():
+<meta data-hd-key="@str(key)" data-hd-value="@str(value)" />
+@end
+
+<title>@page.get_title()</title>
+
+<link rel="stylesheet" href="assets/css/dark-frontend.css" type="text/css" title="dark"/>
+<link rel="alternate stylesheet" href="assets/css/light-frontend.css" type="text/css" title="light"/>
+<link rel="stylesheet" href="assets/css/bootstrap-toc.min.css" type="text/css"/>
+<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css" />
+<link rel="stylesheet" href="assets/js/search/enable_search.css" type="text/css"/>
+
+@for stylesheet in stylesheets:
+<link rel="stylesheet" href="assets/css/@stylesheet" type="text/css"/>
+@end
+
+@for stylesheet in dark_stylesheets:
+<link rel="stylesheet" href="assets/css/@stylesheet" type="text/css" title="dark"/>
+@end
+
+@for stylesheet in light_stylesheets:
+<link rel="alternate stylesheet" href="assets/css/@stylesheet" type="text/css" title="light"/>
+@end
+
+<script src="assets/js/mustache.min.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/scrollspy.js"></script>
+<script src="assets/js/typeahead.jquery.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/compare-versions.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/bootstrap-toc.min.js"></script>
+<script src="assets/js/jquery.touchSwipe.min.js"></script>
+<script src="assets/js/anchor.min.js"></script>
+<script src="assets/js/tag_filtering.js"></script>
+<script src="assets/js/language_switching.js"></script>
+<script src="assets/js/styleswitcher.js"></script>
+
+@include("scripts.html")
+
+@for script in scripts:
+<script src="assets/js/@script"></script>
+@end
+
+@include("extra_head.html")
+
+</head>
+
+<body class="no-script
+@if page.meta.get('full-width'):
+full-width
+@end
+">
+
+<script>
+$('body').removeClass('no-script');
+</script>
+
+@include("navbar.html")
+
+<main>
+<div data-extension="@str(page.extension_name)" data-hotdoc-in-toplevel="@str(in_toplevel)" data-hotdoc-project="@str(page.project_name)" data-hotdoc-ref="@str(page.link.ref)" class="page_container" id="page-wrapper"
+@for key, value in page.meta.get('extra', {}).items():
+data-hotdoc-meta-@key="@str(value)"\
+@end
+>
+<script src="assets/js/utils.js"></script>
+@include("page_content.html")
+</div>
+</main>
+
+
+<script src="assets/js/navbar_offset_scroller.js"></script>
+</body>
+</html>

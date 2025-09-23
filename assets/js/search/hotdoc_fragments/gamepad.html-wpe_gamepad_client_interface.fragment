@@ -1,0 +1,1 @@
+fragment_downloaded_cb({"url":"gamepad.html#wpe_gamepad_client_interface","fragment":"\n\twpe_gamepad_client_interface\n\nFields\nThis interface is defines gamepad callbacks to notify WPEWebKit of events.\nCallback to inform WPEWebkit a change in the status of a button.\nCallback to inform WPEWebkit a change in the status of an axis.\n\n\tSince\t\t\t: 1.14\n\t\t\n"});
