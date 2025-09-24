@@ -163,6 +163,11 @@ wpe_input_xkb_context_get_modifiers(struct wpe_input_xkb_context* xkb_context, u
         retval |= wpe_input_keyboard_modifier_alt;
     if (mask & (1 << xkb_keymap_mod_get_index(keymap, "Meta")))
         retval |= wpe_input_keyboard_modifier_meta;
+    if (mask & (1 << xkb_keymap_mod_get_index(keymap, XKB_MOD_NAME_CAPS)))
+        retval |= wpe_input_keyboard_modifier_capslock;
+    if (mask & (1 << xkb_keymap_mod_get_index(keymap, XKB_MOD_NAME_NUM)))
+        retval |= wpe_input_keyboard_modifier_numlock;
+
     return retval;
 }
 
